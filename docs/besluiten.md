@@ -18,4 +18,4 @@
 | 28-10-2026 | Alles gratis, ook latere AI-functies. Inkomsten alleen via Buy Me a Coffee | Keuze eigenaar. Vervangt het eerdere idee van betaalde AI. Buy Me a Coffee gekozen boven Ko-fi (eigenaar vindt die knop aantrekkelijk; 5% commissie geaccepteerd). |
 | 28-10-2026 | Naam: **Tinkpop**. Domein tinkpop.com geregistreerd bij Cloudflare; repo `Bouwhoek/tinkpop` | Uit naamonderzoek (`naam.md`): kort, radiotest, ledennaam "Tinkers", geen bestaand gebruik, .com vrij. Slogan: "Type it. Tink it. Print it." |
 | 28-10-2026 | Hosting bij voorkeur Cloudflare Pages | Domein staat al bij Cloudflare; gratis voor een statische site. |
-| 28-10-2026 | Social-medianaam: @tink.pop (X: @tink_pop) | @tinkpop was bezet op Instagram; @tink.pop leest als de naam zelf. |
+| 28-10-2026 | Social-medianaam: @tink_pop, op Instagram @tink.pop | @tinkpop bezet op Instagram; @tink.pop geweigerd op het tweede platform; @tink_pop werkt ook op X. |
