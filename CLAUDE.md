@@ -15,6 +15,7 @@ Nog geen code. Fase: sparren en scope bepalen. Docs komen uit de eerdere werkrep
 - `docs/besluiten.md` — genomen besluiten met reden
 - `docs/roadmap.md` — open vragen en volgende stappen
 - `docs/naam.md` — naamonderzoek dat tot Tinkpop leidde
+- `docs/brand/` — logo en merkregels
 
 ## Vaste afspraken
 - Site in het Engels; docs en overleg in het Nederlands.
