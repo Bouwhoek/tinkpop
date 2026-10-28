@@ -2,7 +2,7 @@
 
 ## Open vragen voor de eigenaar
 - [x] Naam: Tinkpop, tinkpop.com geregistreerd (28-10-2026). Zie `naam.md`.
-- [ ] Merkcheck: "Tinkpop" en "Pinkpop" nakijken in TMview (klassen 9, 28, 40, 42); handles @tinkpop op Instagram, TikTok, YouTube vastleggen.
+- [ ] Merkcheck: "Tinkpop" en "Pinkpop" nakijken in TMview (klassen 9, 28, 40, 42); handles vastleggen. @tinkpop is bezet op Instagram (28-10-2026); advies: overal dezelfde variant, bij voorkeur @tinkpop3d (anders @tinkpop.app of @gotinkpop). Instagram geeft een inactieve naam alleen vrij aan een geregistreerde merkhouder.
 - [ ] Ook tinkpop.app en tinkpop.org vastleggen (nu nog vrij).
 - [ ] Welke generator is de eerste "perfecte"? Advies: naambordje/sleutelhanger (meeste vraag) óf clicker (meest onderscheidend).
 - [ ] Clicker: schriftelijke toestemming van de maker, en mag het ontwerp open source in de repo?
