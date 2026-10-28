@@ -38,3 +38,14 @@ Later: scharnierende naam (beweegt) · spinner/fidget · flesopener · AirTag-ho
 - Criteria: 7 letters, twee lettergrepen, in NL en EN hetzelfde uitgesproken, makkelijk te spellen na één keer horen, past bij elk soort generator.
 - Herkenbaarheid: klinkt als een werkwoord-zin ("make, pop!"). Logo-idee: een plop/bubbel.
 - Zwakte: zegt niet letterlijk "3D". Op te lossen met een slogan, bijvoorbeeld "Make it. Print it." of "Type it. Pop it. Print it."
+
+## Open: combineren met NotMadeYet (28-10-2026)
+NotMadeYet (`Bouwhoek/notmadeyet`, live op notmadeyet.com): anoniem Instagram-account, om de 2-3 dagen een Reel van een gek 3D-printbaar object dat nog niet bestaat, "NOT MADE YET or MAKE?". Ideeën en OpenSCAD-modellen dagelijks door Claude en GPT, studio achter inlog. Fase nu: voorraad opbouwen, posten vanaf ± 25 november.
+
+Overlap met Tinkpop: beide 3D-print, OpenSCAD, Bambu-doelgroep, Instagram. De controle van NotMadeYet (gram, printuren, support) is precies wat Tinkpop ook moet tonen.
+
+Advies (nog niet besloten):
+- Eén merk naar buiten: **Tinkpop**. "Not Made Yet" wordt een vaste rubriek binnen Tinkpop: de community stemt (MAKE), het winnende idee wordt een gratis, aanpasbare generator op Tinkpop.
+- notmadeyet.com niet opzeggen (± €10 per jaar): later doorsturen naar tinkpop.com/notmadeyet, zodat niemand anders de naam pakt.
+- Eerst afronden wat loopt: NotMadeYet fase 1 (voorraad) gewoon door laten lopen; samenvoegen pas als de eerste Tinkpop-generator live staat.
+- Verschil om op te lossen: NotMadeYet wil later producten verkopen, Tinkpop is gratis en open source. Kan samen: gratis bestand op Tinkpop, en wie geen printer heeft, koopt hem kant-en-klaar.

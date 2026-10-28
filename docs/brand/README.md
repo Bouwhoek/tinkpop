@@ -16,3 +16,6 @@ Aangeleverd door de eigenaar. De T is een 3D-printer: uit de onderkant komt een 
 - **Lichte achtergrond**: "Tink" is wit en verdwijnt op wit; een donkere variant van het woordmerk maken.
 - **Lijkt op Instagram-kleuren** (blauw-roze-oranje); op Instagram valt het daardoor minder op. Overwegen: één kleur dominant maken.
 - Als het logo met AI gemaakt is: merkregistratie kan, maar auteursrecht op AI-beelden is onzeker. Een vectorversie die we zelf natekenen lost dat deels op.
+
+## Logo-concept v2 (28-10-2026)
+Zelfde ontwerp op witte achtergrond, woordmerk "Tinkpop" met zwarte rand. Lost het probleem van witte letters op wit op. Bestand nog niet in de repo (alleen in de chat gedeeld). Blijft open: platte versie voor klein formaat, SVG.
