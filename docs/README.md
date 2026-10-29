@@ -22,3 +22,19 @@
 - **Wijziging = nieuw nummer**; het oude besluit gaat naar "Vervallen" met verwijzing.
 - **Af = weg uit de roadmap**, het besluit staat dan in het register.
 - Na elke sessie: status hierboven en in `CLAUDE.md` bijwerken.
+
+## Woordenlijst
+| Woord | Betekenis |
+|---|---|
+| Generator | Een maakbaar ding met instellingen, bijv. de naamsleutelhanger (`library/name-keychain`) |
+| Preset | Een kant-en-klare set instellingen van een generator (bijv. "team") |
+| Ontwerp | Wat een bezoeker maakt: generator + versie + instellingen |
+| Werkbank | De generatorpagina: formulier, 3D-voorbeeld, download (`studio/workbench`) |
+| Plaat vullen | Zoveel stuks als passen op je printplaat in één 3MF (`print/plate-fill`) |
+| Batch | Veel namen tegelijk invoeren (`studio/batch`) |
+| Hoofdmodule / onderdeel | Indeling van de site, zie `2-plan/modules.md` |
+| Kaartje (manifest) | Beschrijving van een onderdeel, met juridisch blok |
+| Schakelbord / live schakelaars | `tinkpop.config.json` (bouwtijd) en `flags.json` (live) |
+| Proeflink | Testversie van een wijziging, die de eigenaar zelf probeert vóór het samenvoegen |
+| Pop-taal | De vaste animaties en geluiden (`brand/pop.md`) |
+| B-/V-/A-nummer | Besluit / open vraag / aanname die getest wordt |

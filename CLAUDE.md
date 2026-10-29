@@ -12,6 +12,7 @@ Nog geen code. Fase: plan klaar (bible, blauwdruk goedgekeurd 29-10, juridisch, 
 ## Waar staat wat
 Begin bij **`docs/README.md`**: indeling in mappen (1-product, 2-plan, 3-juridisch, 4-besluiten, brand, pages, templates, archief) en de spelregels.
 - Besluiten: `docs/4-besluiten/besluiten.md` (B-nummers). Open vragen, taken en fasen: `docs/4-besluiten/roadmap.md` (V-nummers).
+- Zelfvragen, grill-sessie, aannames voor fase 0: `docs/2-plan/grill.md`. Regels voor andere AI's: `AGENTS.md`.
 - Bouwplan: `docs/2-plan/bible.md`; modules en codes: `docs/2-plan/modules.md`; open source: `docs/2-plan/hergebruik.md`.
 - Juridisch en risico's: `docs/3-juridisch/`. Merk en pop-taal: `docs/brand/`.
 - Alles op één pagina: overzicht-artifact (link in `docs/README.md`).
