@@ -5,7 +5,7 @@ Eén lijst met wat er nog moet. Antwoorden komen uit het Beslisbord (overzicht-a
 Spelregel: alles wat hier af is, gaat eruit (het besluit staat dan in `docs/4-besluiten/besluiten.md`).
 
 ## Nu
-**Volgende stap: PR #1 samenvoegen, daarna fase 0 volgens het MVP-contract (`2-plan/mvp.md`), te beginnen met het 3MF-bewijs (B-145).** Tempo: rustig aan, eerst alles af (B-013). Ronde 3 (GPT, Gemini, Claude) verwerkt en alle vragen beantwoord op 29-10 (B-147 t/m B-155). Richting: eerst de beste generator (B-149).
+**Fase 0 is gestart (29-10):** rekenmotor, plaat vullen, 3MF/STL en de werkbank werken; proefversie als privé-artifact (B-159). Wacht op: uitslag 3MF-proef, V-045, V-046, PR #1 samenvoegen. Tempo: rustig aan, eerst alles af (B-013). Ronde 3 (GPT, Gemini, Claude) verwerkt en alle vragen beantwoord op 29-10 (B-147 t/m B-155). Richting: eerst de beste generator (B-149).
 
 ## Fase 0 is een experiment
 Fase 0 test A-01 t/m A-03 (zie `2-plan/grill.md` §C) met de harde lat uit `2-plan/mvp.md` (M-1 t/m M-8). A-04 (willen mensen het) wordt gemeten tijdens de stille lancering (B-142). Slaagt een aanname niet, dan eerst oplossen vóór fase 1.
@@ -13,6 +13,7 @@ Fase 0 test A-01 t/m A-03 (zie `2-plan/grill.md` §C) met de harde lat uit `2-pl
 ## Open vragen voor de eigenaar
 | Nr | Vraag | Advies | Blokkeert |
 |---|---|---|---|
+| V-046 | Mag ik een proeflink op Cloudflare zetten (preview-adres, niet tinkpop.com)? Jij zet dan een API-sleutel als geheim in GitHub | ja, alleen preview | testen op iPhone en Android |
 | V-045 | Akkoord met de korte lijst voor fase 1 (hieronder)? | ja | fase 1 bevriezen |
 
 ## Fase 1: korte lijst (voorstel 29-10, wacht op V-045)
@@ -42,7 +43,9 @@ Volgens B-149: eerst de beste generator, geen platform. Codes uit `2-plan/blauwd
 - [ ] Na V-029: Cloudflare-instelling AI-bots nalopen samen met de eigenaar (niets wijzigen zonder akkoord).
 - [ ] Uitgesloten hoek op de plaat (X1/P1) nalopen in Bambu Studio (`2-plan/mvp.md`, plaatmaten).
 - [ ] Pop-taal verder uitwerken in artifacts (pop, geluid, druppels) tot de eigenaar tevreden is (B-015).
-- [ ] Harde regels als controles: CI + projectinstellingen voor AI (B-049), bij de opzet van fase 0.
+- [ ] Projectinstellingen voor AI (B-049, tweede helft); CI draait al (`npm run check`).
+- [ ] Browsertest (Playwright) in CI: werkbank laden, plaat van 25 namen, download.
+- [ ] Snelheid meten op een echte middenklasse Android (M-8).
 - [ ] Clicker: eigen ontwerp uitwerken vanuit algemene onderdelen, proces gedateerd (B-147), fase 2.
 - [ ] 3MF-matrix invullen met de uitslag van de eigenaar (bestanden: `tools/proef-3mf/`, B-145).
 - [ ] Slicer-check in CI (Bambu Studio / OrcaSlicer CLI, alleen als tool).

@@ -1,0 +1,44 @@
+{
+  "id": "studio/fonts",
+  "main": "studio",
+  "version": "0.1.0",
+  "phase": 0,
+  "enabled": true,
+  "what": "Fixed set of OFL fonts, chosen on character coverage.",
+  "legal": {
+    "origin": "own",
+    "originProof": "docs/2-plan/mvp.md (29-10-2026)",
+    "codeLicense": "AGPL-3.0",
+    "assetLicense": "CC-BY-4.0",
+    "outputLicense": "free",
+    "assets": [
+      {
+        "file": "public/fonts/TitanOne-Regular.ttf",
+        "license": "OFL-1.1",
+        "licenseFile": "public/fonts/OFL-titanone.txt",
+        "source": "https://github.com/google/fonts/tree/main/ofl/titanone"
+      },
+      {
+        "file": "public/fonts/ArchivoBlack-Regular.ttf",
+        "license": "OFL-1.1",
+        "licenseFile": "public/fonts/OFL-archivoblack.txt",
+        "source": "https://github.com/google/fonts/tree/main/ofl/archivoblack"
+      },
+      {
+        "file": "public/fonts/Pacifico-Regular.ttf",
+        "license": "OFL-1.1",
+        "licenseFile": "public/fonts/OFL-pacifico.txt",
+        "source": "https://github.com/google/fonts/tree/main/ofl/pacifico"
+      }
+    ],
+    "personalData": "none",
+    "storesUserContent": false,
+    "public": false,
+    "commercial": false,
+    "risks": [
+      "V5"
+    ],
+    "reviewedBy": "Claude 2026-10-29",
+    "approvedBy": null
+  }
+}

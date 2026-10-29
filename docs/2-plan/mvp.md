@@ -46,6 +46,13 @@ Elke test-3MF gaat door deze rij. Wat niet werkt, staat er eerlijk bij; de site 
 
 Bambu Studio en OrcaSlicer zijn alleen **testgereedschap**: we lezen hun documentatie en gebruiken ze om bestanden te openen of te slicen (ook in CI, via de command line). We nemen geen code over (AGPL, zie CLAUDE.md).
 
+## Stand van de bouw (29-10)
+- Gebouwd: `library/name-keychain` (rekenmotor), `studio/batch`, `studio/fonts`, `print/plate-fill`, `print/color-3mf`, `studio/workbench` (pagina), `core/pop`. Elk met kaartje en juridisch blok (`module.json`).
+- Getest (`npm run check`): vaste testset 20/20, 25 namen op A1 mini zonder overlap (M-1, M-2), 10 exports foutloos (M-6), licenties van alle pakketten, juridisch blok per module.
+- Snelheid op de computer: 25 namen 0,7–1,1 s, één naam ± 0,08 s. Op een telefoon nog meten (M-8).
+- Nog open: M-3 (kleur in Bambu Studio: wacht op uitslag), M-4 slicer-check, M-5 echte telefoons, M-7 echte prints.
+- Proefversie: privé-artifact, gebouwd met `node tools/artifact-preview/build.mjs`. Daar gaat downloaden via een zip (de viewer staat geen .3mf toe).
+
 ## Eerste proef (29-10)
 Script: `tools/proef-3mf/` (5 bestanden). Twee manieren om kleur mee te geven, om te zien welke Bambu Studio goed leest:
 - **A, kleurgroep** (proef 1A): kleur per driehoek, zoals Open Keychain (MIT). Bambu vraagt dan mogelijk om kleuren aan filament te koppelen.

@@ -1,0 +1,105 @@
+---
+import App from '../modules/studio/workbench/App.tsx';
+import '../modules/core/pop/pop.css';
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Tinkpop · Name keychains for your 3D printer</title>
+    <meta name="description" content="Type names, get one print-ready plate of keychains with colors for your AMS. Free, open source, made in your browser." />
+    <link rel="icon" type="image/png" href="/brand/favicon.png" />
+    <meta name="robots" content="noindex" />
+  </head>
+  <body>
+    <header class="top">
+      <img src="/brand/logo.png" alt="Tinkpop" width="118" height="44" />
+    </header>
+    <main>
+      <h1 class="sr-only">Make name keychains for your 3D printer</h1>
+      <App client:only="react" />
+    </main>
+    <footer class="foot">
+      <p>Free and open source (AGPL-3.0). <a href="https://github.com/Bouwhoek/tinkpop">Source code</a>. Models are made in your browser; nothing is uploaded.</p>
+      <p>Fonts: Titan One, Archivo Black, Pacifico (SIL Open Font License). Made by Mark, a maker from the Netherlands.</p>
+      <p class="test-note">Test version. Not a toy. Small parts. Test your print.</p>
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  @font-face { font-family: 'Titan One'; src: url('/fonts/TitanOne-Regular.ttf') format('truetype'); font-display: swap; }
+  @font-face { font-family: 'Archivo Black'; src: url('/fonts/ArchivoBlack-Regular.ttf') format('truetype'); font-display: swap; }
+  @font-face { font-family: 'Pacifico'; src: url('/fonts/Pacifico-Regular.ttf') format('truetype'); font-display: swap; }
+
+  :root {
+    --bg: #f6f7fb; --surface: #ffffff; --ink: #141625; --muted: #5b5f75; --line: #e0e2ec;
+    --cyan: #0aa5c9; --pink: #e23d8e; --yellow: #ffc93c; --stage: #1d2030;
+    --f-ui: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #11131c; --surface: #1a1d2a; --ink: #eceef6; --muted: #a3a7be; --line: #2c3042; --stage: #0c0e16; color-scheme: dark; }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body { background: var(--bg); color: var(--ink); font: 16px/1.5 var(--f-ui); padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px)); }
+  a { color: var(--pink); }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  :focus-visible { outline: 3px solid var(--cyan); outline-offset: 2px; }
+
+  .top { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding: 12px max(16px, env(safe-area-inset-left, 0px)) 8px; }
+  .top img { height: 44px; width: auto; }
+  @media (prefers-color-scheme: dark) { .top img { background: #fff; border-radius: 10px; padding: 3px 8px; } }
+  .tag { margin: 0; color: var(--muted); font-weight: 600; letter-spacing: .06em; text-transform: uppercase; font-size: .75rem; }
+
+  .bench { display: grid; gap: 16px; padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px)); max-width: 1200px; margin: 0 auto; }
+  @media (min-width: 900px) {
+    .bench { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); align-items: start; }
+    .stage { position: sticky; top: 12px; }
+  }
+  .stage { position: relative; border-radius: 16px; overflow: hidden; background: var(--stage); }
+  .viewer { width: 100%; height: 42vh; min-height: 260px; max-height: 620px; }
+  @media (min-width: 900px) { .viewer { height: 70vh; } }
+  .viewer canvas { display: block; width: 100%; height: 100%; touch-action: none; }
+  .viewer-fallback { color: #fff; padding: 24px; margin: 0; }
+  .stage-bar { position: absolute; left: 10px; top: 10px; display: flex; gap: 6px; flex-wrap: wrap; }
+  .chip { background: rgba(255,255,255,.92); color: #141625; font-size: .82rem; font-weight: 600; padding: 4px 10px; border-radius: 999px; }
+  .chip-busy { background: var(--yellow); }
+  .chip-quiet { background: rgba(255,255,255,.6); }
+
+  .controls { display: grid; gap: 16px; min-width: 0; }
+  .field { border: 0; margin: 0; padding: 0; display: grid; gap: 6px; min-width: 0; }
+  .field > label, legend { font-weight: 700; padding: 0; }
+  .hint { color: var(--muted); font-weight: 400; font-size: .88rem; margin: 0; }
+  textarea { width: 100%; font: 16px/1.5 var(--f-ui); padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); color: var(--ink); resize: vertical; }
+  .options { display: flex; flex-wrap: wrap; gap: 8px; }
+  .opt { font: 600 .95rem var(--f-ui); padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
+  .opt[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .font-titan-one { font-family: 'Titan One', var(--f-ui); font-weight: 400; }
+  .font-archivo-black { font-family: 'Archivo Black', var(--f-ui); font-weight: 400; }
+  .font-pacifico { font-family: 'Pacifico', var(--f-ui); font-weight: 400; }
+  .swatches { display: flex; flex-wrap: wrap; gap: 8px; }
+  .swatch { width: 36px; height: 36px; border-radius: 50%; border: 2px solid var(--line); cursor: pointer; }
+  .swatch[aria-pressed="true"] { outline: 3px solid var(--pink); outline-offset: 2px; }
+  .row { display: flex; flex-wrap: wrap; gap: 16px 28px; }
+  .notes { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--yellow); border-radius: 12px; padding: 12px 14px; }
+  .notes h2 { font-size: 1rem; margin: 0 0 4px; }
+  .notes ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
+  .notes .bad { color: #c21d4b; }
+  .tester summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
+  .tester .options { margin-top: 8px; }
+
+  .dl-bar { position: fixed; left: 0; right: 0; bottom: 0; background: var(--surface); border-top: 1px solid var(--line); padding: 10px max(16px, env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); z-index: 5; }
+  .dl-inner { max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+  .btn-primary, .btn-secondary { font: 700 1rem var(--f-ui); border-radius: 999px; padding: 12px 20px; cursor: pointer; border: 0; }
+  .btn-primary { background: var(--pink); color: #fff; }
+  .btn-secondary { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+  button:disabled { opacity: .5; cursor: not-allowed; }
+  .safety { margin: 0; font-size: .85rem; color: var(--muted); flex: 1 1 220px; }
+  .burst-check { display: inline-block; color: #1f9d6a; font-weight: 700; }
+
+  .foot { max-width: 1200px; margin: 24px auto 0; padding: 0 max(16px, env(safe-area-inset-left, 0px)); color: var(--muted); font-size: .85rem; }
+  .test-note { font-weight: 600; }
+</style>

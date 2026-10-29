@@ -48,6 +48,10 @@ Open vragen staan **niet** hier maar in `docs/4-besluiten/roadmap.md` en op het 
 | B-036 | 29-10 | Designsysteem Tinkpop Kit als `core/ui-kit` | V-028 |
 | B-037 | 29-10 | Cloudflare: AI-zoekbots toestaan, AI-trainingsbots blokkeren | V-029 |
 | B-038 | 29-10 | Statuspagina buiten de eigen site | V-032 |
+| B-156 | 29-10 | Tekst naar vorm via opentype.js (MIT) in plaats van harfbuzzjs: eenvoudiger en genoeg voor Latijnse namen met accenten. harfbuzz pas als we schriften als Arabisch of Hindi willen | Claude, bouw fase 0 |
+| B-157 | 29-10 | Eigen kleine 3MF-schrijver (uit de 3MF-proef) met twee kleurmethodes; three-3mf-exporter blijft reserve als Bambu Studio projectinstellingen wil | Claude, bouw fase 0; wacht op uitslag 3MF-proef |
+| B-158 | 29-10 | Lettertypen fase 0: Titan One, Archivo Black, Pacifico (OFL), gekozen op tekens | Claude, mvp.md |
+| B-159 | 29-10 | Proefversie fase 0 als privé-artifact (alleen eigenaar, geen domein, niet live). Een echte proeflink op Cloudflare pas na akkoord (V-046) | Claude; regel: niets live zonder akkoord |
 
 ## Beheer en werkwijze
 | Nr | Datum | Besluit | Reden / bron |

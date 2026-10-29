@@ -1,0 +1,25 @@
+{
+  "id": "print/plate-fill",
+  "main": "print",
+  "version": "0.1.0",
+  "phase": 0,
+  "enabled": true,
+  "what": "Fill the print plate (A1 mini, A1).",
+  "legal": {
+    "origin": "own",
+    "originProof": "docs/2-plan/mvp.md (29-10-2026)",
+    "codeLicense": "AGPL-3.0",
+    "assetLicense": "CC-BY-4.0",
+    "outputLicense": "free",
+    "assets": [],
+    "personalData": "none",
+    "storesUserContent": false,
+    "public": false,
+    "commercial": false,
+    "risks": [
+      "T1"
+    ],
+    "reviewedBy": "Claude 2026-10-29",
+    "approvedBy": null
+  }
+}

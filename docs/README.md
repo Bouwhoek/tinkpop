@@ -1,6 +1,6 @@
 # Tinkpop docs: begin hier
 
-**Status (29-10-2026):** nog geen code. Plan klaar; volgende stap: PR #1 samenvoegen, daarna fase 0 (proefweek).
+**Status (29-10-2026):** fase 0 in aanbouw. Werkbank, rekenmotor en export werken; proefversie (privé): https://claude.ai/artifact/Y7xcdUzVk4Brat51ZSwfaw. Stand: `2-plan/mvp.md`.
 **Open vragen:** `docs/4-besluiten/roadmap.md` (V-nummers) en het Beslisbord (eerste tab van het overzicht-artifact). Antwoorden staan in de database van dat artifact (`antwoorden/V-xxx`).
 **Alles op één pagina:** https://claude.ai/artifact/SvncP5H8edGJj65ZqECMdU (kopie: `docs/pages/overzicht.html`).
 **Roadmap visueel:** https://claude.ai/artifact/9NZqKLUAw1kqZdSQCdQDVm (kopie: `docs/pages/roadmap.html`; bron blijft `4-besluiten/roadmap.md`, bij elke wijziging daar ook deze pagina bijwerken).
