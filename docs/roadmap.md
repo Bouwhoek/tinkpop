@@ -12,7 +12,9 @@
 - [ ] Hoe werkt 3d-prints.bouwhoek.app nu, en wat mist er? (site vraagt om inlog, Claude kan hem niet zien)
 
 ## Open: blauwdruk (29-10-2026)
-- [ ] 76 punten uit 50 sites + 14 vragen keuren: zie `blauwdruk.md` en het artifact. Daarna fase 1 bevriezen.
+- [x] Blauwdruk gekeurd (29-10-2026), zie `besluiten.md`.
+- [ ] Fase 1 bevriezen op een korte lijst (I14).
+- [ ] Merkbescherming Tinkpop/Pinkpop: eigenaar zoekt zelf uit.
 
 ## Advies, nog te bevestigen
 - Hosting: Cloudflare Workers (besloten 29-10). Vaste kosten alleen het domein, ca. €10–20 per jaar.
