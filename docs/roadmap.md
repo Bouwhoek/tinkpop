@@ -15,6 +15,8 @@
 - [x] Blauwdruk gekeurd (29-10-2026), zie `besluiten.md`.
 - [ ] Fase 1 bevriezen op een korte lijst (I14).
 - [ ] Merkbescherming Tinkpop/Pinkpop: eigenaar zoekt zelf uit.
+- [ ] Juridisch en risico's (29-10): 8 vragen in artifact "Mag het?" beantwoorden. Gaten zonder maatregel: J6 (meldknop fase 1), P5/V2 (inlogmails), T2 (iPhone), V6 (doneerlinks), R2 (deelplaatje). Zie `juridisch.md`, `risicos.md`.
+- [ ] Clicker: route kiezen (eigen ontwerp aanbevolen) en welk model het was.
 
 ## Advies, nog te bevestigen
 - Hosting: Cloudflare Workers (besloten 29-10). Vaste kosten alleen het domein, ca. €10–20 per jaar.

@@ -1,0 +1,269 @@
+<title>Mag het? Tinkpop</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: antwoord eerst (twee grote verdictkaarten), daarna tabbladen met details; heatmap als klikbaar raster. Donker-eerst zoals het logo. */
+:root{
+  --bg:#0f1014; --surface:#181a21; --raised:#20232c; --fg:#f2f3f7; --muted:#9a9fb0; --line:#2d313d;
+  --cyan:#22c3ff; --pink:#ff3fb4; --orange:#ff9a1f; --accent:#22c3ff; --accent-ink:#06121a;
+  --good:#3ddc84; --warn:#ffb224; --bad:#ff5c6c;
+  --grad:linear-gradient(90deg,var(--cyan),var(--pink) 55%,var(--orange));
+  --display:"Fredoka","Nunito","Avenir Next",system-ui,sans-serif;
+  --body:"Figtree","Segoe UI",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){
+  --bg:#f6f6f9; --surface:#ffffff; --raised:#f0f1f5; --fg:#15161b; --muted:#5d6273; --line:#dcdee6;
+  --cyan:#0089c7; --pink:#c8147f; --orange:#c96500; --accent:#0071b8; --accent-ink:#ffffff;
+  --good:#16804a; --warn:#9a6100; --bad:#c02c3d; color-scheme:light}}
+:root[data-theme="light"]{
+  --bg:#f6f6f9; --surface:#ffffff; --raised:#f0f1f5; --fg:#15161b; --muted:#5d6273; --line:#dcdee6;
+  --cyan:#0089c7; --pink:#c8147f; --orange:#c96500; --accent:#0071b8; --accent-ink:#ffffff;
+  --good:#16804a; --warn:#9a6100; --bad:#c02c3d; color-scheme:light}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--fg);font:16px/1.55 var(--body)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+.gut{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1060px;margin:0 auto}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--surface) 94%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;gap:14px;padding-block:10px;flex-wrap:wrap}
+.logo{font:700 22px var(--display)} .logo b{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent} .logo small{font:500 13px var(--mono);color:var(--muted)}
+nav.tabs{display:flex;gap:4px;overflow-x:auto;flex:1;min-width:0;scrollbar-width:none}
+nav.tabs button{font:600 14px var(--body);color:var(--muted);background:none;border:0;padding:8px 12px;border-radius:9px;cursor:pointer;white-space:nowrap}
+nav.tabs button[aria-selected="true"]{color:var(--fg);background:var(--raised)}
+nav.tabs .hot{color:var(--pink)}
+.pill{font:600 12px var(--mono);padding:3px 9px;border-radius:99px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.pill.ok{color:var(--good);border-color:currentColor}
+main{padding-block:28px 72px}
+section.tab{display:grid;gap:20px}
+h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance}
+h1{font-size:clamp(2rem,6vw,3.2rem);line-height:1.05;font-weight:700}
+h2{font-size:1.45rem;font-weight:600} h3{font-size:1.06rem;font-weight:600}
+p{margin:0;max-width:68ch}
+.muted{color:var(--muted)}
+.eyebrow{font:600 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--cyan)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;display:grid;gap:12px;min-width:0}
+.grid2{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.verdict{border-width:2px}
+.verdict .big{font:700 clamp(1.6rem,4.5vw,2.3rem)/1.1 var(--display)}
+.c-ok{color:var(--good)} .c-mits{color:var(--warn)} .c-no{color:var(--bad)}
+.b-ok{border-color:var(--good)} .b-mits{border-color:var(--warn)} .b-no{border-color:var(--bad)}
+.tag{font:700 11px var(--mono);padding:2px 8px;border-radius:99px;border:1.5px solid currentColor;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}
+ul,ol{margin:0;padding-left:1.2em;display:grid;gap:6px} li{max-width:70ch}
+details{border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+details>summary{cursor:pointer;padding:13px 16px;font-weight:600;list-style:none;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+details>summary::-webkit-details-marker{display:none}
+details>div{padding:0 16px 16px;display:grid;gap:8px}
+.btn{font:600 14px var(--body);padding:9px 14px;border-radius:10px;border:1px solid var(--line);background:var(--raised);color:var(--fg);cursor:pointer}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.scen{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.scbtn{text-align:left;padding:14px;border-radius:14px;border:2px solid var(--line);background:var(--raised);color:var(--fg);cursor:pointer;font:inherit;display:grid;gap:6px}
+.scbtn[aria-pressed="true"]{border-color:var(--cyan);background:color-mix(in srgb,var(--cyan) 10%,var(--raised))}
+.scbtn b{font-size:15px}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:640px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:600 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+td.y{color:var(--good);font-weight:600} td.n{color:var(--bad);font-weight:600} td.g{color:var(--warn);font-weight:600}
+.letter{white-space:pre-wrap;background:var(--raised);border:1px solid var(--line);border-radius:12px;padding:14px;font-size:14.5px;line-height:1.6}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:600 13px var(--body);padding:6px 11px;border-radius:99px;border:1.5px solid var(--line);background:var(--raised);color:var(--fg);cursor:pointer}
+.chip[aria-pressed="true"]{border-color:var(--cyan);color:var(--cyan)}
+/* heatmap */
+.heat{display:grid;grid-template-columns:28px repeat(5,minmax(52px,1fr));gap:4px;max-width:620px}
+.heat .ax{font:600 11px var(--mono);color:var(--muted);display:flex;align-items:center;justify-content:center}
+.cell{min-height:58px;border-radius:8px;border:1px solid var(--line);padding:4px;display:flex;flex-wrap:wrap;gap:3px;align-content:flex-start;cursor:pointer;background:var(--raised);font:inherit;color:var(--fg)}
+.cell[data-s="hi"]{background:color-mix(in srgb,var(--bad) 28%,var(--raised))}
+.cell[data-s="mid"]{background:color-mix(in srgb,var(--warn) 22%,var(--raised))}
+.cell[data-s="lo"]{background:color-mix(in srgb,var(--good) 14%,var(--raised))}
+.cell[aria-pressed="true"]{outline:2px solid var(--cyan);outline-offset:1px}
+.cell span{font:700 10.5px var(--mono);padding:1px 4px;border-radius:4px;background:var(--surface)}
+.rk{display:grid;grid-template-columns:48px 1fr auto;gap:10px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--surface);align-items:start}
+.rk .id{font:700 13px var(--mono);color:var(--muted)}
+.rk .sc{font:700 14px var(--mono)}
+.st{font:600 11px var(--mono);color:var(--muted)} .st.gat{color:var(--bad)}
+.list{display:grid;gap:8px}
+/* checklist */
+.chk{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:11px 14px;background:var(--surface);border:1px solid var(--line);border-radius:12px;cursor:pointer;text-align:left;font:inherit;color:var(--fg);width:100%}
+.chk .box{width:20px;height:20px;border-radius:6px;border:2px solid var(--muted)}
+.chk[aria-pressed="true"] .box{background:var(--good);border-color:var(--good)}
+.chk[aria-pressed="true"] .tx{color:var(--muted);text-decoration:line-through}
+.chk .cat{font:600 11px var(--mono);color:var(--cyan)}
+/* vragen */
+.qq{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px;display:grid;gap:12px}
+.opts{display:grid;gap:8px}
+.opt{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;text-align:left;padding:11px 13px;border-radius:11px;border:1.5px solid var(--line);background:var(--raised);color:var(--fg);cursor:pointer;font:inherit}
+.opt .dot{width:16px;height:16px;border-radius:50%;border:2px solid var(--muted);margin-top:3px}
+.opt[aria-pressed="true"]{border-color:var(--cyan);background:color-mix(in srgb,var(--cyan) 12%,var(--raised))}
+.opt[aria-pressed="true"] .dot{border-color:var(--cyan);background:var(--cyan)}
+.opt small{display:block;color:var(--muted);font-size:13px;margin-top:2px}
+.adv{font:600 11px var(--mono);color:var(--good);margin-left:6px}
+textarea{width:100%;min-height:60px;font:15px/1.5 var(--body);color:var(--fg);background:var(--raised);border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;resize:vertical}
+.btn:focus-visible,.chip:focus-visible,.scbtn:focus-visible,.cell:focus-visible,.chk:focus-visible,.opt:focus-visible,nav.tabs button:focus-visible,textarea:focus-visible{outline:3px solid color-mix(in srgb,var(--cyan) 55%,transparent);outline-offset:2px}
+.disc{font-size:13px;color:var(--muted);border-left:3px solid var(--warn);padding-left:10px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<header class="top gut"><div class="wrap">
+  <div class="logo">Tink<b>pop</b> <small>mag het?</small></div>
+  <nav class="tabs" role="tablist" id="tabs"></nav>
+  <span class="pill" id="save">Nog niets opgeslagen</span>
+</div></header>
+<main class="gut"><div class="wrap" id="views"></div></main>
+
+<script>
+const D={"KEY": [{"q": "Mag ik het idee en de functies van andere generators overnemen?", "k": "Nee, niet beschermd", "v": "ok", "r": "laag", "u": "Auteursrecht beschermt de uitwerking, niet het idee. Functies en bestandsformaten zijn vrij (Hof van Justitie, SAS Institute C-406/10). Wel: teken en schrijf alles zelf, en maak het niet zo gelijk dat mensen de sites verwarren (slaafse nabootsing).", "d": "Eigen teksten, iconen en ontwerp. Kijken mag, kopiëren niet."}, {"q": "Mag ik open-source code van Open Keychain of Tagify3D gebruiken?", "k": "Ja, mits", "v": "mits", "r": "laag", "u": "Beide zijn MIT: hergebruik mag, ook commercieel, als je hun copyright- en licentietekst meelevert. De naam en het logo van Open Keychain mag je niet gebruiken (hun TRADEMARKS.md). Neem nooit code uit Bambu Studio of OrcaSlicer over: dat is AGPL en botst met MIT.", "d": "Bestand THIRD_PARTY_NOTICES met elke overgenomen code en licentie."}, {"q": "Bestaat er een octrooi op een sleutelhanger-generator?", "k": "Niets gevonden in Europa", "v": "ok", "r": "laag", "u": "Software als zodanig is in Europa niet octrooieerbaar, en sinds 2010 bestaat er veel eerder werk (OpenSCAD, Thingiverse Customizer). De dichtstbijzijnde octrooien gelden alleen in de VS of zijn vervallen. Let op: dit was geen volledig octrooionderzoek.", "d": "Niets. Komt er ooit een brief: octrooigemachtigde inschakelen."}, {"q": "Mag ik 'Bambu', 'AMS', 'Bambu Studio' en 'MakerWorld' noemen?", "k": "Ja, beschrijvend", "v": "mits", "r": "laag", "u": "'Werkt met Bambu Studio en AMS' mag: dat is beschrijvend gebruik van een merk. Wat niet mag: hun logo's, hun huisstijl, of doen alsof zij Tinkpop steunen. 3MF is een open standaard; Bambu-compatibele bestanden schrijven mag.", "d": "Footer: 'Bambu Lab, Bambu Studio, AMS and MakerWorld are trademarks of their owners; Tinkpop is not affiliated.'"}, {"q": "Mag ik Google Fonts meeleveren en mogen mensen ze printen?", "k": "Ja, mits", "v": "mits", "r": "laag", "u": "De OFL-licentie staat meeleveren toe. Wat je ermee maakt (de geprinte naam) is vrij. Host de fonts zelf: fonts via Google's servers laden is in Duitsland als AVG-schending gezien. Een eigen font van een bezoeker blijft in diens browser: dat is zijn verantwoordelijkheid.", "d": "Licentie per font meeleveren, zelf hosten, in de voorwaarden: 'only upload fonts you're licensed to use'."}, {"q": "Ben ik aansprakelijk als iemand een merk of scheldwoord op een sleutelhanger zet?", "k": "Nee, zolang alles lokaal blijft", "v": "mits", "r": "laag → middel met opslag", "u": "Wie alleen gereedschap levert, gebruikt het merk zelf niet. Zolang de tekst je browser niet verlaat, is er niets om te modereren. Zodra ontwerpen in accounts worden bewaard, word je een 'hostingdienst' (Europese DSA): dan heb je een meldknop, een contactpunt en een reden bij verwijderen nodig.", "d": "Bewaren standaard privé. Meldknop en contactpunt al in fase 1 (want je koos inloggen vanaf het begin)."}, {"q": "Ben ik aansprakelijk als een geprinte sleutelhanger breekt of iemand verwondt?", "k": "Waarschijnlijk niet, mits niet commercieel", "v": "mits", "r": "laag", "u": "Nieuw vanaf 9-12-2026: ook printbestanden vallen onder de productaansprakelijkheid. Maar alleen als je ze 'in de handel brengt'. Gratis, zonder advertenties, zonder verkoop en zonder data verzamelen valt daar waarschijnlijk buiten. Of donaties meetellen is nog onzeker.", "d": "Geen advertenties, geen tracking, niets verkopen via Tinkpop. Melding 'Not a toy, small parts, test your print'."}, {"q": "Moet ik naar de KvK en belasting betalen over donaties?", "k": "Nee, zolang donaties ≈ kosten", "v": "mits", "r": "laag", "u": "KvK: je vraagt geen prijs, dus inschrijven lijkt niet nodig. Belasting: dekken de donaties alleen de kosten, dan is het hobby. Houd je structureel geld over, dan wordt het 'resultaat uit overige werkzaamheden'. Giften zijn geen btw-plichtige vergoeding.", "d": "Simpel overzicht van donaties en kosten per jaar bijhouden."}, {"q": "Wat moet er verplicht op de site?", "k": "Privacyverklaring + contact", "v": "mits", "r": "laag–middel", "u": "Ook zonder accounts verwerk je IP-adressen (logs van Cloudflare), dus een privacyverklaring is nodig. Met inloggen komt er meer bij: e-maildienst, datalekprocedure. Een inlogcookie en cookieloze statistiek vragen geen cookiebanner. Of je naam en adres moet tonen is onzeker voor een gratis hobbysite.", "d": "Privacyverklaring (Engels), contactpagina met e-mail, geen trackers."}], "CLICK": [{"id": "s1", "t": "Downloaden en voor jezelf printen", "v": "Ja", "c": "ok", "r": "laag", "u": "Dat is waar de licentie voor is. Prints verkopen mag alleen als er echt 'free to sell' bij staat.", "steps": ["Lees de licentie op de pagina en maak er een schermafdruk van.", "Print voor jezelf zoveel je wilt."]}, {"id": "s2", "t": "Met AI omgooien en als generator aanbieden", "v": "Nee, zonder schriftelijke toestemming", "c": "no", "r": "hoog", "u": "Het bestand door AI halen of nabouwen blijft een bewerking van hun werk. 'Free to sell' gaat alleen over prints verkopen, niet over het bestand aanpassen en verspreiden. Sinds 1 mei 2025 beschermt het Europese modelrecht ook het maken en verspreiden van printbestanden van een model. Recente clickers zijn 3 jaar automatisch beschermd.", "steps": ["Vraag de maker schriftelijk toestemming (brief hieronder) of kies een model met CC BY of CC0.", "Bewaar het antwoord als schermafdruk in de repo.", "Noem de maker op elke pagina en in elk bestand."]}, {"id": "s3", "t": "Zelf een clicker ontwerpen met algemene onderdelen", "v": "Ja, mits", "c": "mits", "r": "laag", "u": "Het klikmechanisme, de kruisvormige stift van keyboard-knoppen (dat octrooi is verlopen) en 'blokjes met knoppen' zijn ideeën of technische vormen: niet beschermd. Je eigen vorm, maten en koppeling maken het een eigen ontwerp.", "steps": ["Geef de AI géén bestand of foto van een bestaand model, alleen een beschrijving van wat het moet doen.", "Gebruik maten uit openbare datasheets (keyboard-schakelaar 14 mm, keycap-stift, magneetmaten).", "Kies een eigen vormtaal en een eigen koppeling tussen blokjes (niet hun koppelsysteem).", "Leg het proces vast met datum: schetsen, bronnen van maten, commits.", "Leg je ontwerp vóór de lancering naast bekende clickers; zoek handmatig in DesignView."]}], "LIC": [["Standard Digital File License (MakerWorld standaard)", "ja", "nee", "grijs", "nee", "nee"], ["SDFL + 'free to sell'", "ja", "ja", "grijs", "nee", "nee"], ["CC BY-NC (-SA)", "ja", "nee", "ja", "ja, niet commercieel", "alleen niet-commercieel"], ["CC BY / CC0", "ja", "ja", "ja", "ja, met naam", "ja"]], "CAND": [["Keyboard clicker fidget", "CHB 3D Printing", "https://makerworld.com/en/models/2297614-keyboard-clicker-fidget", "Sterkste kandidaat: noemt 'free to sell'. Licentie niet gezien."], ["Articulated Modular Fidget Clicker", "Justi-Fy Studio", "https://makerworld.com/en/models/2777177", "Modulair, keycaps, Standard Digital File License."], ["Round Keycap Fidget Clicker", "DrShiela3DPrints", "https://makerworld.com/en/models/2142863", "Modulair, 2–10 vakjes. Licentie onbekend."], ["CapTap", "onbekend", "https://makerworld.com/en/models/2421641", "Volgens de pagina public domain."], ["Customizable Keycap Clicker (Parametric)", "Kong 3D", "https://makerworld.com/en/models/3093453", "Al een parametrische concurrent, commerciële licentie betaald."]], "COMP": [["MakerWorld Parametric Model Maker", "OpenSCAD-Customize, honderden keychain-generators, sommige met batch", "gratis", "2024", "hoog", "Rekent op hun server: timeouts, storingen, matig op mobiel"], ["KeychainGEN (keychaingen.com)", "Batch, plaat vullen, kleuren-3MF, mobiel", "gratis tot 11/2026, daarna premium", "aug 2026", "hoog", "Wordt betaald en is gesloten"], ["MakerLab Make My Sign / Image to Keychain", "Bordjes; afbeelding wordt sleutelhanger", "basis gratis, AI kost credits", "2024", "middel", "Geen batch van namen"], ["keychaingenerator.tech", "Uitgebreide enkele sleutelhanger, 3MF met filamentsloten", "gratis + commerciële licentie", "okt 2026", "middel", "Geen batch, gesloten"], ["Keyform.eu", "Logo/foto/woord, tot 30 tegelijk, printcheck", "3 gratis, daarna €4,99–9,99", "onbekend", "middel", "Downloads kosten geld"], ["3dprint.name", "Bordjes, keyrings, NFC", "gratis 1 kleur; Pro £2,99/mnd", "jul 2026", "middel", "Kleur en batch achter betaalmuur"], ["3dtagmaker.com", "Tags, 30+ fonts, kleuren-3MF", "gratis, printservice", "mei 2026", "middel", "Geen batch"], ["Meshcast", "Tekst/SVG, 3MF in 2 delen", "gratis met weeklimiet", "mei 2026", "middel", "Downloadlimiet"], ["PrintPal", "Naambordjes gratis, Fidget Clicker Maker", "clicker-export Pro $10/mnd", "2021", "middel", "Gratis clicker-generator ontbreekt"], ["MakerWorld clicker-generators", "Name Fidget Clicker, Parametric Name Clicker", "gratis via PMM", "2025-26", "middel", "Zelfde PMM-problemen, niet open"], ["Meshy / Tripo (AI)", "Afbeelding naar 3D, multicolor op MakerWorld", "credits", "–", "middel", "Niet exact; tekst blijft parametrisch"], ["the3dai.com", "2 kleuren, 4 fonts", "gratis, lokt naar AI", "2024", "laag", "Beperkt"], ["Tagify3D", "MIT, veel opties, 2 STL's", "gratis", "jun 2026", "laag", "Eén maker, geen kleur-3MF, geen batch"], ["Open Keychain", "MIT, in de browser", "gratis + Maker-plan", "aug 2026", "laag", "Geen community"], ["3dkeychain.net", "Tekst/SVG/QR, kleur-3MF", "onbekend (beta)", "dec 2025", "laag", "Account verplicht"], ["ilove3d.app", "Gereedschapskist, keychain STL", "gratis", "jul 2026", "laag", "Geen kleur-3MF"], ["Modelab 3D", "Rekent lokaal, kleur-3MF", "gratis", "aug 2026", "laag", "Klein, geen batch"], ["PlainMesh", "250+ parametrische modellen", "Patreon", "onbekend", "laag", "Gesloten, voor leden"], ["Printables (Prusa)", "Geen web-customizer gevonden", "gratis", "–", "laag", "Prusa-gebruikers missen een web-customizer"], ["Thingiverse (MyMiniFactory)", "Oude Customizer; overgenomen feb 2026", "gratis", "2013", "laag → middel", "Herstart onbekend"], ["Creality Cloud 6.0", "4M+ gebruikers, AI-zoeken", "credits", "2025", "laag", "Geen keychain-generator"], ["Elegoo Nexprint", "Deelplatform, AI", "onbekend", "2025", "laag", "Geen parametrische keychain"], ["Atomm (xTool)", "Gelaagde keychains", "gratis", "onbekend", "laag", "Alleen laser"]], "RISKS": [["J1", "Pinkpop maakt bezwaar tegen de naam", 2, 5, "Merkadvies vóór aankondiging, daarna BOIP; geen festivalbeeld", "open (zelf uitzoeken)"], ["J2", "Bezoekers zetten merken van anderen op bewaarde ontwerpen", 3, 2, "Regel in voorwaarden, meldknop, verwijderen op melding", "open"], ["J3", "Iemand dient een model in dat niet van hem is", 3, 4, "Licentieveld, bewijs van de echte maker, takedown", "gepland"], ["J4", "OpenSCAD is GPL: broncode moet aangeboden worden", 3, 3, "THIRD_PARTY_NOTICES + bronlink, licentiecheck in CI", "deels"], ["J5", "AVG-fout bij inloggen (geen verwerkersovereenkomst, datalek te laat)", 3, 4, "AVG-pakket als harde voorwaarde vóór login live", "gepland (I1)"], ["J6", "DSA geldt al bij bewaarde ontwerpen in fase 1", 3, 3, "Meldknop, contactpunt, reden bij verwijderen in fase 1", "gat"], ["J7", "Productaansprakelijkheid voor printbestanden (vanaf 9-12-2026)", 1, 4, "Niet commercieel blijven, waarschuwing 'not a toy'", "open"], ["J8", "Belasting/KvK bij groeiende donaties of verkoop", 3, 2, "Donaties en kosten bijhouden, check bij verkoop", "open"], ["J9", "Minderjarigen maken accounts (scholen)", 3, 3, "16+ vinkje, downloaden zonder account", "gepland"], ["P1", "Bambu wijzigt 3MF of de open-link", 3, 3, "Minimale 3MF, STL als terugval, CI tegen nieuwste slicer", "gepland"], ["P2", "MakerWorld verandert de .scad-syntax", 3, 3, "Eigen parser, vaste versie, testbestanden", "deels"], ["P3", "Cloudflare verandert de gratis laag", 2, 4, "Statisch blijven, budgetmelding, $5-plan als terugval", "deels"], ["P4", "GitHub-account kwijt", 2, 4, "Passkeys, herstelcodes, tweede kopie repo", "gepland"], ["P5", "Inlogmails over de limiet of in spam", 3, 3, "Passkey als hoofdweg, SPF/DKIM/DMARC, melding op limiet", "gat"], ["P6", "Een gebruikt softwarepakket wordt gehackt", 2, 4, "Geen installatiescripts, vaste versies, updates per PR", "gepland"], ["C1", "MakerWorld maakt PMM snel en mobiel", 4, 4, "Aanvullen: open, lokaal rekenen, plaat vullen, batch; ook op MakerWorld publiceren", "deels"], ["C2", "Concurrenten nemen onze functies over", 4, 2, "Onderscheiden op community en .scad", "geaccepteerd"], ["T1", "Rekenen te traag op goedkope Android", 4, 4, "Eerst ruw, dan fijn; budget in CI; meten in fase 0", "gepland"], ["T2", "iPhone niet getest (geheugengrens)", 4, 3, "Werker herstarten, iPhone lenen of BrowserStack in fase 0", "gat"], ["T3", "Upgrade verandert modellen van oude deel-links", 3, 3, "Vaste versie, versie in de link, testsets", "gepland"], ["T4", "3MF verliest kleuren in andere slicers", 3, 3, "Slicer-test in CI, STL per kleur als ZIP", "gepland"], ["T5", "AI-code met verborgen fouten", 4, 3, "npm run check, e2e-tests, kleine PR's, proeflink", "gepland"], ["V1", "Account overgenomen via e-maillink", 2, 3, "Link eenmalig en kort geldig, passkey", "gepland"], ["V2", "Inlogformulier misbruikt om mensen te mailen", 4, 3, "Turnstile, max. 3 mails per uur, limiet per IP", "gat"], ["V3", "Jouw beheeraccounts overgenomen", 2, 5, "Passkeys overal, Access op /admin, herstelcodes", "gepland"], ["V4", "Kwaadaardig voorstel (vastlopen, misleiding)", 3, 4, "Harde poorten, tijdslimiet, samenvatting alleen advies", "gepland"], ["V5", "Code via geüploade SVG of font", 2, 4, "Alleen vormen uit SVG, font lokaal, CSP", "gepland"], ["V6", "Doneerlink van een maker wijst naar oplichting", 2, 3, "Alleen toegestane domeinen", "gat"], ["R1", "Slechte prints (ring breekt, letters los)", 3, 3, "Testprints, stempel 'printbaar getest', printtips", "deels"], ["R2", "Aanstootgevende tekst gedeeld via deelplaatje", 3, 3, "Geen deelplaatje met vrije tekst", "gat"], ["R3", "AI-logo: kritiek en zwak auteursrecht", 3, 2, "Laten natekenen door een mens, registreren", "open"], ["R4", "Mislukte eerste indruk bij aankondiging", 3, 3, "Stille lancering, pas aankondigen zonder open fouten", "gepland"], ["F1", "Donaties blijven laag", 5, 2, "Kosten op €0 houden", "deels"], ["F2", "Kosten kruipen omhoog (mail, merk, Workers)", 3, 2, "Maandoverzicht, budgetmeldingen", "open"], ["Pe1", "Te weinig tijd en focus (NotMadeYet vanaf 25-11)", 4, 4, "Fase 1 bevriezen, één project tegelijk", "deels"], ["Pe2", "Uitputting bij weinig gebruikers", 3, 4, "Kleine mijlpalen, geen vaste beloftes", "open"], ["Pe3", "Als jij uitvalt ligt alles stil", 2, 5, "Draaiboek, auto-verlengen, envelop met herstelcodes", "gepland"], ["Pe4", "Afhankelijk van AI-tools (prijs, kwaliteit)", 3, 4, "Repo als geheugen, gangbare techniek, ook met andere assistent testen", "deels"], ["Co1", "Na 3 maanden geen bijdragers", 4, 3, "NotMadeYet-modellen als eerste, makers persoonlijk benaderen", "deels"], ["Co2", "Ruzie bij afwijzen", 2, 3, "Gedragscode, openbare regels, altijd een reden", "gepland"], ["Co3", "Moderatie kost te veel tijd", 3, 3, "Maximum per week, sjablonen, automatisch sluiten", "open"]], "CHECK": [["juridisch", "THIRD_PARTY_NOTICES met MIT-teksten en licentie per font; geen AGPL-code"], ["juridisch", "Fonts zelf hosten; alleen OFL/Apache/UFL, ongewijzigd"], ["juridisch", "Footer met merkendisclaimer; geen logo's van Bambu/MakerWorld"], ["juridisch", "Waarschuwing 'Not a toy / small parts / test your print'"], ["juridisch", "Geen advertenties, geen trackers, geen verkoop via Tinkpop"], ["juridisch", "Privacyverklaring + contactpagina met e-mail"], ["juridisch", "Overzicht donaties en kosten bijhouden"], ["inloggen", "Meldknop, korte voorwaarden, standaard privé, datalekprocedure"], ["inloggen", "Turnstile en limiet op inlogmails; SPF/DKIM/DMARC"], ["inloggen", "Verwerkersovereenkomsten Cloudflare + maildienst"], ["clicker", "Schriftelijke toestemming óf eigen ontwerp volgens stappenplan"], ["clicker", "Ontwerpproces met datum vastleggen in de repo"], ["merk", "Tinkpop/Pinkpop uitzoeken (zelf, zoals besloten)"], ["techniek", "iPhone testen in fase 0 (lenen of BrowserStack)"], ["techniek", "Doneerlinks van makers alleen van toegestane domeinen"], ["techniek", "Geen deelplaatje met vrije tekst"]], "Q": [{"id": "clickerroute", "topic": "clicker", "q": "Welke route voor de clicker?", "why": "Toestemming kost tijd en kan nee zijn; een eigen ontwerp is veilig en helemaal van jou.", "o": [{"v": "Eigen ontwerp met algemene onderdelen (scenario 3)", "d": "Veilig, open, geen afhankelijkheid.", "rec": 1}, {"v": "Toestemming vragen en hun ontwerp gebruiken"}, {"v": "Beide: toestemming vragen, intussen eigen ontwerp maken"}]}, {"id": "model", "topic": "clicker", "q": "Welke clicker bedoelde je op de foto?", "why": "Dan kan ik de licentie precies nakijken.", "o": [{"v": "Keyboard clicker fidget (CHB 3D Printing)"}, {"v": "Articulated Modular Fidget Clicker (Justi-Fy Studio)"}, {"v": "Round Keycap Fidget Clicker (DrShiela3DPrints)"}, {"v": "Een andere (link in toelichting)"}]}, {"id": "held", "topic": "positie", "q": "Waarmee maken we de eerste indruk?", "why": "Er zijn al 20+ keychain-generators. De concurrentie zet batch en plaat vullen achter een betaalmuur.", "o": [{"v": "Een hele plaat met namen in één keer, gratis, op je telefoon", "rec": 1}, {"v": "De mooiste enkele sleutelhanger"}, {"v": "De clicker"}]}, {"id": "tempo", "topic": "positie", "q": "KeychainGEN biedt al batch + plaat vullen (gratis tot nov 2026). Wat doen we?", "o": [{"v": "Fase 0 nu starten, snel live met de batch-functie", "rec": 1}, {"v": "Rustig aan, eerst alles af"}]}, {"id": "dsa", "topic": "recht", "q": "Meldknop en contactpunt al in fase 1 (omdat ontwerpen bewaard worden)?", "o": [{"v": "Ja", "rec": 1}, {"v": "Nee, pas bij een openbare galerij", "d": "Risico: zonder meldknop ben je niet beschermd als hostingdienst."}]}, {"id": "iphone", "topic": "techniek", "q": "Hoe testen we op een iPhone?", "why": "Je testtelefoon is Android; iPhones hebben een eigen geheugengrens.", "o": [{"v": "iPhone lenen van iemand in de buurt", "rec": 1}, {"v": "Online testdienst (BrowserStack, betaald)"}, {"v": "Niet testen"}]}, {"id": "notoy", "topic": "recht", "q": "Waarschuwing 'Not a toy, small parts, test your print' op de site?", "o": [{"v": "Ja, bij elke download", "rec": 1}, {"v": "Alleen in de voorwaarden"}]}, {"id": "verkoop", "topic": "recht", "q": "Verkopen (prints of extra's) helemaal buiten Tinkpop houden?", "why": "Dan blijft Tinkpop niet-commercieel: belangrijk voor productaansprakelijkheid en belasting.", "o": [{"v": "Ja, verkoop alleen via NotMadeYet of Bouwhoek", "rec": 1}, {"v": "Nee, later ook verkopen op Tinkpop"}]}]};
+let state={chk:{},a:{},notes:{}};
+try{const s=JSON.parse(localStorage.getItem("tp-mag")||"null");if(s&&s.chk)state=s}catch(e){}
+const el=(t,p={},...c)=>{const n=document.createElement(t);for(const k in p){if(k==="on")for(const e in p.on)n.addEventListener(e,p.on[e]);else if(k==="html")n.innerHTML=p[k];else if(k in n&&!["for","role"].includes(k))n[k]=p[k];else n.setAttribute(k,p[k])}c.flat().forEach(x=>x!=null&&n.append(x));return n};
+const TABS=[["antwoord","Het antwoord"],["clicker","De clicker"],["sleutel","Sleutelhanger"],["conc","Concurrenten"],["risico","Risico's"],["check","Checklist"],["vragen","Vragen",1]];
+const views={};
+function showTab(id){document.querySelectorAll("nav.tabs button").forEach(b=>b.setAttribute("aria-selected",b.dataset.id===id));Object.entries(views).forEach(([k,v])=>v.hidden=k!==id);try{history.replaceState(null,"","#"+id)}catch(e){}window.scrollTo({top:0})}
+(()=>{const nav=document.getElementById("tabs"),v=document.getElementById("views");TABS.forEach(([id,l,h])=>{nav.append(el("button",{role:"tab",className:h?"hot":"","data-id":id,on:{click:()=>showTab(id)}},l));const s=el("section",{className:"tab"});views[id]=s;v.append(s)})})();
+const disc=()=>el("p",{className:"disc"},"Dit is uitgezocht onderzoek, geen juridisch advies. Bij twijfel of een brief: een jurist inschakelen.");
+
+/* ANTWOORD */
+(s=>{
+  s.append(el("div",{style:"display:grid;gap:12px"},el("span",{className:"eyebrow"},"Jouw twee vragen, kort beantwoord"),el("h1",{},"Mag het?")),
+  el("div",{className:"grid2"},
+   el("div",{className:"card verdict b-ok"},el("span",{className:"eyebrow"},"Vraag 1"),el("h2",{},"Mag ik zomaar een sleutelhanger-generator bouwen?"),
+     el("div",{className:"big c-ok"},"Ja."),
+     el("p",{},"Het idee is van niemand. Je mag het bouwen zolang je geen code, teksten of beelden van anderen kopieert (of netjes de open licentie volgt), Bambu alleen beschrijvend noemt, fonts met hun licentie meelevert, en niets verkoopt."),
+     el("button",{className:"btn",style:"justify-self:start",on:{click:()=>showTab("sleutel")}},"Bekijk de 9 punten →")),
+   el("div",{className:"card verdict b-mits"},el("span",{className:"eyebrow"},"Vraag 2"),el("h2",{},"Mag ik die clicker downloaden, met AI omgooien en er een nieuw ontwerp van maken?"),
+     el("div",{className:"big c-no"},"Nee, niet zo."),
+     el("p",{},"Omgooien met AI blijft een bewerking van hun ontwerp, en 'free to sell' geldt alleen voor prints verkopen. Wél mag: zelf een clicker ontwerpen met algemene onderdelen (het klikmechanisme is van niemand), óf schriftelijke toestemming vragen."),
+     el("button",{className:"btn",style:"justify-self:start",on:{click:()=>showTab("clicker")}},"Bekijk de 3 routes →"))),
+  el("div",{className:"card"},el("h2",{},"En de concurrentie?"),
+   el("p",{},"Een sleutelhanger-generator is in 2026 een massaproduct: dit jaar kwamen er minstens zeven nieuwe sites bij. MakerWorld (±10 miljoen gebruikers per maand) heeft er honderden. KeychainGEN biedt al batch en plaat vullen, nu nog gratis."),
+   el("p",{},el("b",{},"Waar je wint: "),"een hele plaat met namen in één keer, op je telefoon, in tien seconden, gratis en zonder account, met een 3MF die in Bambu Studio meteen de juiste kleuren heeft. Concurrenten zetten precies dat achter een betaalmuur, en MakerWorld loopt vast op zijn eigen servers."),
+   el("button",{className:"btn",style:"justify-self:start",on:{click:()=>showTab("conc")}},"Bekijk 23 concurrenten →")),
+  el("div",{className:"card"},el("h2",{},"De grootste risico's"),
+   el("ol",{},el("li",{},el("b",{},"Tijd en focus "),"(NotMadeYet start 25 november). Dit zit achter bijna elk ander risico."),el("li",{},el("b",{},"Trage Android-telefoons: "),"de kern van de belofte 'snel op mobiel'."),el("li",{},el("b",{},"MakerWorld bouwt hetzelfde, maar dan sneller.")),el("li",{},el("b",{},"Drie gaten zonder maatregel: "),"meldknop (DSA) in fase 1, misbruik van het inlogformulier, en geen iPhone-test.")),
+   el("button",{className:"btn",style:"justify-self:start",on:{click:()=>showTab("risico")}},"Bekijk alle 41 risico's →")),
+  disc());
+})(views.antwoord);
+
+/* CLICKER */
+(s=>{
+  const out=el("div",{className:"card",id:"scout"});
+  const pick=id=>{const c=D.CLICK.find(x=>x.id===id);document.querySelectorAll(".scbtn").forEach(b=>b.setAttribute("aria-pressed",b.dataset.id===id));
+    out.className="card verdict b-"+c.c;out.innerHTML="";out.append(el("span",{className:"eyebrow"},"Scenario"),el("h3",{},c.t),el("div",{className:"big c-"+c.c},c.v),el("p",{},el("span",{className:"tag c-"+c.c},"risico "+c.r)),el("p",{},c.u),el("h3",{},"Zo doe je het"),el("ol",{},c.steps.map(x=>el("li",{},x))))};
+  const sc=el("div",{className:"scen"});
+  D.CLICK.forEach(c=>sc.append(el("button",{type:"button",className:"scbtn","data-id":c.id,on:{click:()=>pick(c.id)}},el("span",{className:"tag c-"+c.c,style:"justify-self:start"},c.v.split(",")[0]),el("b",{},c.t))));
+  s.append(el("div",{style:"display:grid;gap:10px"},el("span",{className:"eyebrow"},"Klik een scenario"),el("h2",{},"Mag ik de clicker ombouwen?"),
+    el("p",{className:"muted"},"Drie manieren om aan een clicker-generator te komen. Klik er een aan voor het antwoord en de stappen.")),sc,out);
+  pick("s3");
+  const lic=el("table",{},el("thead",{},el("tr",{},["Licentie","Printen","Prints verkopen","Aanpassen voor jezelf","Aangepast bestand delen","Generator ervan maken"].map(h=>el("th",{},h)))),
+    el("tbody",{},D.LIC.map(r=>el("tr",{},r.map((x,i)=>el("td",{className:i?(x.startsWith("ja")?"y":x==="nee"?"n":"g"):""},x))))));
+  s.append(el("div",{className:"card"},el("h3",{},"Wat licenties toestaan"),el("p",{className:"muted"},"Let op het verschil tussen prints verkopen en het bestand aanpassen of delen. 'Free to sell' gaat bijna altijd alleen over het eerste."),el("div",{className:"tbl"},lic)));
+  s.append(el("div",{className:"card"},el("h3",{},"Welk model was het?"),el("p",{className:"muted"},"Niet zeker te zeggen: MakerWorld blokkeerde het automatisch openen. Dit zijn de kandidaten. Kies hem bij Vragen, dan kijk ik de licentie precies na."),
+    el("div",{className:"list"},D.CAND.map(([n,m,u,t])=>el("div",{className:"rk",style:"grid-template-columns:1fr"},el("div",{},el("b",{},n)," · ",el("span",{className:"muted"},m)),el("div",{className:"muted",style:"font-size:14px"},t),el("a",{href:u,target:"_blank",rel:"noopener",style:"color:var(--cyan);font-size:13px;word-break:break-all"},u))))));
+  s.append(el("div",{className:"card"},el("h3",{},"Wat beschermd is, en wat niet"),el("ul",{},
+    el("li",{},el("b",{},"Niet beschermd: "),"het klikmechanisme, de kruisvormige stift van keyboard-knoppen (octrooi verlopen), een raster van knoppen, het idee 'modulaire blokjes'. Losse keyboard-schakelaars en magneten zijn standaardonderdelen."),
+    el("li",{},el("b",{},"Mogelijk beschermd: "),"het eigen uiterlijk (rondingen, verhoudingen, stijl) en het eigen koppelsysteem tussen blokjes."),
+    el("li",{},el("b",{},"Modelrecht: "),"een nieuw model is in de EU 3 jaar automatisch beschermd tegen namaak. Sinds 1 mei 2025 telt ook het maken en verspreiden van een printbestand mee."),
+    el("li",{},el("b",{},"AI: "),"een model door AI halen maakt het niet nieuw. Wat de AI zelfstandig verzint, is mogelijk van niemand; jouw eigen keuzes (maten, parameters, code) zijn wel van jou."))));
+  const L={nl:`Hoi [naam], ik ben Mark van Tinkpop.com, een gratis open-source site waar mensen zelf printbare modellen samenstellen. Ik zou graag op basis van jouw [modelnaam + link] een instelbare clicker-generator maken (aantal knoppen, rijen en kolommen, kleuren, magneten). Mag ik schriftelijk jouw toestemming om:
+1. je ontwerp (of delen ervan) te gebruiken en aan te passen in een parametrische generator;
+2. de bestanden die daaruit komen (afgeleide STL/3MF) openbaar aan te bieden;
+3. die afgeleiden en mijn aanpassingen uit te geven onder CC BY 4.0, waardoor anderen ze ook mogen aanpassen en delen;
+4. bezoekers prints daarvan te laten verkopen;
+5. jou op elke pagina en in elk bestand te vermelden als "Based on a design by [naam], [link]".
+Deze toestemming geldt wereldwijd, zonder einddatum en kosteloos. Je mag later vragen om je naam weg te halen. Akkoord? Een "Ja, akkoord met punt 1 t/m 5" als antwoord is genoeg. Dank je!`,
+  en:`Hi [name], I'm Mark from Tinkpop.com, a free open-source site where people build their own printable models. I'd love to create a customizable clicker generator (number of buttons, rows/columns, colours, magnets) based on your [model name + link]. May I have your written permission to:
+1. use and modify your design (or parts of it) in a parametric generator;
+2. publicly offer the resulting derivative files (STL/3MF);
+3. release those derivatives and my changes under CC BY 4.0, so others may also adapt and share them;
+4. let users sell prints made from them;
+5. credit you on every page and file as "Based on a design by [name], [link]".
+This permission is worldwide, perpetual and free of charge; you may ask to have your name removed later. If you agree, a reply saying "Yes, I agree to points 1–5" is enough. Thank you!`};
+  const box=el("div",{className:"letter",id:"letter"});let lang="en";
+  const set=l=>{lang=l;box.textContent=L[l];document.querySelectorAll("[data-lang]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.lang===l))};
+  const msg=el("span",{className:"muted"});
+  s.append(el("div",{className:"card"},el("h3",{},"Brief om toestemming te vragen"),el("p",{className:"muted"},"Een bericht via MakerWorld of e-mail telt als schriftelijk. Bewaar het antwoord als schermafdruk; ik zet het in de repo."),
+    el("div",{className:"chips"},el("button",{type:"button",className:"chip","data-lang":"en",on:{click:()=>set("en")}},"Engels"),el("button",{type:"button",className:"chip","data-lang":"nl",on:{click:()=>set("nl")}},"Nederlands")),box,
+    el("div",{className:"row"},el("button",{className:"btn primary",on:{click:()=>{navigator.clipboard.writeText(L[lang]).then(()=>msg.textContent="Gekopieerd.",()=>{const r=document.createRange();r.selectNodeContents(box);const g=getSelection();g.removeAllRanges();g.addRange(r);msg.textContent="Tekst geselecteerd; kopieer met Ctrl/Cmd+C."})}}},"Kopieer brief"),msg)));
+  set("en");s.append(disc());
+})(views.clicker);
+
+/* SLEUTEL */
+(s=>{
+  s.append(el("div",{style:"display:grid;gap:10px"},el("span",{className:"eyebrow"},"Negen vragen"),el("h2",{},"Mag ik een sleutelhanger-generator bouwen?"),el("p",{className:"muted"},"Klik een vraag open voor uitleg en wat je moet doen.")));
+  D.KEY.forEach(k=>s.append(el("details",{},el("summary",{},el("span",{className:"tag c-"+k.v},k.k),el("span",{},k.q)),el("div",{},el("p",{},k.u),el("p",{},el("b",{},"Wat te doen: "),k.d),el("p",{className:"muted",style:"font-size:13px"},"Risico: "+k.r)))));
+  s.append(disc());
+})(views.sleutel);
+
+/* CONCURRENTEN */
+let cf="alle";
+(s=>{
+  s.append(el("div",{style:"display:grid;gap:10px"},el("span",{className:"eyebrow"},"23 concurrenten, 29-10-2026"),el("h2",{},"Wie doet het al?"),el("p",{className:"muted"},"'Sinds' is het eerste beveiligingscertificaat of de eerste code. Klik een dreigingsniveau om te filteren.")));
+  const ch=el("div",{className:"chips"});["alle","hoog","middel","laag"].forEach(k=>ch.append(el("button",{type:"button",className:"chip","data-cf":k,on:{click:()=>{cf=k;paintC()}}},k==="alle"?"Alle":"Dreiging "+k)));
+  const tb=el("tbody",{id:"ctb"});
+  s.append(ch,el("div",{className:"card"},el("div",{className:"tbl"},el("table",{},el("thead",{},el("tr",{},["Naam","Wat","Prijs","Sinds","Dreiging","Gat voor Tinkpop"].map(h=>el("th",{},h)))),tb))));
+  D.COMP.forEach(r=>tb.append(el("tr",{"data-t":r[4]},r.map((x,i)=>el("td",{className:i===4?(x.startsWith("hoog")?"n":x.startsWith("middel")?"g":"y"):""},x)))));
+  s.append(el("div",{className:"grid2"},
+   el("div",{className:"card"},el("h3",{},"Top 5 dreigingen"),el("ol",{},
+    el("li",{},"Bambu bouwt batch, plaat vullen en mobiel zelf in."),el("li",{},"KeychainGEN heeft dezelfde functies al (gratis tot november)."),el("li",{},"Verzadiging: tientallen klonen strijden om dezelfde zoekterm."),el("li",{},"AI 'afbeelding naar sleutelhanger' haalt vraag weg."),el("li",{},"Ontwerpers blijven op MakerWorld vanwege punten en bereik."))),
+   el("div",{className:"card"},el("h3",{},"Top 5 kansen"),el("ol",{},
+    el("li",{},"Gratis batch + plaat vullen (anderen vragen geld)."),el("li",{},"Rekenen in de browser: geen timeouts, werkt op de telefoon."),el("li",{},"Open en hetzelfde .scad-formaat als MakerWorld."),el("li",{},"Gratis clicker-generator (PrintPal vraagt $10 per maand)."),el("li",{},"De 'veel namen'-klus: klassen, teams, feesten, Etsy-verkopers.")))),
+   el("div",{className:"card"},el("h3",{},"Marktsignalen"),el("ul",{},
+    el("li",{},"MakerWorld: ±10 miljoen gebruikers per maand eind 2025, 280.000 ontwerpers (cijfers van Bambu)."),
+    el("li",{},"Klachten op het Bambu-forum: de Customize-knop loopt vast, 'server overloaded', dagen onderhoud, downloads tellen niet mee voor punten."),
+    el("li",{},"Wensen: werken in de mobiele app, dikkere fonts, bestandsnaam naar de gekozen instellingen."))));
+})(views.conc);
+function paintC(){document.querySelectorAll("[data-cf]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.cf===cf));document.querySelectorAll("#ctb tr").forEach(r=>r.hidden=!(cf==="alle"||r.dataset.t.startsWith(cf)))}
+paintC();
+
+/* RISICO */
+let cell=null;
+(s=>{
+  s.append(el("div",{style:"display:grid;gap:10px"},el("span",{className:"eyebrow"},"41 risico's"),el("h2",{},"Wat kan er misgaan?"),el("p",{className:"muted"},"Kans en impact van 1 tot 5. Klik een vakje in de kaart om de risico's daarin te zien. Rood 'gat' betekent: er is nog geen maatregel.")));
+  const heat=el("div",{className:"heat",role:"grid","aria-label":"Risicokaart"});
+  heat.append(el("div",{className:"ax"},""));for(let i=1;i<=5;i++)heat.append(el("div",{className:"ax"},"impact "+i));
+  for(let k=5;k>=1;k--){heat.append(el("div",{className:"ax"},"k"+k));for(let i=1;i<=5;i++){const ids=D.RISKS.filter(r=>r[2]===k&&r[3]===i);const sc=k*i;
+    const b=el("button",{type:"button",className:"cell","data-k":k,"data-i":i,"data-s":sc>=12?"hi":sc>=6?"mid":"lo","aria-label":`kans ${k}, impact ${i}: ${ids.length} risico's`,on:{click:()=>{cell=cell===`${k}${i}`?null:`${k}${i}`;paintR()}}},ids.map(r=>el("span",{},r[0])));heat.append(b)}}
+  s.append(el("div",{className:"card"},el("div",{className:"row",style:"justify-content:space-between"},el("h3",{},"Risicokaart"),el("button",{className:"btn",on:{click:()=>{cell=null;paintR()}}},"Toon alles")),el("div",{style:"overflow-x:auto"},heat),el("p",{className:"muted",style:"font-size:13px"},"Rij = kans (boven = waarschijnlijker), kolom = impact (rechts = erger).")),el("div",{className:"list",id:"rlist"}));
+})(views.risico);
+function paintR(){
+  document.querySelectorAll(".cell").forEach(c=>c.setAttribute("aria-pressed",cell===c.dataset.k+c.dataset.i));
+  const L=document.getElementById("rlist");L.innerHTML="";
+  D.RISKS.filter(r=>!cell||cell===`${r[2]}${r[3]}`).sort((a,b)=>b[2]*b[3]-a[2]*a[3]).forEach(r=>L.append(el("div",{className:"rk"},el("span",{className:"id"},r[0]),el("div",{},el("b",{},r[1]),el("div",{className:"muted",style:"font-size:14px"},"Maatregel: "+r[4]),el("span",{className:"st"+(r[5]==="gat"?" gat":"")},r[5]==="gat"?"GAT: nog geen maatregel":"status: "+r[5])),el("span",{className:"sc",style:`color:${r[2]*r[3]>=12?"var(--bad)":r[2]*r[3]>=6?"var(--warn)":"var(--good)"}`},r[2]*r[3]))));
+}
+paintR();
+
+/* CHECK */
+(s=>{
+  const prog=el("span",{className:"muted",id:"ckc"});
+  s.append(el("div",{style:"display:grid;gap:10px"},el("span",{className:"eyebrow"},"Vóór de lancering"),el("h2",{},"Checklist"),el("p",{className:"muted"},"Vink af wat geregeld is. Wordt bewaard."),prog));
+  const L=el("div",{className:"list"});
+  D.CHECK.forEach(([c,t],i)=>L.append(el("button",{type:"button",className:"chk","data-i":i,on:{click:()=>{state.chk[i]=!state.chk[i];paintK();changed()}}},el("span",{className:"box"}),el("span",{className:"tx"},t),el("span",{className:"cat"},c))));
+  s.append(L,disc());
+})(views.check);
+function paintK(){document.querySelectorAll(".chk").forEach(b=>b.setAttribute("aria-pressed",!!state.chk[b.dataset.i]));const n=D.CHECK.filter((_,i)=>state.chk[i]).length;document.getElementById("ckc").textContent=`${n} van ${D.CHECK.length} geregeld`}
+paintK();
+
+/* VRAGEN */
+(s=>{
+  s.append(el("div",{style:"display:grid;gap:10px"},el("span",{className:"eyebrow"},"Alleen jij kunt kiezen"),el("h2",{},"Vragen"),el("p",{className:"muted"},"Klik het antwoord dat past. Mijn advies staat erbij. Zeg in de chat \"klaar\" als je klaar bent."),el("span",{className:"muted",id:"qc"})));
+  D.Q.forEach((q,i)=>{const o=el("div",{className:"opts"});q.o.forEach(x=>o.append(el("button",{type:"button",className:"opt","data-q":q.id,"data-v":x.v,on:{click:()=>{state.a[q.id]=state.a[q.id]===x.v?"":x.v;paintQ();changed()}}},el("span",{className:"dot"}),el("span",{},el("span",{},x.v),x.rec?el("span",{className:"adv"},"advies"):null,x.d?el("small",{},x.d):null))));
+    const ta=el("textarea",{id:"n-"+q.id,placeholder:"Toelichting (mag leeg)",on:{input:e=>{state.notes[q.id]=e.target.value;changed(true)}}});ta.value=state.notes[q.id]||"";
+    s.append(el("div",{className:"qq"},el("span",{className:"eyebrow"},`Vraag ${i+1} van ${D.Q.length} · ${q.topic}`),el("h3",{},q.q),q.why?el("p",{className:"muted",style:"font-size:14px"},q.why):null,o,ta))});
+  const qm=el("span",{className:"muted"});
+  s.append(el("div",{className:"row"},el("button",{className:"btn primary",on:{click:async()=>{qm.textContent=(await push())?"Opgeslagen. Zeg in de chat dat je klaar bent.":"Online opslaan lukt hier niet; je keuzes staan op dit apparaat."}}},"Opslaan voor Claude"),qm));
+})(views.vragen);
+function paintQ(){document.querySelectorAll(".opt").forEach(b=>b.setAttribute("aria-pressed",state.a[b.dataset.q]===b.dataset.v));document.getElementById("qc").textContent=`${D.Q.filter(q=>state.a[q.id]).length} van ${D.Q.length} beantwoord`}
+paintQ();
+
+let db=null,timer=null;const saveEl=document.getElementById("save");
+function changed(t){try{localStorage.setItem("tp-mag",JSON.stringify(state))}catch(e){}clearTimeout(timer);timer=setTimeout(push,t?1500:700)}
+async function push(){if(!db){saveEl.textContent="Alleen op dit apparaat";return false}saveEl.textContent="Opslaan…";
+  const sum=["## Vragen",...D.Q.map(q=>`${q.id}: ${state.a[q.id]||"-"}${state.notes[q.id]?" | "+state.notes[q.id]:""}`),"## Checklist geregeld",...D.CHECK.filter((_,i)=>state.chk[i]).map(c=>c[1])].join("\n");
+  try{await db.doc("mag/answers").set({a:state.a,notes:state.notes,chk:state.chk,samenvatting:sum,bijgewerkt:new Date().toISOString()});saveEl.textContent="Opgeslagen "+new Date().toLocaleTimeString("nl-NL",{hour:"2-digit",minute:"2-digit"});saveEl.className="pill ok";return true}catch(e){saveEl.textContent="Opslaan mislukt";saveEl.className="pill";return false}}
+const h=(location.hash||"").slice(1);showTab(TABS.some(t=>t[0]===h)?h:"antwoord");
+(async()=>{try{db=await window.claude?.use?.("db")}catch(e){db=null}if(!db){saveEl.textContent="Alleen op dit apparaat";return}
+  try{const sn=await db.doc("mag/answers").get();if(sn.exists){const d=sn.data();state={chk:{...(d.chk||{})},a:{...(d.a||{})},notes:{...(d.notes||{})}};document.querySelectorAll("textarea[id^=n-]").forEach(t=>t.value=state.notes[t.id.slice(2)]||"");paintK();paintQ();saveEl.textContent="Eerdere keuzes geladen";saveEl.className="pill ok"}else saveEl.textContent="Klaar om op te slaan"}catch(e){saveEl.textContent="Klaar om op te slaan"}})();
+</script>
