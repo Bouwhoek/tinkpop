@@ -7,7 +7,7 @@ Open source, zodat andere ontwerpers generators kunnen toevoegen.
 Eigenaar codeert niet en werkt via de chat: leg keuzes uit in gewone taal, in het Nederlands.
 
 ## Status
-Nog geen code. Fase: bouwplan (bible v0.3) + blauwdruk klaar; wacht op goedkeuring blauwdruk (76 punten, 14 vragen); daarna fase 1 bevriezen en fase 0 (proef). Docs komen uit de eerdere werkrepo `Bouwhoek/mwbl` (werknaam, niet meer in gebruik).
+Nog geen code. Fase: plan klaar (bible, blauwdruk goedgekeurd 29-10, juridisch, risico's, gevoel). Volgende stap: fase 1 bevriezen en fase 0 (proefweek) bouwen. Open vragen: zie `docs/roadmap.md`. Docs komen uit de eerdere werkrepo `Bouwhoek/mwbl` (werknaam, niet meer in gebruik).
 
 ## Waar staat wat
 - `docs/bible.md` — **het bouwplan** (architectuur, modules, contract, fasen); klikbaar: `docs/bible.html`
