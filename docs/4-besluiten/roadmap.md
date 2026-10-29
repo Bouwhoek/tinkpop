@@ -13,7 +13,7 @@ Fase 0 test A-01 t/m A-03 (zie `2-plan/grill.md` §C) met de harde lat uit `2-pl
 ## Open vragen voor de eigenaar
 | Nr | Vraag | Advies | Blokkeert |
 |---|---|---|---|
-| V-044 | Welk logo: 1 Pop Heart of 2 Layer T? (`brand/README.md`) | 2, met het poppetje van 1 als mascotte | ontwerper (B-085) |
+| — | Geen open vragen | | |
 
 ## Taken eigenaar
 - [ ] Ontwerper zoeken die het logo natekent als SVG (B-085).

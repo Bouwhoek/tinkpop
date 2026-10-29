@@ -25,3 +25,10 @@ Eigenaar deelde 5 AI-varianten (alleen in de chat): 1 Pop Heart, 2 Layer T, 3 Ke
 - **Advies Claude: 2 (Layer T) als hoofdlogo.** De T uit gekleurde printlagen werkt als app-icoon en favicon, het zwarte woordmerk is leesbaar op licht en donker en kan in één kleur, en het is makkelijker na te tekenen als SVG (B-085).
 - Uit 1 lenen: het printkop-poppetje als mascotte voor pop-animaties en lege schermen, niet in het logo zelf (te druk op klein formaat, vier kleuren, lijkt weer op Instagram).
 - Slogans op de varianten niet overnemen: "Custom 3D prints for everyone" klinkt alsof we prints verkopen (botst met B-063). Houden: "Type it. Tink it. Print it." (B-080) of de merkbelofte (B-084).
+
+## Logo v3: Layer T gekozen (29-10-2026)
+Eigenaar koos variant 2 (Layer T) met het printkop-poppetje als mascotte, en liet GPT een pakket maken (B-086). Bestanden: `logo-v3/` (alleen de PNG's).
+- **Bruikbaar nu**: PNG's als tijdelijk logo voor proeflink en social (548 px breed, transparant).
+- **Niet bruikbaar**: de SVG's in het pakket zijn automatisch overgetrokken (verkeerde kleuren, rafelige randen). Niet in de repo gezet.
+- **Nog nodig**: echte vectorversie (B-085): T-vorm en lagen als nette paden, woordmerk uit een OFL-lettertype omgezet naar paden. Favicon 16 px is nauwelijks leesbaar: voor klein formaat alleen de T zonder ring, met 2 lagen.
+- Slogan staat goed: "Type it. Tink it. Print it." (B-080).

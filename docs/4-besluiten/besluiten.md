@@ -107,6 +107,7 @@ Open vragen staan **niet** hier maar in `docs/4-besluiten/roadmap.md` en op het 
 | B-083 | 28-10 | Eigen merk, naast 3d-prints.bouwhoek.app | Keuze eigenaar |
 | B-084 | 29-10 | Merkbelofte: "Make something with your name on it. Fast, free and open, the way making should be." | V-010 |
 | B-085 | 29-10 | Logo laten natekenen als SVG door een ontwerper | V-023 |
+| B-086 | 29-10 | Logo: variant 2 "Layer T" (T uit gekleurde printlagen, zwart woordmerk met hartje); printkop-poppetje als mascotte, niet in het logo | V-044; pakket in `brand/logo-v3/` |
 
 ## Vervallen
 | Nr | Was | Vervangen door |
