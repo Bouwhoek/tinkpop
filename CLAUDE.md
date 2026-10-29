@@ -17,6 +17,7 @@ Nog geen code. Fase: plan klaar (bible, blauwdruk goedgekeurd 29-10, juridisch, 
 - `docs/juridisch.md` — mag het? (generator, clicker, licenties, checklist); klikbaar: `docs/mag-het.html`
 - `docs/risicos.md` — risicoregister (41 risico's)
 - `docs/overzicht.html` — alles op één pagina: modulebord, bouwvolgorde, open source, reflecties Gemini/GPT/Claude
+- `docs/modules.md` — indeling in hoofdmodules en onderdelen, met vaste codes en naamregels
 - `docs/hergebruik.md` — welke open source we hergebruiken of ombouwen, met licenties
 - `docs/brief.md` — wat de eigenaar wil (antwoorden uit de vragenlijst, 28-10-2026)
 - `docs/markt.md` — bestaat dit al, concurrenten, positionering

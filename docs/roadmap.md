@@ -1,6 +1,7 @@
 # Roadmap en open vragen
 
 ## Open vragen voor de eigenaar
+- [ ] Module-indeling (tien hoofdmodules, codes `hoofdmodule/onderdeel`) goedkeuren: zie `modules.md` en vraag `indeling` in het overzicht.
 - [ ] Overzicht + reflecties (29-10): 6 vragen in artifact "Tinkpop Overzicht" (waar staat het plan, inlog, hoe schrijven Gemini/GPT erin, volgorde, go/no-go, hoeveel open source). Daarna sparren: Gemini → GPT → Claude.
 - [ ] Inlogmails: Resend (gratis, 100/dag) of Cloudflare Email ($5/mnd). Advies: Resend achter eigen `sendMail()`.
 - [ ] three-3mf-exporter nalopen op overlap met AGPL-code van Bambu Studio vóór hergebruik.
