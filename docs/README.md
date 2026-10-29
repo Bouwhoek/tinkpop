@@ -3,6 +3,7 @@
 **Status (29-10-2026):** nog geen code. Plan klaar; volgende stap: PR #1 samenvoegen, daarna fase 0 (proefweek).
 **Open vragen:** `docs/4-besluiten/roadmap.md` (V-nummers) en het Beslisbord (eerste tab van het overzicht-artifact). Antwoorden staan in de database van dat artifact (`antwoorden/V-xxx`).
 **Alles op één pagina:** https://claude.ai/artifact/SvncP5H8edGJj65ZqECMdU (kopie: `docs/pages/overzicht.html`).
+**Roadmap visueel:** https://claude.ai/artifact/9NZqKLUAw1kqZdSQCdQDVm (kopie: `docs/pages/roadmap.html`; bron blijft `4-besluiten/roadmap.md`, bij elke wijziging daar ook deze pagina bijwerken).
 
 ## Indeling
 | Map | Wat | Belangrijkste bestanden |
@@ -12,7 +13,7 @@
 | `3-juridisch/` | mag het, en wat kan misgaan | `juridisch.md`, `risicos.md`, `voorwaarden/` (schermafdrukken) |
 | `4-besluiten/` | wat besloten is en wat nog open staat | `besluiten.md` (B-nummers), `roadmap.md` (V-nummers, taken, fasen) |
 | `brand/` | logo, merk, pop-taal | `pop.md`, `pop-prototype.js` |
-| `pages/` | kopieën van de klikbare pagina's | `overzicht.html` e.a. |
+| `pages/` | kopieën van de klikbare pagina's | `overzicht.html`, `roadmap.html` e.a. |
 | `templates/` | sjablonen | `module.md` |
 | `archief/` | oude audits, alleen naslag | |
 
