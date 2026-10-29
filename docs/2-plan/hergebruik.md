@@ -40,6 +40,8 @@ Klikbaar overzicht met alle modules: `docs/pages/overzicht.html` / https://claud
 | Pop-taal | eigen (CSS + WAAPI) | — | zelf bouwen | — |
 
 ## Licentieregels
+**Sinds B-075 is de code AGPL-3.0.** MIT/BSD/ISC/Apache mogen erin (licentietekst meeleveren). GPL-3.0 en GPL-2.0-or-later mogen nu ook in de bundel; GPL-2.0-only niet. NC en onduidelijke licenties nooit.
+
 - MIT, BSD, ISC, Apache, Unlicense: altijd mee, licentietekst meeleveren (pagina 'third-party licenses').
 - GPL (openscad-wasm): alleen als los programma met bronverwijzing; nooit in onze eigen bundel zolang wij MIT zijn.
 - Kiezen we AGPL, dan mag GPL-3-code wél mee; dat maakt KeyV2 en andere GPL-bibliotheken bruikbaar.

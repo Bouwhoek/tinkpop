@@ -7,7 +7,7 @@ Open source, zodat andere ontwerpers generators kunnen toevoegen.
 Eigenaar codeert niet en werkt via de chat: leg keuzes uit in gewone taal, in het Nederlands.
 
 ## Status
-Nog geen code. Fase: plan klaar (bible, blauwdruk goedgekeurd 29-10, juridisch, risico's, gevoel). Volgende stap: PR #1 samenvoegen, fase 1 bevriezen, fase 0 (proefweek) bouwen. Open vragen: zie `docs/4-besluiten/roadmap.md`. Docs komen uit de eerdere werkrepo `Bouwhoek/mwbl` (werknaam, niet meer in gebruik).
+Nog geen code. Fase: plan klaar en 33 beslisbord-vragen beantwoord (29-10). Code wordt AGPL-3.0 (B-075). Volgende stap: PR #1 samenvoegen, fase 1 bevriezen, fase 0 (proefweek) bouwen. Open vragen: zie `docs/4-besluiten/roadmap.md`. Docs komen uit de eerdere werkrepo `Bouwhoek/mwbl` (werknaam, niet meer in gebruik).
 
 ## Waar staat wat
 Begin bij **`docs/README.md`**: indeling in mappen (1-product, 2-plan, 3-juridisch, 4-besluiten, brand, pages, templates, archief) en de spelregels.
@@ -25,6 +25,6 @@ Begin bij **`docs/README.md`**: indeling in mappen (1-product, 2-plan, 3-juridis
 - Ontwerpen van anderen alleen opnemen met schriftelijke toestemming en duidelijke licentie per generator.
 - Nooit een bestaand model (bestand of foto) aan AI geven om het om te bouwen. Eigen ontwerpen vanuit algemene onderdelen en openbare maten, met het proces gedateerd in de repo (zie `docs/3-juridisch/juridisch.md`).
 - Geen code uit Bambu Studio of OrcaSlicer overnemen (AGPL).
-- Eerst hergebruiken, dan pas bouwen: kijk in `docs/2-plan/hergebruik.md`. Alleen licenties MIT/ISC/BSD/Apache/Unlicense in de site; GPL alleen als los programma (openscad-wasm); nooit NC of onduidelijke licenties.
+- Eerst hergebruiken, dan pas bouwen: kijk in `docs/2-plan/hergebruik.md`. Code is AGPL-3.0 (B-075): MIT/ISC/BSD/Apache/Unlicense en GPL-3.0(-or-later) mogen erin, met licentietekst; GPL-2.0-only niet; nooit NC of onduidelijke licenties.
 - Rode lijnen en dark patterns die we nooit doen staan in `docs/1-product/gevoel.md`. Alle animaties via de pop-taal (`docs/brand/pop.md`).
 - Domein tinkpop.com staat bij Cloudflare, op naam van de eigenaar. Niets live zetten of DNS wijzigen zonder akkoord van de eigenaar.

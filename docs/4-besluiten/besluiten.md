@@ -17,6 +17,12 @@ Open vragen staan **niet** hier maar in `docs/4-besluiten/roadmap.md` en op het 
 | B-008 | 29-10 | "Open in Bambu Studio" later; eerst gewone 3MF-download | `bambu` |
 | B-009 | 29-10 | Blauwdruk goedgekeurd: 62 punten ja, 14 later (A14, B4, C9, D8, D11, E1, F3, F4, G3, H3, H9, H10) | Blauwdruk-artifact |
 | B-010 | 29-10 | Doorgaan/stoppen-meting 4 weken na aankondiging: ≥ 500 downloads, ≥ 20% batch/plaat, ≥ 10% komt binnen 30 dagen terug | Overzicht-vraag `gonogo` |
+| B-011 | 29-10 | Eerste indruk (homepage): een hele plaat met namen in één keer, gratis, op je telefoon | V-004 |
+| B-012 | 29-10 | Plaat vullen en batch al minimaal in fase 0 | V-024 |
+| B-013 | 29-10 | Tempo: rustig aan, eerst alles af (ondanks KeychainGEN) | V-005, tegen advies |
+| B-014 | 29-10 | Eerste gelegenheid: Sinterklaas en Kerst | V-016 |
+| B-015 | 29-10 | Pop-taal zoals de speeltuin; geluid standaard uit; druppeltjes bij wegploppen. Eerst verder uitwerken in artifacts tot het resultaat goed is | V-011, V-012, V-013 |
+| B-016 | 29-10 | Offline werken (PWA) later, fase 2 | V-033 |
 
 ## Account en privacy
 | Nr | Datum | Besluit | Reden / bron |
@@ -24,15 +30,21 @@ Open vragen staan **niet** hier maar in `docs/4-besluiten/roadmap.md` en op het 
 | B-020 | 29-10 | Inloggen vanaf fase 1, alleen om ontwerpen te bewaren; downloaden nooit achter inloggen | `login` (tegen advies), `download`, `loginwat` |
 | B-021 | 29-10 | Inloggen met e-maillink + passkey; accounts 16+ met vinkje | `loginhoe`, `leeftijd` |
 | B-022 | 29-10 | Foutmeldingen via een eigen kleine teller bij Cloudflare, zonder ingetypte tekst | `fouten` |
+| B-023 | 29-10 | Inlogmails via Resend (gratis tot 100/dag) achter eigen `sendMail()` | V-020 |
+| B-024 | 29-10 | Contactadres hello@tinkpop.com via Cloudflare Email Routing | V-021 |
 
 ## Techniek en hosting
 | Nr | Datum | Besluit | Reden / bron |
 |---|---|---|---|
 | B-030 | 29-10 | Hosting: Cloudflare Workers (static assets) | `hosting`; zelfde als NotMadeYet |
 | B-031 | 29-10 | Eigen generators in TypeScript (manifold); community-generators alleen in OpenSCAD | `taal` |
-| B-032 | 29-10 | Modulair: tien hoofdmodules, codes `hoofdmodule/onderdeel` (voorstel, zie `2-plan/modules.md`) | wacht op akkoord (`indeling`) |
+| B-032 | 29-10 | Modulair: tien hoofdmodules, codes `hoofdmodule/onderdeel` (zie `2-plan/modules.md`) | goedgekeurd: B-035 |
 | B-033 | 29-10 | Eerst hergebruiken: zoveel mogelijk open source, alleen met nette licenties | Overzicht-vraag `oss` |
 | B-034 | 29-10 | Testtelefoon: Android | `telefoon` |
+| B-035 | 29-10 | Indeling in tien hoofdmodules met codes `hoofdmodule/onderdeel` goedgekeurd | V-001 (vervangt voorstel in B-032) |
+| B-036 | 29-10 | Designsysteem Tinkpop Kit als `core/ui-kit` | V-028 |
+| B-037 | 29-10 | Cloudflare: AI-zoekbots toestaan, AI-trainingsbots blokkeren | V-029 |
+| B-038 | 29-10 | Statuspagina buiten de eigen site | V-032 |
 
 ## Beheer en werkwijze
 | Nr | Datum | Besluit | Reden / bron |
@@ -45,6 +57,11 @@ Open vragen staan **niet** hier maar in `docs/4-besluiten/roadmap.md` en op het 
 | B-045 | 29-10 | Eén project tegelijk in de bouw | `focus` |
 | B-046 | 29-10 | Plan staat nu als privé-artifact; later op tinkpop.com/plan achter Cloudflare Access (e-mailcode) | `hosting`, `inlog` (overzicht) |
 | B-047 | 29-10 | Sparren: Gemini → GPT (reageert op Gemini) → Claude, via kopiëren en plakken | `aischrijven`, `volgorde` |
+| B-048 | 29-10 | AGENTS.md is de hoofdbron voor alle AI's; CLAUDE.md verwijst ernaar | V-026 |
+| B-049 | 29-10 | Harde regels automatisch afdwingen: in CI én in de projectinstellingen voor AI | V-027 |
+| B-140 | 29-10 | Live zetten via een release-PR met wijzigingslijst in gewone taal; samenvoegen daarvan = akkoord voor live | V-030 (verfijnt B-041) |
+| B-141 | 29-10 | Geen verplichte tweede AI-review per PR | V-031, tegen advies |
+| B-142 | 29-10 | Fase 0 niet delen met een eigen kring; aanname A-04 wordt getest tijdens de stille lancering | V-025, tegen advies |
 
 ## Community
 | Nr | Datum | Besluit | Reden / bron |
@@ -52,22 +69,29 @@ Open vragen staan **niet** hier maar in `docs/4-besluiten/roadmap.md` en op het 
 | B-050 | 28-10 | Anderen kunnen meebouwen; elke generator toont de maker met diens doneerlink | Wens eigenaar |
 | B-051 | 29-10 | Bijdragen van anderen pas na 3 maanden live, alleen .scad | `bijdragen` |
 | B-052 | 29-10 | NotMadeYet blijft apart; ideeën worden later .scad-generators op Tinkpop | `nmy` |
-| B-053 | 29-10 | Generators ook op MakerWorld zetten waar het kan, met link (alleen in de modelbeschrijving) | `makerworld`; regels MakerWorld in `3-juridisch/juridisch.md` |
+| B-054 | 29-10 | **Niet op MakerWorld publiceren** | V-018 (vervangt B-053) |
+| B-055 | 29-10 | Eigenaar blijft anoniem in communities (geen 'ik bouwde dit'-post) | V-017, tegen advies |
 
 ## Geld
 | Nr | Datum | Besluit | Reden / bron |
 |---|---|---|---|
 | B-060 | 28-10 | Alles gratis, ook latere AI; inkomsten alleen via Buy Me a Coffee (gewone donaties, geen memberships of extras) | Keuze eigenaar |
 | B-061 | 28-10 | Donaties moeten minstens hosting en domein dekken | Wens eigenaar |
+| B-062 | 29-10 | Openbare pagina met kosten en donaties per maand, na het vaststellen van de echte kosten | V-015 |
+| B-063 | 29-10 | Verkoop (prints of extra's) helemaal buiten Tinkpop: alleen via NotMadeYet of Bouwhoek | V-009 |
 
 ## Juridisch en licenties
 | Nr | Datum | Besluit | Reden / bron |
 |---|---|---|---|
 | B-070 | 29-10 | Legaal by design: verplicht juridisch blok per module; bouw faalt en bord weigert aanzetten als het niet klopt | Wens eigenaar; `2-plan/bible.md` §16 |
 | B-071 | 29-10 | Ontwerp van generators CC BY 4.0; gemaakte bestanden vrij, zonder naamsvermelding | `licentie`, `outputlicentie` |
-| B-072 | 29-10 | Code MIT (AGPL in overweging, zie roadmap) | 28-10; open vraag `codelicentie` |
 | B-073 | 29-10 | Merkbescherming Tinkpop/Pinkpop: eigenaar zoekt het zelf uit, vóór de aankondiging | `merk`, `merkjurist` |
 | B-074 | 29-10 | Clicker-maker deze week om schriftelijke toestemming vragen | `clicker` |
+| B-075 | 29-10 | **Codelicentie AGPL-3.0** (kopiëren mag, maar dan ook open) | V-014 (vervangt B-072) |
+| B-076 | 29-10 | Meldknop en contactpunt al in fase 1 | V-006 |
+| B-077 | 29-10 | Waarschuwing 'Not a toy / small parts / test your print' alleen in de voorwaarden | V-008, tegen advies |
+| B-078 | 29-10 | Twemoji-vermelding alleen in de footer van de site | V-019 |
+| B-079 | 29-10 | Clicker: beide routes tegelijk: toestemming vragen én eigen ontwerp maken | V-002 |
 
 ## Merk
 | Nr | Datum | Besluit | Reden / bron |
@@ -76,6 +100,8 @@ Open vragen staan **niet** hier maar in `docs/4-besluiten/roadmap.md` en op het 
 | B-081 | 28-10 | Social: @tink_pop, op Instagram @tink.pop | Beschikbaarheid |
 | B-082 | 28-10 | Site in het Engels; docs en overleg in het Nederlands | Keuze eigenaar |
 | B-083 | 28-10 | Eigen merk, naast 3d-prints.bouwhoek.app | Keuze eigenaar |
+| B-084 | 29-10 | Merkbelofte: "Make something with your name on it. Fast, free and open, the way making should be." | V-010 |
+| B-085 | 29-10 | Logo laten natekenen als SVG door een ontwerper | V-023 |
 
 ## Vervallen
 | Nr | Was | Vervangen door |
@@ -84,4 +110,6 @@ Open vragen staan **niet** hier maar in `docs/4-besluiten/roadmap.md` en op het 
 | B-901 | Modulebord waarin de eigenaar klikt en het meteen live gaat (29-10) | B-042 |
 | B-902 | Geen testgroep: direct lanceren (29-10) | B-043 (stille lancering) |
 | B-903 | Repo-naam `mwbl` als werknaam (28-10) | B-080 |
+| B-905 | Code MIT (B-072) | B-075 (AGPL) |
+| B-906 | Generators ook op MakerWorld (B-053) | B-054 |
 | B-904 | Eén generator, verder niets in fase 1 (28-10) | B-002, B-003 |

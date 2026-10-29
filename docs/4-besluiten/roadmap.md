@@ -1,53 +1,23 @@
 # Roadmap
 
-Eén lijst met wat er nog moet. Besluiten staan in `docs/4-besluiten/besluiten.md`. Open vragen voor de eigenaar staan óók op het
+Eén lijst met wat er nog moet. Antwoorden komen uit het Beslisbord (overzicht-artifact, collectie `antwoorden`). Besluiten staan in `docs/4-besluiten/besluiten.md`. Open vragen voor de eigenaar staan óók op het
 **Beslisbord** (tab in het overzicht-artifact, zie `docs/README.md`), met hetzelfde nummer (V-xxx).
 Spelregel: alles wat hier af is, gaat eruit (het besluit staat dan in `docs/4-besluiten/besluiten.md`).
 
 ## Nu
-**Volgende stap: PR #1 samenvoegen, daarna fase 0 (proefweek).** Fase 0 start pas na V-001 (indeling) en de clicker-route hoeft daarvoor niet.
+**Volgende stap: PR #1 samenvoegen, daarna fase 0 (proefweek).** V-001 is goedgekeurd (B-035). Tempo: rustig aan, eerst alles af (B-013). 33 vragen beantwoord op 29-10; nog open: V-034, V-035.
 
 ## Fase 0 is een experiment
-Fase 0 test vier aannames (A-01 t/m A-04, zie `2-plan/grill.md` §C). Slaagt een aanname niet, dan eerst oplossen vóór fase 1.
+Fase 0 test A-01 t/m A-03 (zie `2-plan/grill.md` §C). A-04 (willen mensen het) wordt gemeten tijdens de stille lancering (B-142). Slaagt een aanname niet, dan eerst oplossen vóór fase 1.
 
 ## Open vragen voor de eigenaar
 | Nr | Vraag | Advies | Blokkeert |
 |---|---|---|---|
-| V-001 | Indeling in tien hoofdmodules akkoord? (`2-plan/modules.md`) | ja | mappen in de code |
-| V-002 | Welke route voor de clicker? | eigen ontwerp met standaardonderdelen | fase 2 |
-| V-003 | Welke clicker was het op de foto? | link geven | licentiecheck |
-| V-004 | Waarmee maken we de eerste indruk? | hele plaat met namen | homepage |
-| V-005 | Tempo i.v.m. KeychainGEN | fase 0 nu starten | – |
-| V-006 | Meldknop en contactpunt al in fase 1? | ja | lancering |
-| V-007 | Hoe testen we op een iPhone? | iPhone lenen | fase 0 |
-| V-008 | Waarschuwing "Not a toy" bij elke download? | ja | lancering |
-| V-009 | Verkoop helemaal buiten Tinkpop houden? | ja | juridisch |
-| V-010 | Welke merkbelofte? | "Type it. Tink it. Print it. Free forever, no ads, no account needed." | homepage |
-| V-011 | Hoe uitbundig mag de pop zijn? | zoals de speeltuin | – |
-| V-012 | Plop-geluid? | standaard uit, knop om aan te zetten | – |
-| V-013 | Druppeltjes bij wegploppen? | ja | – |
-| V-014 | Codelicentie MIT of AGPL? | AGPL | LICENSE-bestand |
-| V-015 | Kosten en donaties openbaar? | ja | – |
-| V-016 | Eerste gelegenheid? | Sinterklaas en Kerst | fase 2 |
-| V-017 | Zelf vertellen op r/BambuLab? | ja, na stille lancering | – |
-| V-018 | Hoe linken vanaf MakerWorld? | alleen in de modelbeschrijving, eerst proef | fase 3 |
-| V-019 | Twemoji-vermelding ook in het bestand? | ja | fase 1 |
-| V-021 | Contactadres hello@tinkpop.com via Cloudflare Email Routing (gratis)? | ja | meldknop, privacy |
-| V-022 | URL-structuur zoals voorgesteld (`2-plan/grill.md` §E8)? | ja | pagina's, deel-links |
-| V-023 | Logo laten natekenen als SVG (of Claude maakt een voorstel)? | Claude maakt eerst een voorstel | site |
-| V-024 | Plaat vullen + batch al minimaal in fase 0? | ja | fase 0 |
-| V-025 | Proeflink van fase 0 delen met 5–10 mensen uit eigen kring? | ja | aanname A-04 |
-| V-026 | AGENTS.md als hoofdbron voor alle AI's, CLAUDE.md verwijst ernaar? | ja | – |
-| V-027 | Harde regels automatisch afdwingen (CI + projectinstellingen voor AI)? | ja | – |
-| V-028 | Designsysteem Tinkpop Kit als `core/ui-kit`? | ja | fase 0 |
-| V-029 | AI-bots bij Cloudflare: zoekbots toestaan, trainingsbots blokkeren? | ja | lancering |
-| V-030 | Live zetten via een release-PR met wijzigingslijst? | ja | – |
-| V-031 | Tweede review door een andere AI bij elke PR? | ja | – |
-| V-032 | Statuspagina buiten de eigen site? | ja | lancering |
-| V-033 | Offline werken (PWA)? | later (fase 2) | – |
-| V-020 | Inlogmails via Resend (gratis, 100/dag) of Cloudflare ($5/mnd)? | Resend achter eigen `sendMail()` | fase 1 |
+| V-034 | Welke clicker bedoelde je? Link graag | link | toestemmingsbrief |
+| V-035 | Hoe wil je de URL-structuur anders? | voorstel houden | pagina's, deel-links |
 
 ## Taken eigenaar
+- [ ] Ontwerper zoeken die het logo natekent als SVG (B-085).
 (Ook op het Beslisbord als T-01 t/m T-08.)
 - [ ] PR #1 samenvoegen (alleen documenten).
 - [ ] Merk Tinkpop/Pinkpop uitzoeken (B-073), vóór de aankondiging.
@@ -55,14 +25,18 @@ Fase 0 test vier aannames (A-01 t/m A-04, zie `2-plan/grill.md` §C). Slaagt een
 - [ ] Voorwaarden van MakerWorld openen en schermafdruk in `docs/3-juridisch/voorwaarden/` (automatisch openen gaf 403).
 - [ ] tinkpop.app en tinkpop.org vastleggen (nu nog vrij).
 - [ ] Beschrijven hoe 3d-prints.bouwhoek.app nu werkt (site vraagt om inlog).
-- [ ] Sparren: Gemini → GPT in het overzicht (B-047), dan "reflecties klaar" zeggen.
+- [ ] Sparren met GPT en Gemini (tab Reflecties in het overzicht), dan "reflecties klaar" zeggen.
 - [ ] GitHub-repo `Bouwhoek/mwbl` archiveren (instellingen → Archive), werknaam, niet meer in gebruik.
 
 ## Taken Claude
 - [ ] Na V-029: Cloudflare-instelling AI-bots nalopen samen met de eigenaar (niets wijzigen zonder akkoord).
 - [ ] Plaatmaten van Bambu-printers nalopen (A1 mini, A1, P1, X1, H2D) voor plaat vullen.
 - [ ] Risicoregister: elke regel een hoofdmodule geven.
-- [ ] Logo-voorstel als SVG (na V-023).
+- [ ] Pop-taal verder uitwerken in artifacts (pop, geluid, druppels) tot de eigenaar tevreden is (B-015).
+- [ ] LICENSE-bestand AGPL-3.0 toevoegen; hergebruiksregels aanpassen (B-075).
+- [ ] AGENTS.md hoofdbron maken, CLAUDE.md laten verwijzen (B-048).
+- [ ] Harde regels als controles: CI + projectinstellingen voor AI (B-049), bij de opzet van fase 0.
+- [ ] Kostenoverzicht opstellen (echte kosten per maand) als basis voor de open pagina (B-062).
 - [ ] Fase 1 bevriezen op een korte lijst (blauwdruk I14), na V-001.
 - [ ] three-3mf-exporter nalopen op overlap met AGPL-code van Bambu Studio, vóór hergebruik.
 - [ ] Reflecties van Gemini en GPT verwerken (ronde 3).
