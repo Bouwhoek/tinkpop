@@ -29,18 +29,14 @@ Fase 0 test A-01 t/m A-03 (zie `2-plan/grill.md` §C) met de harde lat uit `2-pl
 
 ## Taken Claude
 - [ ] Na V-029: Cloudflare-instelling AI-bots nalopen samen met de eigenaar (niets wijzigen zonder akkoord).
-- [ ] Plaatmaten van Bambu-printers nalopen (A1 mini, A1, P1, X1, H2D) voor plaat vullen.
+- [ ] Uitgesloten hoek op de plaat (X1/P1) nalopen in Bambu Studio (`2-plan/mvp.md`, plaatmaten).
 - [ ] Risicoregister: elke regel een hoofdmodule geven.
 - [ ] Pop-taal verder uitwerken in artifacts (pop, geluid, druppels) tot de eigenaar tevreden is (B-015).
-- [ ] LICENSE-bestand AGPL-3.0 toevoegen; hergebruiksregels aanpassen (B-075).
-- [ ] AGENTS.md hoofdbron maken, CLAUDE.md laten verwijzen (B-048).
 - [ ] Harde regels als controles: CI + projectinstellingen voor AI (B-049), bij de opzet van fase 0.
 - [ ] Kostenoverzicht opstellen (echte kosten per maand) als basis voor de open pagina (B-062).
 - [ ] Fase 1 bevriezen op een korte lijst (blauwdruk I14), volgens B-149.
 - [ ] Clicker: eigen ontwerp uitwerken vanuit algemene onderdelen, proces gedateerd (B-147), fase 2.
-- [ ] three-3mf-exporter nalopen op overlap met AGPL-code van Bambu Studio, vóór hergebruik.
 - [ ] Na PR #1: script voor 5 test-3MF's (eerste stap fase 0, B-145) en de 3MF-matrix invullen met de eigenaar.
-- [ ] Vaste testset van 20 namen in de repo zetten, met verwacht resultaat (`2-plan/mvp.md`).
 - [ ] Slicer-check in CI (Bambu Studio / OrcaSlicer CLI, alleen als tool).
 
 ## Fasen

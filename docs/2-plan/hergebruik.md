@@ -57,7 +57,7 @@ Klikbaar overzicht met alle modules: `docs/pages/overzicht.html` / https://claud
 - Ajv werkt niet op Cloudflare Workers: op de server @cfworker/json-schema gebruiken.
 - elkjs, deepnest, potrace-wasm, KeyV2: GPL-varianten; onder AGPL mogelijk, per stuk de exacte versie nalopen (GPL-2.0-only niet).
 - Open Keychain: één maker, twee maanden oud; hun naam en logo nooit gebruiken (TRADEMARKS.md).
-- three-3mf-exporter: claimt eigen code, toch nalopen op AGPL-overlap met Bambu Studio.
+- three-3mf-exporter (nagelopen 29-10, versie 45.2.1): MIT, één maker (bekuto3d). Schrijft een volledig Bambu-project: onderdelen met filamentnummer (`model_settings.config`) plus printer- en filamentinstellingen (`project_settings.config`, standaard A1). De spoelhoeveelheden zijn volgens de maker zelf berekend uit een beschrijving en getoetst aan opgeslagen bestanden, "not copied from the AGPL-licensed slicer sources". Geen tekens van overgenomen code gevonden. Omdat wij AGPL zijn, is het juridisch hoe dan ook verenigbaar. Bruikbaar; versie vastzetten. Werkt methode B uit de 3MF-proef niet zonder dialoog, dan is hun extra `project_settings.config` de eerste oplossing.
 - Inlogmails via Cloudflare kosten $5/mnd; Resend is gratis tot 100 per dag.
 
 ## Bekeken in ronde 3 (29-10)

@@ -52,9 +52,21 @@ Script: `tools/proef-3mf/` (5 bestanden). Twee manieren om kleur mee te geven, o
 - **B, onderdelen** (proef 1B, 2, 3, 4): plaatje en tekst als losse onderdelen met filament 1 en 2 vastgezet.
 Wint A, dan maken we 2 t/m 4 opnieuw met A. Al gevonden: Lilita One en Fredoka missen Ğ, Ş en İ (Turkse namen); Titan One mist alleen İ. Lettertypen voor fase 0 dus kiezen op tekens, niet alleen op uiterlijk. De Ç gaf een open model doordat de staart de letter raakt; opgelost met een kleine sluiting van de omtrek.
 
+## Plaatmaten (nagelopen 29-10)
+Bouwvolume in mm (breedte × diepte × hoogte). Plaat vullen gebruikt breedte × diepte, met 8 mm rand.
+| Printer | Volume | Bron |
+|---|---|---|
+| A1 mini | 180 × 180 × 180 | winkels en gidsen |
+| A1 | 256 × 256 × 256 | winkels en gidsen |
+| P1P / P1S / P2S | 256 × 256 × 256 | winkels en gidsen |
+| X1C / X1E | 256 × 256 × 256 | winkels en gidsen |
+| H2S | 340 × 320 × 340 | winkels en gidsen |
+| H2D | 325 × 320 × 325 met één spuitkop; 300 × 320 × 325 met twee | Bambu tech specs |
+Nog nalopen in Bambu Studio zelf: of er een uitgesloten hoek op de plaat zit (bij X1/P1 mogelijk links voor, voor de kalibratie). Fase 0 ondersteunt A1 mini en A1; de rest volgt in fase 1.
+
 ## Vaste testset (golden tests)
-20 lastige namen, vooraf vastgelegd in de repo met het verwachte resultaat. Elke wijziging aan de rekenmotor draait hiertegen.
-Voorbeelden: `Zoë`, `Ålesund`, `Ömer`, `Iiiiii` (dun), `WWWWWW` (breed), `Li`, `Maximiliaan-Alexander`, `O'Brien`, `ÇAĞLA`, `ijsje`, cijfers `2026`, één letter `A`, twee spaties, alleen hoofdletters, alleen kleine letters, en per font één ronde (`Bobbi`).
+20 lastige namen in `tests/golden/namen.json`, met het verwachte resultaat; draaien met `tools/proef-3mf/testset.py` (29-10: 20/20 zoals verwacht). Elke wijziging aan de rekenmotor draait hiertegen.
+Regels die erin vastliggen: een ontbrekend teken geeft een waarschuwing en wordt nooit stil weggelaten (bijv. `İlayda` in Titan One); langer dan 100 mm geeft een waarschuwing; dubbele spaties worden één, spaties aan de rand verdwijnen.
 
 ## Contract tussen generator en export
 Elke generator levert hetzelfde: maten in mm, onderdelen met naam en kleurnummer, onderkant op z = 0, en een duidelijke foutmelding. De export test niet alleen dát er een bestand komt, maar ook dat de slicer het goed leest (M-3, M-4).
