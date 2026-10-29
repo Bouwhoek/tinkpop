@@ -13,10 +13,21 @@ Fase 0 test A-01 t/m A-03 (zie `2-plan/grill.md` §C) met de harde lat uit `2-pl
 ## Open vragen voor de eigenaar
 | Nr | Vraag | Advies | Blokkeert |
 |---|---|---|---|
-| — | Geen open vragen | | |
+| V-045 | Akkoord met de korte lijst voor fase 1 (hieronder)? | ja | fase 1 bevriezen |
+
+## Fase 1: korte lijst (voorstel 29-10, wacht op V-045)
+Volgens B-149: eerst de beste generator, geen platform. Codes uit `2-plan/blauwdruk.md`.
+- **Maken**: A1 mobiel, A2 voorbeeldengalerij, A4 live rekenen, A5 alles zichtbaar in groepen, A7 kleur = AMS-slot, A8 3MF + STL, A11 even-nalopen-lijst, A13 live afmeting, A6 ontwerp in de link (zonder QR), I4 eigen font (alleen in je browser).
+- **Plaat**: H1 plaat vullen, H2 batch.
+- **Vertrouwen**: A3 printfeiten (zonder kosten), B6 stempel "printbaar getest", G1 belofte gratis, H8 privacybelofte, I5 licenties, meldknop (B-076), veiligheidsregel (B-152), I9 toegankelijk.
+- **Achter de schermen**: D1 kaartje per module met juridisch blok, I12 één controlecommando, I7 draaiboek, I8 foutmeldingen, I10 stille lancering, F1 pagina per generator.
+- **Naar fase 2**: A9 printtips, A10 willekeurig + ongedaan maken, A12 en I3 logo/SVG, H4 kosten per stuk, H7 wijzigingslog en statuspagina, D2/D3/D7/D9/D10/D13 modulesysteem en bord.
+- **Naar fase 3**: I6 poorten voor voorstellen van anderen.
+- **Eigenaar, vóór aankondiging**: I13 merkadvies Pinkpop.
 
 ## Taken eigenaar
 - [ ] Ontwerper zoeken die het logo natekent als SVG (B-085).
+- [ ] De 5 test-3MF's openen in Bambu Studio (en Handy) en er één printen; uitslag in de chat.
 (Ook op het Beslisbord als T-01 t/m T-08.)
 - [ ] PR #1 samenvoegen (alleen documenten).
 - [ ] Merk Tinkpop/Pinkpop uitzoeken (B-073), vóór de aankondiging.
@@ -30,13 +41,10 @@ Fase 0 test A-01 t/m A-03 (zie `2-plan/grill.md` §C) met de harde lat uit `2-pl
 ## Taken Claude
 - [ ] Na V-029: Cloudflare-instelling AI-bots nalopen samen met de eigenaar (niets wijzigen zonder akkoord).
 - [ ] Uitgesloten hoek op de plaat (X1/P1) nalopen in Bambu Studio (`2-plan/mvp.md`, plaatmaten).
-- [ ] Risicoregister: elke regel een hoofdmodule geven.
 - [ ] Pop-taal verder uitwerken in artifacts (pop, geluid, druppels) tot de eigenaar tevreden is (B-015).
 - [ ] Harde regels als controles: CI + projectinstellingen voor AI (B-049), bij de opzet van fase 0.
-- [ ] Kostenoverzicht opstellen (echte kosten per maand) als basis voor de open pagina (B-062).
-- [ ] Fase 1 bevriezen op een korte lijst (blauwdruk I14), volgens B-149.
 - [ ] Clicker: eigen ontwerp uitwerken vanuit algemene onderdelen, proces gedateerd (B-147), fase 2.
-- [ ] Na PR #1: script voor 5 test-3MF's (eerste stap fase 0, B-145) en de 3MF-matrix invullen met de eigenaar.
+- [ ] 3MF-matrix invullen met de uitslag van de eigenaar (bestanden: `tools/proef-3mf/`, B-145).
 - [ ] Slicer-check in CI (Bambu Studio / OrcaSlicer CLI, alleen als tool).
 
 ## Fasen
