@@ -46,6 +46,12 @@ Elke test-3MF gaat door deze rij. Wat niet werkt, staat er eerlijk bij; de site 
 
 Bambu Studio en OrcaSlicer zijn alleen **testgereedschap**: we lezen hun documentatie en gebruiken ze om bestanden te openen of te slicen (ook in CI, via de command line). We nemen geen code over (AGPL, zie CLAUDE.md).
 
+## Eerste proef (29-10)
+Script: `tools/proef-3mf/` (5 bestanden). Twee manieren om kleur mee te geven, om te zien welke Bambu Studio goed leest:
+- **A, kleurgroep** (proef 1A): kleur per driehoek, zoals Open Keychain (MIT). Bambu vraagt dan mogelijk om kleuren aan filament te koppelen.
+- **B, onderdelen** (proef 1B, 2, 3, 4): plaatje en tekst als losse onderdelen met filament 1 en 2 vastgezet.
+Wint A, dan maken we 2 t/m 4 opnieuw met A. Al gevonden: Lilita One en Fredoka missen Ğ, Ş en İ (Turkse namen); Titan One mist alleen İ. Lettertypen voor fase 0 dus kiezen op tekens, niet alleen op uiterlijk. De Ç gaf een open model doordat de staart de letter raakt; opgelost met een kleine sluiting van de omtrek.
+
 ## Vaste testset (golden tests)
 20 lastige namen, vooraf vastgelegd in de repo met het verwachte resultaat. Elke wijziging aan de rekenmotor draait hiertegen.
 Voorbeelden: `Zoë`, `Ålesund`, `Ömer`, `Iiiiii` (dun), `WWWWWW` (breed), `Li`, `Maximiliaan-Alexander`, `O'Brien`, `ÇAĞLA`, `ijsje`, cijfers `2026`, één letter `A`, twee spaties, alleen hoofdletters, alleen kleine letters, en per font één ronde (`Bobbi`).
