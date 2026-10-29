@@ -16,6 +16,8 @@
 - [ ] Fase 1 bevriezen op een korte lijst (I14).
 - [ ] Merkbescherming Tinkpop/Pinkpop: eigenaar zoekt zelf uit.
 - [ ] Juridisch en risico's (29-10): 8 vragen in artifact "Mag het?" beantwoorden. Gaten zonder maatregel: J6 (meldknop fase 1), P5/V2 (inlogmails), T2 (iPhone), V6 (doneerlinks), R2 (deelplaatje). Zie `juridisch.md`, `risicos.md`.
+- [ ] Gevoel (29-10): 10 vragen in artifact "Tinkpop Gevoel" (belofte, pop-niveau, geluid, codelicentie MIT/AGPL, kosten openbaar, eerste gelegenheid, MakerWorld-links). Zie `gevoel.md`, `brand/pop.md`.
+- [ ] Eigenaar: voorwaarden MakerWorld zelf openen en schermafdruk in `docs/voorwaarden/` (automatisch openen gaf 403).
 - [ ] Clicker: route kiezen (eigen ontwerp aanbevolen) en welk model het was.
 
 ## Advies, nog te bevestigen

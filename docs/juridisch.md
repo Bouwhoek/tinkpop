@@ -104,3 +104,12 @@ Het klikmechanisme, de kruisvormige stift van keyboard-knoppen (dat octrooi is v
 
 ## Brief om toestemming (clicker)
 Zie artifact, tab "De clicker" (NL + EN). Antwoord van de maker als schermafdruk opslaan in `docs/toestemming/`.
+
+## Aanvulling 29-10-2026: partijen tevreden houden (zie `gevoel.md`)
+- **MakerWorld**: geen links in profiel; link naar Tinkpop alleen in de beschrijving van dát model ("web version of this exact generator + source"); eerst één proef. Nooit MakerWorld-exclusieve modellen opnemen; bij bijdragers altijd vragen "is dit model Exclusive?".
+- **Twemoji**: vermelding in footer én in de metadata van elk gedownload 3MF-bestand met emoji.
+- **Buy Me a Coffee**: alleen gewone donaties, geen memberships of extras met tegenprestatie (dat is verkoop).
+- **Resend**: alleen inlogmails naar zelf ingetypt adres; Turnstile + limiet per adres/IP; SPF/DKIM/DMARC.
+- **Social**: renders en AI-beelden altijd labelen.
+- **Herstel**: één contactadres, formulier voor makers/merkhouders, 48 uur reactietijd, openbaar logboek (`docs/transparantie.md`), elk kwartaal voorwaarden nakijken (schermafdrukken in `docs/voorwaarden/`).
+- Nog na te kijken door eigenaar: voorwaarden MakerWorld (gaven 403), merk Pinkpop, EU-regio/verwerkersovereenkomst Resend.

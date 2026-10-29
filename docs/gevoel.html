@@ -1,0 +1,300 @@
+<title>Tinkpop Gevoel</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: sticky tabs; tab "Pop" is een speeltuin met echte animaties; overige tabs kaarten + tabellen. Donker-eerst zoals het logo. */
+:root{
+  --bg:#0f1014; --surface:#181a21; --raised:#20232c; --fg:#f2f3f7; --muted:#9a9fb0; --line:#2d313d;
+  --cyan:#22c3ff; --pink:#ff3fb4; --orange:#ff9a1f; --accent:#22c3ff; --accent-ink:#06121a;
+  --good:#3ddc84; --warn:#ffb224; --bad:#ff5c6c;
+  --grad:linear-gradient(90deg,var(--cyan),var(--pink) 55%,var(--orange));
+  --display:"Fredoka","Nunito","Avenir Next",system-ui,sans-serif;
+  --body:"Figtree","Segoe UI",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){
+  --bg:#f6f6f9; --surface:#ffffff; --raised:#f0f1f5; --fg:#15161b; --muted:#5d6273; --line:#dcdee6;
+  --cyan:#0089c7; --pink:#c8147f; --orange:#c96500; --accent:#0071b8; --accent-ink:#ffffff;
+  --good:#16804a; --warn:#9a6100; --bad:#c02c3d; color-scheme:light}}
+:root[data-theme="light"]{
+  --bg:#f6f6f9; --surface:#ffffff; --raised:#f0f1f5; --fg:#15161b; --muted:#5d6273; --line:#dcdee6;
+  --cyan:#0089c7; --pink:#c8147f; --orange:#c96500; --accent:#0071b8; --accent-ink:#ffffff;
+  --good:#16804a; --warn:#9a6100; --bad:#c02c3d; color-scheme:light}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--fg);font:16px/1.55 var(--body)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+.gut{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1060px;margin:0 auto}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--surface) 94%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;gap:12px;padding-block:10px;flex-wrap:wrap}
+.logo{font:700 22px var(--display)} .logo b{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent} .logo small{font:500 13px var(--mono);color:var(--muted)}
+nav.tabs{display:flex;gap:4px;overflow-x:auto;flex:1;min-width:0;scrollbar-width:none}
+nav.tabs button{font:600 14px var(--body);color:var(--muted);background:none;border:0;padding:8px 12px;border-radius:9px;cursor:pointer;white-space:nowrap}
+nav.tabs button[aria-selected="true"]{color:var(--fg);background:var(--raised)}
+nav.tabs .hot{color:var(--pink)}
+.pill{font:600 12px var(--mono);padding:3px 9px;border-radius:99px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.pill.ok{color:var(--good);border-color:currentColor}
+main{padding-block:28px 72px}
+section.tab{display:grid;gap:20px}
+h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance}
+h1{font-size:clamp(2rem,6vw,3.3rem);line-height:1.04;font-weight:700} h1 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+h2{font-size:1.45rem;font-weight:600} h3{font-size:1.06rem;font-weight:600}
+p{margin:0;max-width:68ch}
+.muted{color:var(--muted)}
+.eyebrow{font:600 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--cyan)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;display:grid;gap:12px;min-width:0}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+ul,ol{margin:0;padding-left:1.2em;display:grid;gap:6px} li{max-width:70ch}
+.btn{font:600 14px var(--body);padding:10px 15px;border-radius:12px;border:1px solid var(--line);background:var(--raised);color:var(--fg);cursor:pointer}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn.grad{background:var(--grad);color:#0b0b10;border:0}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:680px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:600 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.tag{font:700 11px var(--mono);padding:2px 8px;border-radius:99px;border:1.5px solid currentColor;text-transform:uppercase;white-space:nowrap}
+.lo{color:var(--good)} .mi{color:var(--warn)} .hi{color:var(--bad)}
+details{border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+details>summary{cursor:pointer;padding:13px 16px;font-weight:600;list-style:none;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+details>summary::-webkit-details-marker{display:none}
+details>div{padding:0 16px 16px;display:grid;gap:8px}
+.num{font:700 30px var(--display);background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
+.diff{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start}
+/* pop speeltuin */
+.settings{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.sw{display:inline-flex;align-items:center;gap:10px;cursor:pointer;background:none;border:0;color:var(--fg);font:600 14px var(--body);padding:4px}
+.sw .track{width:44px;height:24px;border-radius:99px;background:var(--line);position:relative;flex:none;transition:background .2s}
+.sw .knob{position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:var(--fg);transform:translateX(0)}
+.sw[aria-checked="true"] .track{background:var(--cyan)}
+.sw[aria-checked="true"] .knob{transform:translateX(20px);background:var(--accent-ink)}
+.play{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.demo{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px;display:grid;gap:12px;align-content:start;min-width:0}
+.demo .nm{font:600 12px var(--mono);color:var(--pink)}
+.stage{min-height:150px;border-radius:12px;background:var(--raised);background-image:radial-gradient(var(--line) 1px,transparent 1.3px);background-size:16px 16px;padding:14px;display:grid;gap:10px;align-content:start;position:relative;overflow:hidden}
+.cat{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px;display:flex;justify-content:space-between;align-items:center;gap:10px;transform-origin:center}
+.cat b{font-weight:600}
+.x{width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:var(--raised);color:var(--fg);cursor:pointer;font:700 15px var(--body);display:grid;place-items:center;flex:none}
+.model{height:110px;border-radius:12px;display:grid;place-items:center;position:relative;background:var(--surface)}
+.model .tag3d{font:700 30px var(--display);padding:10px 22px;border-radius:14px;background:#26282a;color:#f4f4f0;letter-spacing:.02em;box-shadow:0 6px 0 #111}
+.model .ring{position:absolute;inset:0;border-radius:12px;padding:2px;background:var(--grad);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;pointer-events:none}
+.dl{display:inline-flex;align-items:center;gap:8px}
+.dl .ck{display:inline-block;opacity:0;transform:scale(0)}
+input.field{font:16px var(--body);padding:10px 12px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface);color:var(--fg);width:100%}
+input.field.err{border-color:var(--bad)}
+.hint{font-size:13px;color:var(--muted);min-height:18px}
+.hint.err{color:var(--bad)}
+.toasts{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(20px + env(safe-area-inset-bottom,0px));display:grid;gap:8px;z-index:60;width:min(92vw,380px)}
+.toast{background:var(--raised);border:1px solid var(--line);border-radius:14px;padding:12px 14px;box-shadow:0 10px 30px rgba(0,0,0,.35);display:flex;gap:10px;align-items:center}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:600 14px var(--body);padding:8px 13px;border-radius:99px;border:1.5px solid var(--line);background:var(--surface);color:var(--fg);cursor:grab;user-select:none;touch-action:none}
+.counter{display:flex;align-items:center;gap:12px}
+.counter .n{font:700 34px var(--display);min-width:2ch;text-align:center;font-variant-numeric:tabular-nums;display:inline-block}
+.spec{font:12.5px/1.5 var(--mono);color:var(--muted)}
+code{font-family:var(--mono);font-size:13px}
+/* vragen */
+.qq{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px;display:grid;gap:12px}
+.opts{display:grid;gap:8px}
+.opt{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;text-align:left;padding:11px 13px;border-radius:11px;border:1.5px solid var(--line);background:var(--raised);color:var(--fg);cursor:pointer;font:inherit}
+.opt .dot{width:16px;height:16px;border-radius:50%;border:2px solid var(--muted);margin-top:3px}
+.opt[aria-pressed="true"]{border-color:var(--cyan);background:color-mix(in srgb,var(--cyan) 12%,var(--raised))}
+.opt[aria-pressed="true"] .dot{border-color:var(--cyan);background:var(--cyan)}
+.opt small{display:block;color:var(--muted);font-size:13px;margin-top:2px}
+.adv{font:600 11px var(--mono);color:var(--good);margin-left:6px}
+textarea{width:100%;min-height:60px;font:15px/1.5 var(--body);color:var(--fg);background:var(--raised);border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;resize:vertical}
+.btn:focus-visible,.x:focus-visible,.sw:focus-visible,.chip:focus-visible,.opt:focus-visible,nav.tabs button:focus-visible,textarea:focus-visible,input:focus-visible{outline:3px solid color-mix(in srgb,var(--cyan) 55%,transparent);outline-offset:2px}
+.disc{font-size:13px;color:var(--muted);border-left:3px solid var(--warn);padding-left:10px}
+</style>
+
+<header class="top gut"><div class="wrap">
+  <div class="logo">Tink<b>pop</b> <small>gevoel</small></div>
+  <nav class="tabs" role="tablist" id="tabs"></nav>
+  <span class="pill" id="save">Nog niets opgeslagen</span>
+</div></header>
+<main class="gut"><div class="wrap" id="views"></div></main>
+<div class="toasts" id="toasts" aria-live="polite"></div>
+
+<script>
+/* ===== Tinkpop Pop: motion-module (prototype) ===== */
+const Pop=(()=>{
+  const mq=matchMedia("(prefers-reduced-motion: reduce)");
+  const S={sound:false,haptic:true,calm:mq.matches};
+  try{const s=JSON.parse(localStorage.getItem("tp-pop-settings")||"null");if(s)Object.assign(S,s,{calm:s.calm||mq.matches})}catch(e){}
+  const save=()=>{try{localStorage.setItem("tp-pop-settings",JSON.stringify(S))}catch(e){}};
+  const amp=()=>S.calm?0:1;
+  const E={std:"cubic-bezier(0.2,0,0,1)",out:"cubic-bezier(0.05,0.7,0.1,1)",inn:"cubic-bezier(0.3,0,0.8,0.15)",back:"cubic-bezier(0.34,1.56,0.64,1)"};
+  const sc=(v)=>1+(v-1)*amp();
+  /* geluid: Web Audio, standaard uit */
+  let ac=null;
+  function tone(type,f0,f1,glide,decay,peak=0.09,delay=0){
+    if(!S.sound)return;
+    try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();if(ac.state==="suspended")ac.resume();
+      const t=ac.currentTime+delay,o=ac.createOscillator(),g=ac.createGain();o.type=type;
+      o.frequency.setValueAtTime(f0,t);o.frequency.exponentialRampToValueAtTime(f1,t+glide/1000);
+      g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(peak,t+.005);g.gain.exponentialRampToValueAtTime(.0001,t+(glide+decay)/1000);
+      o.connect(g).connect(ac.destination);o.start(t);o.stop(t+(glide+decay)/1000+.02)}catch(e){}
+  }
+  const SND={pop:()=>tone("sine",500,1100,60,90),plop:()=>tone("sine",900,280,80,110),tink:()=>tone("triangle",1800,1790,5,50,.07),tick:()=>tone("triangle",1200,1250,5,30,.05),
+    burst:()=>{tone("sine",520,1150,55,80);tone("sine",700,1500,55,90,.07,.08)}};
+  const buzz=ms=>{if(S.haptic&&!S.calm&&navigator.vibrate)try{navigator.vibrate(ms)}catch(e){}};
+  const cancel=el=>el.getAnimations().forEach(a=>a.cancel());
+  /* deeltjes: één canvas, alleen actief als er deeltjes leven */
+  let cv=null,cx=null,parts=[],raf=0;
+  function ensureCanvas(){if(cv)return;cv=document.createElement("canvas");cv.setAttribute("aria-hidden","true");cv.style.cssText="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:50";document.body.append(cv);cx=cv.getContext("2d");resize();addEventListener("resize",resize)}
+  function resize(){if(!cv)return;const d=Math.min(2,devicePixelRatio||1);cv.width=innerWidth*d;cv.height=innerHeight*d;cx.setTransform(d,0,0,d,0,0)}
+  function emit(x,y,n,colors,opts={}){if(S.calm)return;ensureCanvas();for(let i=0;i<n;i++){const a=(opts.spread??Math.PI*2)*(i/n)+(opts.angle??0)+Math.random()*.4,v=(opts.speed??3.4)+Math.random()*1.6;
+      parts.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v-(opts.lift??1.2),life:0,max:opts.life??36,c:colors[i%colors.length],w:opts.w??7,h:opts.h??3,r:Math.random()*6,dr:(Math.random()-.5)*.3,drop:opts.drop})}
+    if(!raf)raf=requestAnimationFrame(tick)}
+  function tick(){cx.clearRect(0,0,innerWidth,innerHeight);parts=parts.filter(p=>p.life<p.max);
+    for(const p of parts){p.life++;p.x+=p.vx;p.y+=p.vy;p.vy+=.18;p.vx*=.97;p.r+=p.dr;const o=1-p.life/p.max;cx.globalAlpha=o;cx.fillStyle=p.c;cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);
+      if(p.drop){cx.beginPath();cx.arc(0,0,p.w/2*(.6+o*.4),0,Math.PI*2);cx.fill()}else{cx.beginPath();cx.roundRect?cx.roundRect(-p.w/2,-p.h/2,p.w,p.h,p.h/2):cx.rect(-p.w/2,-p.h/2,p.w,p.h);cx.fill()}cx.restore()}
+    cx.globalAlpha=1;raf=parts.length&&!document.hidden?requestAnimationFrame(tick):(cx.clearRect(0,0,innerWidth,innerHeight),0)}
+  const COLORS=()=>{const st=getComputedStyle(document.documentElement);return["--cyan","--pink","--orange"].map(v=>st.getPropertyValue(v).trim()||"#ff3fb4")};
+  const center=el=>{const r=el.getBoundingClientRect();return[r.left+r.width/2,r.top+r.height/2]};
+  /* de 10 interacties */
+  const A={
+    "pop-in":(el)=>{SND.pop();return el.animate(S.calm?[{opacity:0},{opacity:1}]:[{opacity:0,transform:`scale(${sc(.6)})`},{opacity:1,transform:`scale(${sc(1.06)})`,offset:.65},{opacity:1,transform:"scale(1)"}],{duration:S.calm?150:280,easing:S.calm?"linear":E.out})},
+    "plop-out":(el,o={})=>{SND.plop();buzz(12);
+      if(!S.calm&&o.drops!==false){const [x,y]=center(el);setTimeout(()=>emit(x,y,6,COLORS(),{speed:2.6,life:22,w:6,drop:true,lift:.6}),110)}
+      return el.animate(S.calm?[{opacity:1},{opacity:0}]:[{transform:"scale(1,1)",opacity:1},{transform:"scale(1.05,.92)",opacity:1,offset:.3},{transform:"scale(1.1)",opacity:.6,offset:.6},{transform:"scale(1.14)",opacity:0}],{duration:S.calm?120:200,easing:E.inn,fill:"forwards"})},
+    "press":(el)=>el.animate([{transform:"scale(1)"},{transform:`scale(${sc(.94)})`,offset:.35},{transform:`scale(${sc(1.03)})`,offset:.7},{transform:"scale(1)"}],{duration:180,easing:E.out}),
+    "toggle":(el,o={})=>{SND.tick();const k=el.querySelector(".knob");if(!k)return;const on=o.on;return k.animate(S.calm?[]:[{transform:`translateX(${on?0:20}px)`},{transform:`translateX(${on?11:9}px) scaleX(1.15)`,offset:.5},{transform:`translateX(${on?22:-2}px)`,offset:.8},{transform:`translateX(${on?20:0}px)`}],{duration:200,easing:E.back})},
+    "render-pop":(el)=>{SND.tink();const ring=el.querySelector(".ring");ring&&ring.animate([{opacity:0},{opacity:1,offset:.3},{opacity:0}],{duration:350});
+      return S.calm?null:el.animate([{transform:"scale(1)"},{transform:`scale(${sc(.96)})`,offset:.25},{transform:`scale(${sc(1.02)})`,offset:.7},{transform:"scale(1)"}],{duration:350,easing:E.back})},
+    "burst":(el)=>{SND.burst();buzz([10,40,10]);A.press(el);const ck=el.querySelector(".ck");ck&&ck.animate(S.calm?[{opacity:0},{opacity:1}]:[{transform:"scale(0)",opacity:0},{transform:"scale(1.2)",opacity:1,offset:.6},{transform:"scale(1)",opacity:1}],{duration:280,easing:E.back,fill:"forwards"});
+      const [x,y]=center(el);emit(x,y,12,COLORS(),{spread:Math.PI*1.2,angle:-Math.PI*1.1,speed:4,life:38,lift:1.8})},
+    "wobble":(el)=>{buzz(30);el.classList.add("err");setTimeout(()=>el.classList.remove("err"),1400);return S.calm?null:el.animate([0,-6,5,-3,2,0].map(x=>({transform:`translateX(${x}px)`})),{duration:300,easing:E.std})},
+    "toast":(el,o={})=>o.out?el.animate([{opacity:1,transform:"scale(1)"},{opacity:0,transform:`scale(${sc(.96)})`}],{duration:200,easing:E.inn,fill:"forwards"}):(SND.pop(),el.animate(S.calm?[{opacity:0},{opacity:1}]:[{opacity:0,transform:`translateY(12px) scale(${sc(.9)})`},{opacity:1,transform:"none"}],{duration:280,easing:E.back})),
+    "lift":(el,o={})=>el.animate(o.drop?[{transform:`scale(${sc(1.04)}) rotate(${1.5*amp()}deg)`},{transform:`scale(1,${sc(.96)})`,offset:.5},{transform:"none"}]:[{transform:"none"},{transform:`scale(${sc(1.04)}) rotate(${1.5*amp()}deg)`}],{duration:120,easing:E.out,fill:"forwards"}),
+    "count":(el)=>S.calm?null:el.animate([{transform:`translateY(-4px) scale(${sc(1.15)})`},{transform:"none"}],{duration:120,easing:E.out})
+  };
+  function pop(el,name,o){cancel(el);const a=A[name]&&A[name](el,o||{});return a&&a.finished?a.finished.catch(()=>{}):Promise.resolve()}
+  return {pop,S,save,SND,emit,COLORS};
+})();
+
+const D={"promise": ["Type it. Tink it. Print it. Free forever, no ads, no account needed.", "Print-ready in seconds, right in your browser. Open and free, always.", "Make something with your name on it. Fast, free and open, the way making should be."], "diff": [{"t": "Een belofte die we niet terugdraaien", "why": "Gratis, open, geen advertenties, geen data verkopen, geen account nodig om te downloaden.", "ev": "Lichess belooft 'never ads, never sell data' en won daarmee van een betaalde reus. Thingiverse kreeg advertenties en 5 seconden wachten: gebruikers liepen weg naar Printables.", "do": "Een vaste pagina 'Tinkpop belooft' en een open licentie, zodat de belofte niet stilletjes kan verdwijnen. Concurrenten met een betaalmuur (3dprint.name, Keyform, KeychainGEN na november) kunnen dit niet geloofwaardig nadoen."}, {"t": "Snelheid als functie", "why": "Alles rekent in je browser: geen wachtrij, geen timeout, ook op je telefoon.", "ev": "De grootste klacht over MakerWorld's generator: timeouts, ook bij simpele modellen. Linear maakte snelheid tot kernfunctie. Google: 3 seconden laden in plaats van 1 geeft 32% meer wegklikkers.", "do": "Een vast snelheidsbudget, een voorbeeld dat meebeweegt terwijl je typt, en het hardop zeggen: 'no queue, no timeout'."}, {"t": "Printkwaliteit en AMS-kleuren die gewoon kloppen", "why": "Je drukt op print en het werkt, zonder uitleg over slicer-instellingen.", "ev": "Op keychain-pagina's van makers staan steeds weer waarschuwingen over kleuren toewijzen; de multicolor-3MF van MakerWorld mislukt soms.", "do": "Elke generator krijgt het stempel 'proefgeprint' met een foto van een echte print, en een 3MF die meteen in de juiste AMS-sloten valt."}, {"t": "Een bibliotheek die groeit", "why": "Remixen, makers met naam en doneerlink, foto's van echte prints.", "ev": "Figma Community liet bestanden delen en remixen met zichtbare herkomst. Printables trok makers met waardering.", "do": "'Remix deze instellingen' (een link met alles erin), naamsvermelding per generator, later community-generators."}, {"t": "Vindbaar per gelegenheid", "why": "Mensen zoeken 'juf cadeau', 'teamnamen sleutelhanger', 'Sinterklaas naamhanger', niet 'keychain generator'.", "ev": "Canva haalt veel bezoek binnen met sjabloonpagina's per doel; remove.bg won met één taak en één klik.", "do": "Statische pagina's per gelegenheid met een vooringevulde generator."}, {"t": "Privacy omdat het in je browser draait", "why": "De namen die je typt (vaak van kinderen) verlaten je apparaat niet.", "ev": "Squoosh zegt het letterlijk: 'does not send your image to a server'. Excalidraw werkt zonder account.", "do": "Bij het invoerveld: 'Your names never leave your device'. Statistiek zonder cookies, dus geen cookiebanner."}, {"t": "Smaak en een eerlijke maker", "why": "Een herkenbare stijl (de pop) en een mens die eerlijk vertelt waarom en hoe.", "ev": "De handgetekende stijl is een groot deel van de aantrekkingskracht van Excalidraw. Photopea groeide via mond-tot-mond en open gesprekken van de maker op Reddit.", "do": "Mooie standaardcombinaties van font en kleur, de pop-taal, en jij die op r/BambuLab vertelt over het bouwen."}], "loops": [["Per gelegenheid", "Kalender met sjablonen per feestdag op de homepage", "Echte vraag naar persoonlijke cadeaus; Halloween en Valentijn horen bij de best lopende thema's op Printables", "Niet te veel thema's tegelijk"], ["Steeds weer", "Bewaarde ontwerpen en 'opnieuw met nieuwe namen'", "Een klas of team komt elk jaar terug", "Nooit verplicht account"], ["Elke maand", "Een nieuwe generator of vorm", "Iets nieuws is een reden om te kijken", "Kwaliteit boven tempo"], ["Elke maand", "Remix of pick van de maand", "Erkenning voor makers, sociaal bewijs", "Geen bedelen om likes"], ["Steeds weer", "Foto van je print delen ('I made this')", "Mensen houden meer van wat ze zelf maakten (IKEA-effect)", "Privacy: namen van kinderen op foto's"], ["Elk jaar", "'Your Tinkpop year' in december, alleen op je eigen apparaat", "Werkt zoals Spotify Wrapped: jezelf terugzien en delen", "Niets volgen, alleen lokaal"], ["Maandelijks, alleen als je wilt", "E-mail met nieuwe generators en de volgende gelegenheid", "Precies op het moment dat mensen een cadeau zoeken", "Alleen als iemand er zelf om vraagt"], ["Alleen als je erom vraagt", "Herinnering 'Moederdag over 3 weken'", "Vragen ná een fijn moment werkt beter", "Nooit meteen bij binnenkomst vragen"], ["Elk seizoen", "Teams en clubs: namen en rugnummers bij de seizoensstart", "Komt elk jaar terug en raakt een hele groep", "Geen clublogo's (merkrecht)"], ["Steeds weer", "Deelbare link 'maak de jouwe' bij elk ontwerp", "Groeit door delen, zoals Wordle", "Geen deelplaatje met vrije tekst"]], "cal": [["Jan–feb", "Chinees Nieuwjaar, Valentijn"], ["Mrt", "Suikerfeest"], ["Mei", "Moederdag, Offerfeest"], ["Jun", "Pride, Vaderdag, einde schooljaar (juf/meester)"], ["Aug–sep", "Terug naar school (tas- en naamlabels), sportseizoen"], ["Okt", "Halloween, Diwali"], ["Nov", "Sinterklaas-voorbereiding, begin cadeaus zoeken"], ["Dec", "Sinterklaas, Kerst, 'Your Tinkpop year'"]], "dark": ["Geen streaks of druk om elke dag terug te komen.", "Niet blijven vragen om meldingen of een account.", "Geen schuldgevoel bij weigeren ('No thanks, I don't like free stuff').", "Geen valse haast ('alleen vandaag', aftellende klok).", "Nooit wachten of aftellen vóór een download.", "Geen punten of boosts waar mensen om gaan bedelen.", "Geen verborgen betaalmuur na een paar gratis downloads."], "delight": [["Eerst werkt het", "Het moet werken, betrouwbaar en makkelijk zijn. Pas daarna leuk. Een animatie maakt een mislukte print niet goed."], ["Het geheel telt", "Echt plezier zit in de hele reis van typen tot de print van de plaat halen, niet in losse trucjes."], ["Direct reageren", "Het 3D-voorbeeld beweegt mee terwijl je typt; de letters poppen er even uit."], ["Laat zien dat het lukt", "'Plaat vol: 24 sleutelhangers, ± 1 u 40 min.' Jij maakte dat."], ["Slimme standaarden", "Het mooiste font en de mooiste kleur staan al klaar; je eerste resultaat ziet er meteen goed uit."], ["Fouten met een glimlach", "'That name is a bit long for this tag, shall we shrink the font?' in plaats van een rode foutmelding."], ["Een moment van trots", "Bij het downloaden een klein feestje, een printtip en 'Show us your print'."], ["De mens erachter", "Bij elke nieuwe generator een kort 'waarom ik dit maakte'."]], "trust": ["Open broncode, link zichtbaar in de footer.", "Open over geld: alleen Buy Me a Coffee, met de echte kosten per maand openbaar.", "Privacy in drie zinnen in gewone taal; geen cookies, dus geen banner.", "'No account needed' bij de downloadknop.", "Bij elke generator: wie hem maakte, de licentie en de toestemming.", "Foto's van echte prints en een openbaar wijzigingslogboek."], "Q": [{"id": "belofte", "topic": "merk", "q": "Welke merkbelofte?", "o": [{"v": "Type it. Tink it. Print it. Free forever, no ads, no account needed.", "rec": 1}, {"v": "Print-ready in seconds, right in your browser. Open and free, always."}, {"v": "Make something with your name on it. Fast, free and open, the way making should be."}]}, {"id": "poplevel", "topic": "pop", "q": "Hoe uitbundig mag de pop zijn?", "why": "Probeer het eerst in de speeltuin.", "o": [{"v": "Zoals in de speeltuin: overal klein, groot feest alleen bij model klaar en downloaden", "rec": 1}, {"v": "Nog speelser: overal deeltjes en geluid"}, {"v": "Rustiger: alleen kleine pops, geen deeltjes"}]}, {"id": "geluid", "topic": "pop", "q": "Het plop-geluid?", "o": [{"v": "Standaard uit, met een knop om aan te zetten", "rec": 1, "d": "Geluid zonder te vragen ergert en is slecht voor toegankelijkheid."}, {"v": "Standaard aan"}, {"v": "Helemaal geen geluid"}]}, {"id": "druppels", "topic": "pop", "q": "Druppeltjes bij het wegploppen van een categorie?", "o": [{"v": "Ja, 6 kleine druppels zoals in de speeltuin", "rec": 1}, {"v": "Nee, alleen het ploppen zelf"}]}, {"id": "codelicentie", "topic": "open", "q": "Licentie van de code: MIT (zoals besloten) of AGPL?", "why": "AGPL (zoals Lichess) dwingt iedereen die jouw code op een eigen site zet om hun aanpassingen ook open te maken. Dan kan niemand een gesloten betaalde kloon maken van jouw werk. MIT laat dat wel toe.", "o": [{"v": "AGPL: kopiëren mag, maar dan ook open", "rec": 1, "d": "Beschermt de belofte. Let op: code van MIT-projecten mag je wel overnemen in AGPL."}, {"v": "MIT houden: alles mag"}]}, {"id": "kostenopenbaar", "topic": "vertrouwen", "q": "Kosten en donaties openbaar maken?", "o": [{"v": "Ja, een simpele pagina met kosten en donaties per maand", "rec": 1}, {"v": "Nee"}]}, {"id": "gelegenheden", "topic": "terugkomen", "q": "Met welke gelegenheid beginnen we?", "o": [{"v": "Sinterklaas en Kerst (nu het eerst komt)", "rec": 1}, {"v": "Terug naar school (aug–sep 2027)"}, {"v": "Geen gelegenheden, alleen de generator"}]}, {"id": "ama", "topic": "groei", "q": "Vertel je zelf op r/BambuLab over het bouwen (eerlijk, als maker)?", "o": [{"v": "Ja, na de stille lancering", "rec": 1}, {"v": "Liever anoniem blijven"}]}, {"id": "mwlink", "topic": "MakerWorld", "q": "Hoe linken we vanaf MakerWorld naar Tinkpop?", "why": "MakerWorld verbiedt links naar andere modelplatforms; bij een specifiek model mag het waarschijnlijk wel.", "o": [{"v": "Alleen in de beschrijving van dat ene model, eerst als proef", "rec": 1}, {"v": "Niet linken, alleen 'ook beschikbaar als web-versie' zonder link"}, {"v": "Niet op MakerWorld publiceren"}]}, {"id": "twemoji3mf", "topic": "licentie", "q": "Twemoji-vermelding ook in het gedownloade bestand zetten?", "o": [{"v": "Ja, in de metadata van de 3MF", "rec": 1}, {"v": "Alleen in de footer van de site"}]}], "stake": [{"n": "MakerWorld (Bambu Lab)", "r": "middel", "want": "Verkeer en makers op hun eigen platform houden.", "rules": "Verboden: links naar andere modelplatforms en reclame-links, ook in je profiel. Toegestaan: bij een specifiek model een link naar een dienst die over dát model gaat, en naar Buy Me a Coffee. Straf: model weg, punten kwijt.", "how": "Link alleen in de modelbeschrijving: 'web version of this exact generator + source'. Nooit in het profiel, nooit 'download liever bij ons'. Eerst één model als proef. Eigen generators niet in hun Exclusive-programma.", "sig": "Model verborgen of melding 'advertising' → link weghalen en navragen."}, {"n": "Bambu Lab (merk en slicer)", "r": "laag", "want": "Geen verwarring alsof zij Tinkpop goedkeuren.", "rules": "Geen officiële merkrichtlijn gevonden. De open-link van Bambu Studio is niet officieel beschreven.", "how": "Alleen 'works with Bambu Studio', disclaimer in de footer, geen logo's. Altijd een gewone download als terugval.", "sig": "Open-knop werkt niet na een update → de automatische test ziet het."}, {"n": "Ontwerpers op MakerWorld en Printables", "r": "middel", "want": "Naamsvermelding, downloads en punten op hun eigen pagina; niet bestolen worden.", "rules": "De standaardlicentie van MakerWorld verbiedt remixen en hosten elders. Exclusieve modellen mogen nergens anders staan, anders verliest de maker zijn punten.", "how": "Alleen met schriftelijke toestemming en een open licentie. Hun bestanden niet zelf hosten maar terugverwijzen. Naam, link en doneerlink op elke pagina. Altijd vragen: 'is dit model Exclusive?'", "sig": "Klacht van een maker → binnen 24 uur offline, dan praten."}, {"n": "Concurrenten (Open Keychain, Tagify3D)", "r": "laag", "want": "Erkenning, niet nagebootst worden.", "rules": "Open Keychain: code MIT, maar eigen naam en huisstijl verplicht. Tagify3D: MIT.", "how": "Overgenomen code met licentie in THIRD_PARTY_NOTICES, een 'thanks/inspired by'-pagina, eigen teksten en ontwerp, geen afkrakende vergelijkingen.", "sig": "Bericht van een maintainer → vriendelijk en snel aanpassen."}, {"n": "Gebruikers, kinderen en scholen", "r": "laag", "want": "Gratis, snel, geen reclame, privé.", "rules": "AVG: toestemming van een kind geldt in Nederland vanaf 16 jaar.", "how": "Werkt zonder account, geen reclame of trackers, geen nep-timers of zeurende doneerverzoeken, account met één klik weg. 'Not a toy / small parts', extra waarschuwing bij magneten (inslikken is gevaarlijk). Scholen zonder account: geen leerlinggegevens.", "sig": "Vraag van een school of ouder → FAQ 'For schools'."}, {"n": "Cloudflare (gratis plan)", "r": "laag", "want": "Geen misbruik, geen grote mediabestanden.", "rules": "Video en grote bestanden alleen via betaalde diensten. Gratis: 100.000 verzoeken per dag, bestanden max. 25 MiB. Ze mogen altijd stoppen.", "how": "Modellen in de browser maken, dus geen grote bestanden. Een reservekopie klaar (GitHub Pages). Budgetmelding aan.", "sig": "Mail over limieten → $5-plan als terugval."}, {"n": "GitHub", "r": "laag", "want": "Echt projectgebruik, geen spam of downloadserver.", "rules": "Geen overmatige bandbreedte, geen massale promotie. Actions gratis voor publieke repo's.", "how": "Repo publiek, releases niet als downloadserver voor de site, geen reclame bij anderen.", "sig": "Melding over bandbreedte."}, {"n": "Buy Me a Coffee", "r": "laag", "want": "Makers zijn zelf verantwoordelijk voor wat ze beloven.", "rules": "Jij bent verantwoordelijk voor memberships, extras en belasting.", "how": "Alleen gewone donaties. Geen memberships of extras met een tegenprestatie (vroege toegang, exclusieve generator): dat wordt verkoop.", "sig": "Donaties groter dan de kosten → belasting nakijken."}, {"n": "Resend (inlogmails)", "r": "middel", "want": "Alleen mail naar mensen die erom vroegen.", "rules": "Ontvangers moeten zelf gevraagd hebben; te veel klachten of bounces = account dicht zonder waarschuwing. Gratis 100 per dag.", "how": "Alleen inlogmails naar het adres dat iemand zelf intypt, Turnstile en limiet per adres en IP, SPF/DKIM/DMARC, passkey als hoofdweg, geen nieuwsbrief zonder aparte aanmelding.", "sig": "Bounces stijgen → limieten strakker."}, {"n": "Instagram, TikTok en X", "r": "laag", "want": "Echte accounts, AI-beelden herkenbaar.", "rules": "Meta: label verplicht bij realistische AI-video en -audio. TikTok: realistische AI-inhoud labelen met de knop in de app. EU AI-verordening: labelplicht voor deepfakes sinds 2-8-2026.", "how": "Renders en AI-beelden altijd labelen ('concept render'). Geen gekochte volgers.", "sig": "Label automatisch toegevoegd of minder bereik."}, {"n": "Google Fonts (OFL)", "r": "laag", "want": "Licentie meeleveren.", "rules": "Wat je met het font maakt is vrij. Een aangepast font mag de beschermde naam niet dragen.", "how": "Licentie per font meeleveren, fonts ongewijzigd laten.", "sig": "—"}, {"n": "Twemoji", "r": "middel", "want": "Naamsvermelding.", "rules": "CC BY 4.0: vermelding in footer of About is genoeg voor de site.", "how": "Footer: 'Emoji: Twemoji, © Twitter/X and contributors, CC BY 4.0, modified (3D)'. Én in het gedownloade 3MF-bestand, want wie een emoji-print deelt moet de bron kunnen noemen. Wordt vaak vergeten.", "sig": "—"}, {"n": "Autoriteit Persoonsgegevens (AVG)", "r": "middel", "want": "Zo min mogelijk gegevens, verwerkersovereenkomsten, datalekken melden.", "rules": "AVG art. 5, 28, 33 (datalek binnen 72 uur melden).", "how": "Privacyverklaring, verwerkersovereenkomsten met Cloudflare en Resend, statistiek zonder cookies, datalek-draaiboek.", "sig": "Verzoek om inzage of verwijderen → binnen 1 maand antwoorden."}, {"n": "Europese DSA", "r": "laag", "want": "Hostingdiensten met meldknop en contactpunt.", "rules": "Zodra ontwerpen bewaard worden: contactpunt, voorwaarden, meldknop, reden bij verwijderen.", "how": "Meldknop, contact-e-mail en korte voorwaarden al in fase 1.", "sig": "Eerste melding → sjabloon gebruiken."}, {"n": "Consumentenrecht en productveiligheid", "r": "laag", "want": "Eerlijke informatie, veilige producten.", "rules": "Nieuwe productaansprakelijkheid (vanaf 9-12-2026) geldt voor printbestanden, maar alleen bij commerciële activiteit.", "how": "Niets verkopen via Tinkpop, waarschuwingen, testprints.", "sig": "Melding van gebroken print of letsel → generator tijdelijk uit."}, {"n": "Pinkpop", "r": "middel", "want": "Hun bekende merk niet zien meeliften.", "rules": "Een bekend Benelux-merk is ook buiten de eigen categorie beschermd. Geen merkgegevens of zaken gevonden (onzeker).", "how": "Geen festival-, muziek- of polsbandjesbeelden, geen roze festivalstijl, geen 'Tinkpop Fest'. Altijd over 3D-print. Jij zoekt het merk zelf uit.", "sig": "Brief van een advocaat → niet negeren, vriendelijk antwoorden, een afspraak voorstellen."}], "red": ["Bestanden of .scad van anderen hosten of omzetten zonder schriftelijke toestemming en open licentie. MakerWorld-exclusieve modellen nooit.", "Op MakerWorld: links in het profiel, 'download bij ons in plaats van hier', lokkertjes, of het platform scrapen.", "Logo's of huisstijl van Bambu, MakerWorld of Pinkpop gebruiken, of doen alsof zij Tinkpop goedkeuren.", "Reclame, trackers, data verkopen, of iets ontgrendelen voor een donatie.", "Mail sturen naar wie daar niet om vroeg; het inlogformulier zonder limiet laten.", "Realistische AI-beelden zonder label posten, of renders presenteren als bestaande producten.", "Leerlinggegevens nodig hebben om Tinkpop te gebruiken.", "Font- en Twemoji-licenties weglaten uit de site of de bestanden.", "Code overnemen uit Bambu Studio of OrcaSlicer (AGPL)."], "recover": "Regels zijn vaag, veranderen zonder aankondiging en worden wisselend gehandhaafd. Daarom: één contactadres op elke pagina en een formulier voor makers en merkhouders; binnen 48 uur antwoord, bij een gegronde klacht eerst offline halen en dan uitzoeken; een openbaar logboek van meldingen (zonder namen); ieder kwartaal de voorwaarden van MakerWorld, Cloudflare, Resend en Buy Me a Coffee opnieuw nakijken; en excuses zonder discussie. Kleine partijen die snel herstellen, worden snel vergeven."};
+let state={a:{},notes:{}};
+try{const s=JSON.parse(localStorage.getItem("tp-gevoel")||"null");if(s&&s.a)state=s}catch(e){}
+const el=(t,p={},...c)=>{const n=document.createElement(t);for(const k in p){if(k==="on")for(const e in p.on)n.addEventListener(e,p.on[e]);else if(k==="html")n.innerHTML=p[k];else if(k in n&&!["for","role"].includes(k))n[k]=p[k];else n.setAttribute(k,p[k])}c.flat().forEach(x=>x!=null&&n.append(x));return n};
+const TABS=[["kort","In het kort"],["pop","Pop-speeltuin",1],["anders","Waarom wij"],["terug","Terugkomen"],["fijn","Fijn gevoel"],["iedereen","Iedereen tevreden"],["vragen","Vragen",1]];
+const views={};
+function showTab(id){document.querySelectorAll("nav.tabs button").forEach(b=>b.setAttribute("aria-selected",b.dataset.id===id));Object.entries(views).forEach(([k,v])=>v.hidden=k!==id);try{history.replaceState(null,"","#"+id)}catch(e){}window.scrollTo({top:0})}
+(()=>{const nav=document.getElementById("tabs"),v=document.getElementById("views");TABS.forEach(([id,l,h])=>{const b=el("button",{role:"tab",className:h?"hot":"","data-id":id,on:{click:()=>{Pop.pop(b,"press");showTab(id)}}},l);nav.append(b);const s=el("section",{className:"tab"});views[id]=s;v.append(s)})})();
+document.addEventListener("pointerdown",e=>{const b=e.target.closest(".btn,.x,.opt");if(b)Pop.pop(b,"press")});
+function toast(msg){const t=el("div",{className:"toast",role:"status"},el("span",{style:"font-size:18px"},"✨"),el("span",{},msg));document.getElementById("toasts").append(t);Pop.pop(t,"toast");setTimeout(()=>Pop.pop(t,"toast",{out:true}).then(()=>t.remove()),2600)}
+
+/* KORT */
+(s=>{
+ s.append(el("div",{style:"display:grid;gap:12px"},el("span",{className:"eyebrow"},"Onderscheiden · terugkomen · fijn gevoel · iedereen tevreden"),el("h1",{html:"Waarom mensen <em>bij ons</em> blijven"}),
+   el("p",{className:"muted"},"Functies worden binnen een week gekopieerd. Wat blijft, is wat anderen niet kunnen of willen nadoen: een belofte die je niet terugdraait, snelheid waar je op durft te bouwen, en een bibliotheek die met elke gebruiker groeit.")),
+  el("div",{className:"grid"},
+   el("div",{className:"card"},el("span",{className:"num"},"1"),el("h3",{},"De belofte"),el("p",{className:"muted"},"Gratis, open, geen advertenties, geen data verkopen, geen account nodig. Concurrenten met een betaalmuur kunnen dit niet geloofwaardig nadoen.")),
+   el("div",{className:"card"},el("span",{className:"num"},"2"),el("h3",{},"Snel en goed"),el("p",{className:"muted"},"Rekent in je browser: geen wachtrij, geen timeout. De 3MF valt meteen goed in de AMS. Elke generator is echt geprint.")),
+   el("div",{className:"card"},el("span",{className:"num"},"3"),el("h3",{},"Een plek die groeit"),el("p",{className:"muted"},"Gelegenheden, remixen, foto's van echte prints, makers met naam en doneerlink. Elke bezoeker maakt het rijker.")),
+   el("div",{className:"card"},el("span",{className:"num"},"4"),el("h3",{},"De pop"),el("p",{className:"muted"},"Eén herkenbaar gevoel overal: dingen poppen erin, ploppen weg, en bij je download een klein feestje. Probeer het in de speeltuin."))),
+  el("div",{className:"card"},el("h2",{},"Merkbelofte, drie opties"),el("ol",{},D.promise.map(p=>el("li",{},el("b",{},p)))),el("p",{className:"muted"},"Kies er een bij Vragen.")),
+  el("div",{className:"card"},el("h2",{},"Eerlijk over '1.000.000% ingedekt'"),
+   el("p",{},"Geen enkele site is volledig ingedekt, ook Google of MakerWorld niet. Wat wél kan, en wat we doen: de reële risico's klein maken, in de bouw zelf vastleggen dat alles legaal moet zijn, en een snelle, nette manier hebben om te herstellen als er toch iets misgaat (contactpunt, verwijderen op melding, openbaar logboek)."),
+   el("p",{className:"muted"},"Dit is onderzoek, geen juridisch advies.")),
+  el("button",{className:"btn grad",style:"justify-self:start",on:{click:()=>showTab("pop")}},"Probeer de pop →"));
+})(views.kort);
+
+/* POP */
+(s=>{
+ const sw=(label,key,onchange)=>{const b=el("button",{type:"button",className:"sw",role:"switch","aria-checked":String(!!Pop.S[key])},el("span",{className:"track"},el("span",{className:"knob"})),el("span",{},label));
+   b.addEventListener("click",()=>{Pop.S[key]=!Pop.S[key];b.setAttribute("aria-checked",String(Pop.S[key]));Pop.save();Pop.pop(b,"toggle",{on:Pop.S[key]});onchange&&onchange()});return b};
+ s.append(el("div",{style:"display:grid;gap:10px"},el("span",{className:"eyebrow"},"Klik alles aan"),el("h2",{},"De pop-speeltuin"),
+   el("p",{className:"muted"},"Dit zijn de tien vaste pop-momenten van Tinkpop, echt werkend. Zet geluid aan voor het zachte plop-geluidje. 'Rustig' laat alleen een zachte fade zien, voor mensen die last hebben van beweging; dat gaat ook vanzelf aan als je telefoon op 'minder beweging' staat.")),
+  el("div",{className:"card"},el("div",{className:"settings"},sw("Geluid","sound",()=>Pop.S.sound&&Pop.SND.pop()),sw("Trillen (Android)","haptic"),sw("Rustig (minder beweging)","calm"))));
+ const grid=el("div",{className:"play"});s.append(grid);
+ const demo=(nm,title,desc,stage,spec)=>grid.append(el("div",{className:"demo"},el("span",{className:"nm"},nm),el("h3",{},title),el("p",{className:"muted",style:"font-size:14px"},desc),stage,el("div",{className:"spec"},spec)));
+ // 1+2 categorie open/dicht
+ const cats=["Sleutelhangers","Clickers","Naambordjes"];const st1=el("div",{className:"stage",id:"catstage"});
+ const addCat=(n)=>{const c=el("div",{className:"cat"},el("b",{},n),el("button",{className:"x","aria-label":"Sluit "+n,on:{click:async()=>{c.style.pointerEvents="none";c.inert=true;await Pop.pop(c,"plop-out");
+     const sib=[...st1.querySelectorAll(".cat")].filter(x=>x!==c);const first=sib.map(x=>x.getBoundingClientRect().top);c.remove();
+     sib.forEach((x,i)=>{const d=first[i]-x.getBoundingClientRect().top;if(d&&!Pop.S.calm)x.animate([{transform:`translateY(${d}px)`},{transform:"none"}],{duration:200,easing:"cubic-bezier(0.2,0,0,1)"})});}}},"×"));st1.append(c);return c};
+ cats.forEach(addCat);
+ const reset=el("button",{className:"btn",on:{click:()=>{const have=[...st1.querySelectorAll(".cat b")].map(b=>b.textContent);cats.filter(n=>!have.includes(n)).forEach(n=>Pop.pop(addCat(n),"pop-in"))}}},"Terugzetten (pop-in)");
+ demo("plop-out + pop-in","Categorie sluiten: PLOP","Klik op ×. Het blok deukt even in, popt als een bel met een paar druppeltjes, en de rest schuift netjes dicht.",el("div",{style:"display:grid;gap:10px"},st1,reset),"plop-out 200ms · squash 1.05/.92 → 1.14 + fade · 6 druppels · sluiten sneller dan openen");
+ // 3 press
+ demo("press","Knop indrukken","Elke knop deukt zacht in en veert terug. Je voelt dat hij reageert.",el("div",{className:"stage",style:"place-items:center"},el("div",{className:"row"},el("button",{className:"btn primary"},"Make it"),el("button",{className:"btn"},"Reset"))),"press 180ms · scale .94 → 1.03 → 1");
+ // 4 toggle
+ const tg=el("button",{type:"button",className:"sw",role:"switch","aria-checked":"false"},el("span",{className:"track"},el("span",{className:"knob"})),el("span",{},"Magneten erin"));
+ tg.addEventListener("click",()=>{const on=tg.getAttribute("aria-checked")!=="true";tg.setAttribute("aria-checked",String(on));Pop.pop(tg,"toggle",{on})});
+ demo("toggle","Schakelaar","Het bolletje schiet een tikje door en veert terug.",el("div",{className:"stage",style:"place-items:center"},tg),"toggle 200ms · overshoot 2px · tik-geluid");
+ // 5 render-pop
+ const inp=el("input",{className:"field",value:"Bouwhoek",maxLength:18,"aria-label":"Naam"});const mdl=el("div",{className:"model"},el("span",{className:"tag3d",id:"tag3d"},"Bouwhoek"),el("span",{className:"ring"}));
+ let rt=0;inp.addEventListener("input",()=>{clearTimeout(rt);rt=setTimeout(()=>{document.getElementById("tag3d").textContent=inp.value||" ";Pop.pop(mdl,"render-pop")},260)});
+ demo("render-pop","Model klaar","Typ een naam. Zodra het model is doorgerekend, popt het en gloeit de rand even op in de logokleuren.",el("div",{className:"stage"},inp,mdl),"render-pop 350ms · scale .96 → 1.02 → 1 · gradiëntrand · tink-geluid");
+ // 6 burst
+ const dl=el("button",{className:"btn grad dl",on:{click:()=>{Pop.pop(dl,"burst");toast("3MF downloaded. Happy printing!")}}},el("span",{},"Download 3MF"),el("span",{className:"ck"},"✓"));
+ demo("burst","Download gelukt","Het enige grote feestmoment: 12 filamentsliertjes in de logokleuren en een vinkje.",el("div",{className:"stage",style:"place-items:center"},dl),"burst 600ms · 12 deeltjes · twee tonen · alleen bij downloaden");
+ // 7 wobble
+ const winp=el("input",{className:"field",value:"Maximiliaan-Alexander",maxLength:40,"aria-label":"Te lange naam"});const hint=el("div",{className:"hint"},"");
+ demo("wobble","Iets klopt niet","Te lange naam? Het veld schudt kort nee, met een vriendelijke uitleg. Geen rood alarm.",el("div",{className:"stage"},winp,hint,el("button",{className:"btn",on:{click:()=>{if(winp.value.length>14){Pop.pop(winp,"wobble");hint.className="hint err";hint.textContent="That name is a bit long for this tag. Shall we shrink the font?"}else{hint.className="hint";hint.textContent="Fits nicely."}}}},"Controleer")),"wobble 300ms · ±6px · geen geluid bij fouten");
+ // 8 toast
+ demo("toast","Melding","Een berichtje popt onderin op en verdwijnt vanzelf.",el("div",{className:"stage",style:"place-items:center"},el("button",{className:"btn",on:{click:()=>toast("Design saved to your device")}},"Bewaar ontwerp")),"toast in 280ms · uit 200ms");
+ // 9 lift
+ const chips=el("div",{className:"chips"});["Plaat","Tekst","Rand"].forEach(n=>{const c=el("span",{className:"chip",tabIndex:0},n);c.addEventListener("pointerdown",()=>Pop.pop(c,"lift"));const up=()=>Pop.pop(c,"lift",{drop:true});c.addEventListener("pointerup",up);c.addEventListener("pointerleave",e=>{if(e.buttons)up()});chips.append(c)});
+ demo("lift","Oppakken en neerleggen","Houd een kleurlaag ingedrukt: hij komt los van de tafel. Laat los: hij landt met een klein veertje.",el("div",{className:"stage",style:"place-items:center"},chips),"lift 120ms · scale 1.04, rotate 1.5° · landing scaleY .96");
+ // 10 count
+ let n=8;const nEl=el("span",{className:"n"},String(n));
+ const step=d=>{n=Math.max(1,Math.min(25,n+d));nEl.textContent=n;Pop.pop(nEl,"count");Pop.SND.tick()};
+ demo("count","Aantal veranderen","Hoeveel sleutelhangers op je plaat? Het getal tikt zacht naar zijn plek.",el("div",{className:"stage",style:"place-items:center"},el("div",{className:"counter"},el("button",{className:"x","aria-label":"Minder",on:{click:()=>step(-1)}},"−"),nEl,el("button",{className:"x","aria-label":"Meer",on:{click:()=>step(1)}},"+"),el("span",{className:"muted"},"op je plaat"))),"count 120ms · translateY -4px, scale 1.15 → 1");
+ s.append(el("div",{className:"card"},el("h3",{},"Spelregels voor de pop"),el("div",{className:"grid"},
+   el("div",{},el("b",{},"Wel"),el("ul",{},el("li",{},"Eén pop per handeling."),el("li",{},"Sluiten sneller dan openen."),el("li",{},"Groot feest alleen bij model klaar en downloaden."),el("li",{},"Alles werkt meteen; de animatie is versiering, nooit wachten."),el("li",{},"Geluid standaard uit; instelling 'Rustig' altijd bereikbaar."))),
+   el("div",{},el("b",{},"Niet"),el("ul",{},el("li",{},"Geen draaiende laadrondjes; laden = zacht pulseren."),el("li",{},"Geen paginagrote zoom of parallax."),el("li",{},"Geen confetti bij kleine dingen."),el("li",{},"Geen geluid bij fouten."),el("li",{},"Geen eindeloze animaties."))))),
+  el("div",{className:"card"},el("h3",{},"Hoe het in de code komt"),el("p",{className:"muted"},"Eén motion-module voor de hele site. Knoppen en blokken krijgen alleen een label, bijvoorbeeld data-pop=\"press\". Zo poppen ook generators van andere makers vanzelf hetzelfde, zonder eigen code. Een automatische controle verbiedt losse animaties buiten die module."),el("pre",{style:"margin:0;background:var(--raised);border:1px solid var(--line);border-radius:12px;padding:12px;overflow-x:auto"},el("code",{},'<button data-pop="press">Make it</button>\n<section data-pop-open="pop-in" data-pop-close="plop-out">…</section>'))));
+})(views.pop);
+
+/* ANDERS */
+(s=>{
+ s.append(el("div",{style:"display:grid;gap:10px"},el("span",{className:"eyebrow"},"Zeven dingen die niet in een week te kopiëren zijn"),el("h2",{},"Waarom kiezen mensen voor ons?"),el("p",{className:"muted"},"Geleerd van gratis tools die een drukke markt wonnen: Lichess, Photopea, Excalidraw, Squoosh, remove.bg, Printables, Figma.")));
+ D.diff.forEach((d,i)=>s.append(el("div",{className:"card diff"},el("span",{className:"num"},String(i+1)),el("div",{style:"display:grid;gap:6px"},el("h3",{},d.t),el("p",{},d.why),el("p",{className:"muted"},el("b",{},"Bewijs: "),d.ev),el("p",{},el("b",{},"Zo doen wij het: "),d.do)))));
+})(views.anders);
+
+/* TERUG */
+(s=>{
+ s.append(el("div",{style:"display:grid;gap:10px"},el("span",{className:"eyebrow"},"Zonder trucs"),el("h2",{},"Waarom komen mensen terug?"),el("p",{className:"muted"},"Tien redenen om terug te komen die werken zonder druk, plus een kalender met gelegenheden.")),
+  el("div",{className:"card"},el("div",{className:"tbl"},el("table",{},el("thead",{},el("tr",{},["Hoe vaak","Wat","Waarom het werkt","Let op"].map(h=>el("th",{},h)))),el("tbody",{},D.loops.map(r=>el("tr",{},r.map(x=>el("td",{},x)))))))));
+ s.append(el("div",{className:"card"},el("h3",{},"Kalender met gelegenheden"),el("p",{className:"muted"},"Elk sjabloon 4–6 weken vóór de dag live. Klik een maand."),(()=>{const out=el("div",{className:"grid",style:"grid-template-columns:repeat(auto-fit,minmax(150px,1fr))"});D.cal.forEach(([m,items])=>{const c=el("button",{type:"button",className:"btn",style:"text-align:left;display:grid;gap:4px",on:{click:()=>Pop.pop(c,"render-pop")}},el("b",{},m),el("span",{className:"muted",style:"font-size:13px;font-weight:500"},items));out.append(c)});return out})()));
+ s.append(el("div",{className:"card"},el("h3",{},"Dit doen we nooit"),el("ul",{},D.dark.map(x=>el("li",{},x)))));
+})(views.terug);
+
+/* FIJN */
+(s=>{
+ s.append(el("div",{style:"display:grid;gap:10px"},el("span",{className:"eyebrow"},"Eerst werkt het, dan is het leuk"),el("h2",{},"Waarom voelt het fijn?"),el("p",{className:"muted"},"Plezier bovenop iets wat niet werkt, irriteert alleen maar. Daarom eerst de basis, dan de pop.")),
+  el("div",{className:"grid"},D.delight.map((d,i)=>el("div",{className:"card"},el("span",{className:"eyebrow",style:"color:var(--pink)"},"Principe "+(i+1)),el("h3",{},d[0]),el("p",{className:"muted"},d[1])))),
+  el("div",{className:"card"},el("h3",{},"Zes dingen die vertrouwen geven"),el("ol",{},D.trust.map(t=>el("li",{},t)))));
+})(views.fijn);
+
+/* IEDEREEN */
+(s=>{
+ s.append(el("div",{style:"display:grid;gap:10px"},el("span",{className:"eyebrow"},"Elke partij, hun eigen regels"),el("h2",{},"Houden we iedereen tevreden?"),el("p",{className:"muted"},"Per partij: wat ze willen, wat hun regels zeggen, en hoe wij op goede voet blijven. Klik een partij open.")));
+ D.stake.forEach(p=>s.append(el("details",{},el("summary",{},el("span",{className:"tag "+({laag:"lo",middel:"mi",hoog:"hi"}[p.r]||"mi")},p.r),el("span",{},p.n)),el("div",{},el("p",{},el("b",{},"Wat ze willen: "),p.want),el("p",{},el("b",{},"Hun regels: "),p.rules),el("p",{},el("b",{},"Hoe wij het doen: "),p.how),el("p",{className:"muted",style:"font-size:13px"},"Vroeg signaal: "+p.sig)))));
+ s.append(el("div",{className:"card",style:"border-color:var(--bad)"},el("h3",{},"Rode lijnen: dit doen we nooit"),el("ul",{},D.red.map(x=>el("li",{},x)))),
+  el("div",{className:"card"},el("h3",{},"Als er toch iets misgaat"),el("p",{},D.recover)),el("p",{className:"disc"},"Dit is onderzoek, geen juridisch advies."));
+})(views.iedereen);
+
+/* VRAGEN */
+(s=>{
+ s.append(el("div",{style:"display:grid;gap:10px"},el("span",{className:"eyebrow"},"Alleen jij kunt kiezen"),el("h2",{},"Vragen"),el("p",{className:"muted"},"Klik het antwoord dat past. Mijn advies staat erbij."),el("span",{className:"muted",id:"qc"})));
+ D.Q.forEach((q,i)=>{const o=el("div",{className:"opts"});q.o.forEach(x=>o.append(el("button",{type:"button",className:"opt","data-q":q.id,"data-v":x.v,on:{click:()=>{state.a[q.id]=state.a[q.id]===x.v?"":x.v;paintQ();changed()}}},el("span",{className:"dot"}),el("span",{},el("span",{},x.v),x.rec?el("span",{className:"adv"},"advies"):null,x.d?el("small",{},x.d):null))));
+   const ta=el("textarea",{id:"n-"+q.id,placeholder:"Toelichting (mag leeg)",on:{input:e=>{state.notes[q.id]=e.target.value;changed(true)}}});ta.value=state.notes[q.id]||"";
+   s.append(el("div",{className:"qq"},el("span",{className:"eyebrow"},`Vraag ${i+1} van ${D.Q.length} · ${q.topic}`),el("h3",{},q.q),q.why?el("p",{className:"muted",style:"font-size:14px"},q.why):null,o,ta))});
+ const qm=el("span",{className:"muted"});const sb=el("button",{className:"btn grad",on:{click:async()=>{const ok=await push();if(ok){Pop.pop(sb,"burst");toast("Saved. Say 'klaar' in the chat.")}qm.textContent=ok?"Opgeslagen. Zeg in de chat dat je klaar bent.":"Online opslaan lukt hier niet; je keuzes staan op dit apparaat."}}},"Opslaan voor Claude");
+ s.append(el("div",{className:"row"},sb,qm));
+})(views.vragen);
+function paintQ(){document.querySelectorAll(".opt").forEach(b=>b.setAttribute("aria-pressed",state.a[b.dataset.q]===b.dataset.v));document.getElementById("qc").textContent=`${D.Q.filter(q=>state.a[q.id]).length} van ${D.Q.length} beantwoord`}
+paintQ();
+let db=null,timer=null;const saveEl=document.getElementById("save");
+function changed(t){try{localStorage.setItem("tp-gevoel",JSON.stringify(state))}catch(e){}clearTimeout(timer);timer=setTimeout(push,t?1500:700)}
+async function push(){if(!db){saveEl.textContent="Alleen op dit apparaat";return false}saveEl.textContent="Opslaan…";
+ const sum=D.Q.map(q=>`${q.id}: ${state.a[q.id]||"-"}${state.notes[q.id]?" | "+state.notes[q.id]:""}`).join("\n")+`\npop-instellingen: geluid=${Pop.S.sound} trillen=${Pop.S.haptic} rustig=${Pop.S.calm}`;
+ try{await db.doc("gevoel/answers").set({a:state.a,notes:state.notes,pop:{...Pop.S},samenvatting:sum,bijgewerkt:new Date().toISOString()});saveEl.textContent="Opgeslagen "+new Date().toLocaleTimeString("nl-NL",{hour:"2-digit",minute:"2-digit"});saveEl.className="pill ok";Pop.pop(saveEl,"count");return true}catch(e){saveEl.textContent="Opslaan mislukt";saveEl.className="pill";return false}}
+const h=(location.hash||"").slice(1);showTab(TABS.some(t=>t[0]===h)?h:"kort");
+(async()=>{try{db=await window.claude?.use?.("db")}catch(e){db=null}if(!db){saveEl.textContent="Alleen op dit apparaat";return}
+ try{const sn=await db.doc("gevoel/answers").get();if(sn.exists){const d=sn.data();state={a:{...(d.a||{})},notes:{...(d.notes||{})}};document.querySelectorAll("textarea[id^=n-]").forEach(t=>t.value=state.notes[t.id.slice(2)]||"");paintQ();saveEl.textContent="Eerdere keuzes geladen";saveEl.className="pill ok"}else saveEl.textContent="Klaar om op te slaan"}catch(e){saveEl.textContent="Klaar om op te slaan"}})();
+</script>

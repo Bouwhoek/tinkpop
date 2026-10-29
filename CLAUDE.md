@@ -21,7 +21,8 @@ Nog geen code. Fase: bouwplan (bible v0.3) + blauwdruk klaar; wacht op goedkeuri
 - `docs/besluiten.md` — genomen besluiten met reden
 - `docs/roadmap.md` — open vragen en volgende stappen
 - `docs/naam.md` — naamonderzoek dat tot Tinkpop leidde
-- `docs/brand/` — logo en merkregels
+- `docs/gevoel.md` — onderscheiden, terugkomen, fijn gevoel, iedereen tevreden, rode lijnen; klikbaar met pop-speeltuin: `docs/gevoel.html`
+- `docs/brand/` — logo, merkregels en de pop-taal (`pop.md`, prototype `pop-prototype.js`)
 
 ## Vaste afspraken
 - **Legaal by design** (bible §16): bij élke module, generator of functie eerst het juridische blok invullen, risico's koppelen uit `docs/risicos.md` en in de PR in gewone taal uitleggen wat er juridisch speelt. Twijfel = niet bouwen en eerst melden aan de eigenaar.
@@ -30,4 +31,5 @@ Nog geen code. Fase: bouwplan (bible v0.3) + blauwdruk klaar; wacht op goedkeuri
 - Ontwerpen van anderen alleen opnemen met schriftelijke toestemming en duidelijke licentie per generator.
 - Nooit een bestaand model (bestand of foto) aan AI geven om het om te bouwen. Eigen ontwerpen vanuit algemene onderdelen en openbare maten, met het proces gedateerd in de repo (zie `docs/juridisch.md`).
 - Geen code uit Bambu Studio of OrcaSlicer overnemen (AGPL).
+- Rode lijnen en dark patterns die we nooit doen staan in `docs/gevoel.md`. Alle animaties via de pop-taal (`docs/brand/pop.md`).
 - Domein tinkpop.com staat bij Cloudflare, op naam van de eigenaar. Niets live zetten of DNS wijzigen zonder akkoord van de eigenaar.
