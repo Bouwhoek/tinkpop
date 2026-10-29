@@ -8,7 +8,7 @@
 | Map | Wat | Belangrijkste bestanden |
 |---|---|---|
 | `1-product/` | wat we maken en voor wie | `brief.md`, `markt.md`, `naam.md`, `gevoel.md` |
-| `2-plan/` | hoe we het bouwen | `bible.md` (architectuur), `modules.md` (indeling en codes), `blauwdruk.md` (50 sites), `platforms-100.md` (100 platforms), `hergebruik.md` (open source), `grill.md` (zelfvragen, aannames) |
+| `2-plan/` | hoe we het bouwen | `bible.md` (architectuur), `modules.md` (indeling en codes), `blauwdruk.md` (50 sites), `platforms-100.md` (100 platforms), `hergebruik.md` (open source), `grill.md` (zelfvragen, aannames), `mvp.md` (MVP-contract fase 0, bewijsprotocol) |
 | `3-juridisch/` | mag het, en wat kan misgaan | `juridisch.md`, `risicos.md`, `voorwaarden/` (schermafdrukken) |
 | `4-besluiten/` | wat besloten is en wat nog open staat | `besluiten.md` (B-nummers), `roadmap.md` (V-nummers, taken, fasen) |
 | `brand/` | logo, merk, pop-taal | `pop.md`, `pop-prototype.js` |

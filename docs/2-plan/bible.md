@@ -90,7 +90,7 @@ Elke module en elke generator heeft een `manifest.json`. Regels:
   "id": "keychain-name", "kind": "generator", "version": "1.0.0", "contract": "^1.0",
   "name": {"en": "Name keychain"}, "category": "keychain", "tags": ["text", "multicolor"],
   "author": {"name": "Mark", "github": "Hultink5611", "donateUrl": "https://buymeacoffee.com/..."},
-  "license": {"code": "MIT", "model": "CC-BY-4.0", "printsMaySell": true},
+  "license": {"code": "AGPL-3.0", "assets": "CC-BY-4.0", "printsMaySell": true},
   "engine": "manifold", "entry": "./generator.ts",
   "params": {"type": "object", "properties": {
     "text": {"type": "string", "default": "Tink", "maxLength": 20},
@@ -164,7 +164,7 @@ Dezelfde regels aan twee kanten (afgeleid van NotMadeYet `controleer.py`):
 - In de browser: elke generator in een werker zonder netwerk (CSP `connect-src 'none'`), harde tijdslimiet, invoer begrensd tot min/max.
 - Startpakket voor makers: sjabloon "eerste generator", gids "MakerWorld-model overzetten in 5 minuten", PR-checklist,
   labels `good first generator` en `generator-request`, GitHub Discussions.
-- Licenties: code MIT; ontwerp per generator (standaard CC BY 4.0); fonts alleen OFL/Apache, ongewijzigd meegeleverd;
+- Licenties (B-143): code AGPL-3.0, ook de generatorcode; foto's, tekeningen en docs CC BY 4.0; fonts alleen OFL/Apache, ongewijzigd meegeleverd;
   MakerWorld-modellen alleen met schriftelijke herlicentie van de echte maker.
 
 ## 11. Privacy, recht, toegankelijkheid
@@ -201,7 +201,7 @@ Elke module en generator moet aantoonbaar legaal zijn **voordat** hij aan kan. D
 "legal": {
   "origin": "own | permission | open-license",
   "originProof": "docs/toestemming/<id>.png of link + datum",
-  "designLicense": "CC-BY-4.0", "outputLicense": "free",
+  "codeLicense": "AGPL-3.0", "assetLicense": "CC-BY-4.0", "outputLicense": "free",
   "assets": [{"file": "fonts/Inter.ttf", "license": "OFL-1.1", "source": "https://..."}],
   "personalData": "none | account-email | ...",
   "storesUserContent": false,
@@ -213,7 +213,7 @@ Elke module en generator moet aantoonbaar legaal zijn **voordat** hij aan kan. D
 ```
 
 **2. Automatische poorten** (bouw faalt als iets ontbreekt):
-- licentie op de toegestane lijst (code MIT; ontwerp CC0/CC BY/CC BY-SA; fonts OFL/Apache/UFL; geen NC, ND, AGPL);
+- licentie op de toegestane lijst (code AGPL-3.0, onderdelen MIT/BSD/ISC/Apache/GPL-3.0; beelden en docs CC0/CC BY/CC BY-SA; fonts OFL/Apache/UFL; geen NC, ND, GPL-2.0-only);
 - elk meegeleverd bestand (font, SVG, emoji) heeft een licentie en bron;
 - `origin: permission` → bewijsbestand aanwezig;
 - `storesUserContent: true` → meldknop-module en voorwaarden moeten aan staan (DSA);
@@ -227,6 +227,8 @@ Elke module en generator moet aantoonbaar legaal zijn **voordat** hij aan kan. D
 **4. Bij elke nieuwe module of generator**: Claude vult het juridische blok, koppelt de risico's uit `docs/3-juridisch/risicos.md`, en schrijft in de PR in gewone taal: herkomst, licentie, persoonsgegevens, wat er openbaar wordt, welke risico's. De eigenaar keurt goed.
 
 **5. Ontwerpregels**: nooit een bestaand model (bestand of foto) aan AI geven om om te bouwen; eigen ontwerpen vanuit algemene onderdelen en openbare maten, proces gedateerd in de repo; geen code uit AGPL-projecten.
+
+**Wat de poort níet doet (B-146)**: de poort controleert of het blok is ingevuld en of licenties op de lijst staan. Dat is geen juridisch oordeel. Auteursrecht, merkrecht, fontlicenties, productveiligheid, privacy en platformregels blijven aparte vragen. Code die een AI schrijft kan lijken op bestaande code zonder bron: daarom geen code laten "naschrijven" uit een ander project, en bij twijfel een scan op gekopieerde code. Twijfel = niet bouwen en melden aan de eigenaar.
 
 **6. Periodiek**: elk kwartaal het risicoregister en de wetgeving nalopen (AVG, DSA, productaansprakelijkheid vanaf 9-12-2026, modelrecht). Twijfel of een brief → jurist.
 

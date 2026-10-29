@@ -111,7 +111,7 @@ Status per punt: wacht op goedkeuring van de eigenaar in het artifact (tab "Goed
 | I2 | Inloggen met een onderhouden bibliotheek: e-maillink + passkey, veilige cookies, limieten; beheer alleen via Cloudflare Access | Zelfgebouwde login is het grootste beveiligingsrisico | 1 | ✔ |
 | I3 | SVG veilig: alleen vormen eruit halen, nooit als SVG in de pagina | SVG kan code bevatten (XSS) | 1 | ✔ |
 | I4 | Eigen font: alleen in je browser, max. 8 MB, nooit bewaard of gedeeld | Licentie- en veiligheidsrisico | 1 | ✔ |
-| I5 | Licentie gesplitst: generator CC BY 4.0, gemaakte bestanden vrij zonder naamsvermelding; alleen CC0/CC BY/CC BY-SA; Twemoji | Kopers van een sleutelhanger hoeven geen credit te lezen | 1 | ✔ |
+| I5 | Licentie gesplitst (B-143): code AGPL-3.0, beelden en docs CC BY 4.0, gemaakte bestanden vrij zonder naamsvermelding; alleen CC0/CC BY/CC BY-SA; Twemoji | Kopers van een sleutelhanger hoeven geen credit te lezen | 1 | ✔ |
 | I6 | Harde automatische poorten op voorstellen: alleen eigen map, alleen .scad, geen nieuwe pakketten, render + plaatje; eigenaar test de proeflink | De eigenaar kan code niet lezen | 1 | ✔ |
 | I7 | Draaiboek: terugdraaien, veilige stand, waar staan de geheimen, domein auto-verlengen; herstelcodes bij een vertrouwd persoon | Bus-factor = 1 | 1 | ✔ |
 | I8 | Meldingen: bericht bij een piek in fouten + gratis uptime-check | Een teller alleen vertelt niemand iets | 1 | ✔ |

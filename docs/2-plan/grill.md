@@ -26,7 +26,7 @@ Waar het antwoord al in de docs staat: verwijzing. Waar een nieuwe actie nodig i
 
 ### 1. Doel en succes
 1. **Welk probleem lossen we op?** → Groepen die veel namen willen printen, snel en goed, gratis, op hun telefoon. *Bron: `1-product/markt.md`, positionering.*
-2. **Hoe weten we dat het werkt?** → B-010 (500 downloads, 20% batch/plaat, 10% terugkomers). *Beantwoord.*
+2. **Hoe weten we dat het werkt?** → B-010 (500 downloads, 20% batch/plaat, 10% terugkomers). *Herzien na ronde 3: **V-036**.*
 3. **Wat is de held van de homepage?** → Hele plaat met namen. *Hangt af van 2; V-004 (open).*
 
 ### 2. Fase 0 (hangt af van 1.3)
@@ -75,6 +75,8 @@ Waar het antwoord al in de docs staat: verwijzing. Waar een nieuwe actie nodig i
 28. **Hoe groot is een PR?** → Eén onderdeel per PR, met proeflink en juridisch blok. *Nieuw: **actie** (F).*
 
 ## C. Aannames die fase 0 moet testen
+De harde lat per aanname staat sinds ronde 3 in `mvp.md` (bewijsprotocol M-1 t/m M-8).
+
 | Nr | Aanname | Test | Geslaagd als |
 |---|---|---|---|
 | A-01 | Rekenen is snel genoeg op een gewone telefoon | 18 tekens typen op jouw Android en een geleende iPhone | < 300 ms per toets, geen crash na 5 min |

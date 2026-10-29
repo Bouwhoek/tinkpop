@@ -19,7 +19,7 @@ Klikbaar overzicht met alle modules: `docs/pages/overzicht.html` / https://claud
 | Emoji | Twemoji (jdecked) | MIT + CC BY 4.0 | zoals het is | 1 week |
 | 3MF voor Bambu (AMS) | three-3mf-exporter (bekuto3d) | MIT | ombouwen | 1–2 weken |
 | Plaat vullen | maxrects-packer | MIT | zoals het is | 1 week |
-| Slicer-test in CI | PrusaSlicer CLI + open-keychain-scripts | AGPL (alleen tool) / MIT | ombouwen | 1 week |
+| Slicer-test in CI | Bambu Studio CLI, OrcaSlicer CLI, PrusaSlicer CLI + open-keychain-scripts (zie `mvp.md`, 3MF-matrix) | AGPL (alleen tool) / MIT | ombouwen | 1 week |
 | OpenSCAD-bibliotheek | BOSL2 | BSD-2-Clause | zoals het is | — |
 | Inloggen (e-maillink + passkey) | Better Auth + passkey-plugin | MIT | zoals het is | weken |
 | Beheer-slot | Cloudflare Access | dienst | zoals het is | groot |
@@ -43,9 +43,10 @@ Klikbaar overzicht met alle modules: `docs/pages/overzicht.html` / https://claud
 **Sinds B-075 is de code AGPL-3.0.** MIT/BSD/ISC/Apache mogen erin (licentietekst meeleveren). GPL-3.0 en GPL-2.0-or-later mogen nu ook in de bundel; GPL-2.0-only niet. NC en onduidelijke licenties nooit.
 
 - MIT, BSD, ISC, Apache, Unlicense: altijd mee, licentietekst meeleveren (pagina 'third-party licenses').
-- GPL (openscad-wasm): alleen als los programma met bronverwijzing; nooit in onze eigen bundel zolang wij MIT zijn.
-- Kiezen we AGPL, dan mag GPL-3-code wél mee; dat maakt KeyV2 en andere GPL-bibliotheken bruikbaar.
-- Tools in CI (PrusaSlicer, Renovate, REUSE) verspreiden we niet: geen gevolgen voor onze licentie.
+- GPL (openscad-wasm, GPL-2.0-or-later): mag mee onder AGPL; toch als los programma met bronverwijzing laden (kleiner en sneller).
+- GPL-3-code mag mee; dat maakt KeyV2 en andere GPL-bibliotheken bruikbaar.
+- Tools in CI (Bambu Studio, OrcaSlicer, PrusaSlicer, Renovate, REUSE) verspreiden we niet: geen gevolgen voor onze licentie. Code eruit overnemen blijft verboden (CLAUDE.md).
+- Creative Commons is niet bedoeld voor software (B-143): code altijd AGPL, CC BY alleen voor beelden en docs.
 - OFL-fonts: meeleveren met licentie; wat je print is vrij.
 - CC BY (Twemoji): vermelding op de site én in het gedownloade bestand.
 - Nooit CC BY-NC of 'TBD'-licenties (bijv. void_switch-clicker).
@@ -54,10 +55,20 @@ Klikbaar overzicht met alle modules: `docs/pages/overzicht.html` / https://claud
 - Lucia (deprecated) en OpenAuth (staat stil): niet gebruiken voor inloggen.
 - Better Auth is sinds juli 2026 van Vercel: licentie blijft MIT, versie vastzetten.
 - Ajv werkt niet op Cloudflare Workers: op de server @cfworker/json-schema gebruiken.
-- elkjs, deepnest, potrace-wasm, KeyV2: GPL-varianten, niet zolang we MIT zijn.
+- elkjs, deepnest, potrace-wasm, KeyV2: GPL-varianten; onder AGPL mogelijk, per stuk de exacte versie nalopen (GPL-2.0-only niet).
 - Open Keychain: één maker, twee maanden oud; hun naam en logo nooit gebruiken (TRADEMARKS.md).
 - three-3mf-exporter: claimt eigen code, toch nalopen op AGPL-overlap met Bambu Studio.
 - Inlogmails via Cloudflare kosten $5/mnd; Resend is gratis tot 100 per dag.
+
+## Bekeken in ronde 3 (29-10)
+| Tip | Van | Besluit |
+|---|---|---|
+| Clipper2 (2D-contouren, offset) | Gemini | Zit al in manifold-3d (`CrossSection` gebruikt Clipper2). Niets extra's nodig |
+| BitByBit (`@bitbybit-dev/core`) | Gemini | Niet nu: groot pakket, vooral voor OCCT-CAD. Voor sleutelhangers is manifold genoeg |
+| CadQuery | GPT | Niet: Python, niet in de browser. Onze vaste testset is de referentie |
+| 3MF Consortium (specificatie, voorbeeldbestanden) | GPT | Ja: als bron voor de 3MF-export en tests |
+| Bambu Studio / OrcaSlicer | GPT, Gemini | Alleen als testgereedschap (open, slice, controleer); geen code overnemen |
+| Slicer-check in CI (headless) | Gemini | Ja, zie `mvp.md` |
 
 ## Zelf bouwen
 - Kaartjes, tinkpop.config.json, flags.json (met veilige stand en terugdraaien)

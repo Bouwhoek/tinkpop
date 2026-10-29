@@ -16,13 +16,15 @@ Open vragen staan **niet** hier maar in `docs/4-besluiten/roadmap.md` en op het 
 | B-007 | 29-10 | Emoji via Twemoji | `emoji` |
 | B-008 | 29-10 | "Open in Bambu Studio" later; eerst gewone 3MF-download | `bambu` |
 | B-009 | 29-10 | Blauwdruk goedgekeurd: 62 punten ja, 14 later (A14, B4, C9, D8, D11, E1, F3, F4, G3, H3, H9, H10) | Blauwdruk-artifact |
-| B-010 | 29-10 | Doorgaan/stoppen-meting 4 weken na aankondiging: ≥ 500 downloads, ≥ 20% batch/plaat, ≥ 10% komt binnen 30 dagen terug | Overzicht-vraag `gonogo` |
+| B-010 | 29-10 | (herzien in V-037) Doorgaan/stoppen-meting 4 weken na aankondiging: ≥ 500 downloads, ≥ 20% batch/plaat, ≥ 10% komt binnen 30 dagen terug | Overzicht-vraag `gonogo` |
 | B-011 | 29-10 | Eerste indruk (homepage): een hele plaat met namen in één keer, gratis, op je telefoon | V-004 |
 | B-012 | 29-10 | Plaat vullen en batch al minimaal in fase 0 | V-024 |
 | B-013 | 29-10 | Tempo: rustig aan, eerst alles af (ondanks KeychainGEN) | V-005, tegen advies |
 | B-014 | 29-10 | Eerste gelegenheid: Sinterklaas en Kerst | V-016 |
 | B-015 | 29-10 | Pop-taal zoals de speeltuin; geluid standaard uit; druppeltjes bij wegploppen. Eerst verder uitwerken in artifacts tot het resultaat goed is | V-011, V-012, V-013 |
 | B-016 | 29-10 | Offline werken (PWA) later, fase 2 | V-033 |
+| B-144 | 29-10 | Fase 0 = MVP-contract van één pagina (`2-plan/mvp.md`): 25 namen → één plaat A1 mini, 3 fonts, 2 kleuren, 3MF + STL; klaar als het bewijsprotocol M-1 t/m M-8 groen is. Nieuwe ideeën gaan naar later | Ronde 3: GPT, Gemini en Claude eens; past binnen B-012 |
+| B-145 | 29-10 | Eerste bouwstap: 3MF-bewijs vóór er een scherm komt (5 test-3MF's in Bambu Studio, Handy en OrcaSlicer; 1 print). De site belooft alleen wat in de 3MF-matrix groen is | Ronde 3: grootste risico volgens GPT en Gemini |
 
 ## Account en privacy
 | Nr | Datum | Besluit | Reden / bron |
@@ -60,8 +62,8 @@ Open vragen staan **niet** hier maar in `docs/4-besluiten/roadmap.md` en op het 
 | B-048 | 29-10 | AGENTS.md is de hoofdbron voor alle AI's; CLAUDE.md verwijst ernaar | V-026 |
 | B-049 | 29-10 | Harde regels automatisch afdwingen: in CI én in de projectinstellingen voor AI | V-027 |
 | B-140 | 29-10 | Live zetten via een release-PR met wijzigingslijst in gewone taal; samenvoegen daarvan = akkoord voor live | V-030 (verfijnt B-041) |
-| B-141 | 29-10 | Geen verplichte tweede AI-review per PR | V-031, tegen advies |
-| B-142 | 29-10 | Fase 0 niet delen met een eigen kring; aanname A-04 wordt getest tijdens de stille lancering | V-025, tegen advies |
+| B-141 | 29-10 | Geen verplichte tweede AI-review per PR | V-031, tegen advies; opnieuw gevraagd (smaller) in V-039 |
+| B-142 | 29-10 | Fase 0 niet delen met een eigen kring; aanname A-04 wordt getest tijdens de stille lancering | V-025, tegen advies; opnieuw gevraagd in V-038 |
 
 ## Community
 | Nr | Datum | Besluit | Reden / bron |
@@ -70,7 +72,7 @@ Open vragen staan **niet** hier maar in `docs/4-besluiten/roadmap.md` en op het 
 | B-051 | 29-10 | Bijdragen van anderen pas na 3 maanden live, alleen .scad | `bijdragen` |
 | B-052 | 29-10 | NotMadeYet blijft apart; ideeën worden later .scad-generators op Tinkpop | `nmy` |
 | B-054 | 29-10 | **Niet op MakerWorld publiceren** | V-018 (vervangt B-053) |
-| B-055 | 29-10 | Eigenaar blijft anoniem in communities (geen 'ik bouwde dit'-post) | V-017, tegen advies |
+| B-055 | 29-10 | Eigenaar blijft anoniem in communities (geen 'ik bouwde dit'-post) | V-017, tegen advies; opnieuw gevraagd in V-042 |
 
 ## Geld
 | Nr | Datum | Besluit | Reden / bron |
@@ -84,13 +86,14 @@ Open vragen staan **niet** hier maar in `docs/4-besluiten/roadmap.md` en op het 
 | Nr | Datum | Besluit | Reden / bron |
 |---|---|---|---|
 | B-070 | 29-10 | Legaal by design: verplicht juridisch blok per module; bouw faalt en bord weigert aanzetten als het niet klopt | Wens eigenaar; `2-plan/bible.md` §16 |
-| B-071 | 29-10 | Ontwerp van generators CC BY 4.0; gemaakte bestanden vrij, zonder naamsvermelding | `licentie`, `outputlicentie` |
+| B-143 | 29-10 | Licentie per soort: alle code AGPL-3.0, ook generatorcode (TypeScript en .scad); foto's, tekeningen en docs CC BY 4.0; gemaakte bestanden vrij, zonder naamsvermelding (behalve wat Twemoji vraagt, V-041). Licentie voor community-generators: vraag voor fase 3 | Correctie na ronde 3: Creative Commons is niet bedoeld voor software (vervangt B-071) |
+| B-146 | 29-10 | De juridische poort controleert gegevens, geen juridisch oordeel; twijfel = niet bouwen en melden | Ronde 3 (GPT); `2-plan/bible.md` §16 |
 | B-073 | 29-10 | Merkbescherming Tinkpop/Pinkpop: eigenaar zoekt het zelf uit, vóór de aankondiging | `merk`, `merkjurist` |
 | B-074 | 29-10 | Clicker-maker deze week om schriftelijke toestemming vragen | `clicker` |
 | B-075 | 29-10 | **Codelicentie AGPL-3.0** (kopiëren mag, maar dan ook open) | V-014 (vervangt B-072) |
 | B-076 | 29-10 | Meldknop en contactpunt al in fase 1 | V-006 |
-| B-077 | 29-10 | Waarschuwing 'Not a toy / small parts / test your print' alleen in de voorwaarden | V-008, tegen advies |
-| B-078 | 29-10 | Twemoji-vermelding alleen in de footer van de site | V-019 |
+| B-077 | 29-10 | Waarschuwing 'Not a toy / small parts / test your print' alleen in de voorwaarden | V-008, tegen advies; opnieuw gevraagd in V-040 |
+| B-078 | 29-10 | Twemoji-vermelding alleen in de footer van de site | V-019; opnieuw gevraagd in V-041 |
 | B-079 | 29-10 | Clicker: beide routes tegelijk: toestemming vragen én eigen ontwerp maken | V-002 |
 
 ## Merk
@@ -112,4 +115,5 @@ Open vragen staan **niet** hier maar in `docs/4-besluiten/roadmap.md` en op het 
 | B-903 | Repo-naam `mwbl` als werknaam (28-10) | B-080 |
 | B-905 | Code MIT (B-072) | B-075 (AGPL) |
 | B-906 | Generators ook op MakerWorld (B-053) | B-054 |
+| B-907 | Generators CC BY 4.0 (B-071) | B-143 |
 | B-904 | Eén generator, verder niets in fase 1 (28-10) | B-002, B-003 |
