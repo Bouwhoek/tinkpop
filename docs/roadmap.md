@@ -1,6 +1,7 @@
 # Roadmap en open vragen
 
 ## Open vragen voor de eigenaar
+- [ ] **17 bouwvragen** in de bible: https://claude.ai/artifact/M8YLZ6cdYexqkqc1MfUx2s (tab "Vragen aan jou"). Antwoorden → `besluiten.md`, daarna fase 0.
 - [x] Naam: Tinkpop, tinkpop.com geregistreerd (28-10-2026). Zie `naam.md`.
 - [ ] Merkcheck: "Tinkpop" en "Pinkpop" nakijken in TMview (klassen 9, 28, 40, 42); handles vastleggen. @tinkpop is bezet op Instagram (28-10-2026); Instagram: **@tink.pop**. Tweede platform (vermoedelijk TikTok): @tink.pop geweigerd, **@tink_pop** gelukt. X: @tink_pop (geen punt toegestaan). Advies: overal @tink_pop, ook op Instagram als die vrij is. YouTube nog vastleggen. Instagram geeft een inactieve naam alleen vrij aan een geregistreerde merkhouder.
 - [ ] Ook tinkpop.app en tinkpop.org vastleggen (nu nog vrij).
