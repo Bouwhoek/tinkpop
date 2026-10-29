@@ -1,6 +1,6 @@
 # Gevoel: onderscheiden, terugkomen, fijn, iedereen tevreden (29-10-2026)
 
-Klikbaar met werkende pop-speeltuin: `docs/gevoel.html` / https://claude.ai/artifact/Qd2FTvYceQtahZPNkBVZTf
+Klikbaar met werkende pop-speeltuin: `docs/pages/gevoel.html` / https://claude.ai/artifact/Qd2FTvYceQtahZPNkBVZTf
 
 Kern: functies worden binnen een week gekopieerd. Wat blijft: (1) een belofte die we niet terugdraaien, (2) snelheid en kwaliteit, (3) een bibliotheek die met elke gebruiker groeit. 100% ingedekt bestaat niet; wel: reële risico's klein, legaal by design, en snel en netjes herstellen.
 

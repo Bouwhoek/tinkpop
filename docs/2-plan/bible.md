@@ -1,6 +1,6 @@
 # Tinkpop Bible — hoe we het platform bouwen
 
-Versie 0.3 (29-10-2026): bijgewerkt met de besluiten van 29-10 en `blauwdruk.md`. Daarvoor: versie 0.2: na vier onderzoeken en een kritische audit (`docs/audit-2026-10-29.md`). Concept: nog geen code.
+Versie 0.3 (29-10-2026): bijgewerkt met de besluiten van 29-10 en `docs/2-plan/blauwdruk.md`. Daarvoor: versie 0.2: na vier onderzoeken en een kritische audit (`docs/archief/audit-2026-10-29.md`). Concept: nog geen code.
 Klikbare versie met modulebord en 17 vragen: https://claude.ai/artifact/M8YLZ6cdYexqkqc1MfUx2s (antwoorden komen in de database van die pagina, document `bible/answers`).
 Wat hieronder staat is **advies tot de eigenaar de vragen heeft beantwoord**.
 Bronnen en metingen: zie de onderzoeken onderaan.
@@ -59,17 +59,14 @@ community worden toegevoegd. De eigenaar keurt alles goed voordat het live gaat.
 
 ## 5. Mappen (één app)
 ```
-src/core/            contract (types, JSON-schema's), register, afhankelijkheden-check, schakelbord lezen
-src/geometry/        manifold-wrapper (SDK met eigen opruimen), tekst, SVG, export STL/3MF, rekenwerker
-src/scad/            OpenSCAD-spoor + Customizer-parser (fase 2)
-src/ui/              knoppen, formulieren uit schema + ui-schema
-src/modules/<id>/    platformmodules (contract 0.x, intern)
-src/generators/<id>/ manifest.json, generator.ts óf model.scad, preview.png, LICENSE, README, testsets
-src/pages/           Astro-pagina's (één per generator en sterk voorbeeld)
-tinkpop.config.json  schakelbord
-docs/                bible, besluiten, roadmap, draaiboek
+src/core/              register, schakelbord, flags, afhankelijkheden-check
+src/modules/<hoofdmodule>/<onderdeel>/   elk onderdeel: manifest.json, code, tests, README
+                       (hoofdmodules: core, studio, print, library, account, community, growth, trust, admin, lab)
+src/pages/             Astro-pagina's
+tinkpop.config.json    schakelbord
+docs/                  zie docs/README.md
 ```
-Opsplitsen in pakketten pas als er insluiten of externe SDK-gebruikers komen.
+Codes en naamregels: `docs/2-plan/modules.md`.
 
 ## 6. Het modulecontract
 Elke module en elke generator heeft een `manifest.json`. Regels:
@@ -134,16 +131,7 @@ SDK: `text()`, `svg()`, `outline()`, `ring()`, `plate()`, `part(role)`. Zuivere 
 Uitrollen duurt 1–2 minuten na een wijziging. Serverfuncties hebben daarnaast een directe noodschakelaar in KV.
 
 ## 7. Modulelijst
-| Module | Soort | Fase | Nodig |
-|---|---|---|---|
-| kern, generator-runtime, maker-credit, juridisch, **foutmeldingen** | kern | 1 | – |
-| fonts, **eigen logo/SVG (lokaal)**, ams-kleuren, printschatting, deel-link, **bewaren (lokaal)**, **vindbaar (SEO)**, Buy Me a Coffee, statistiek | optioneel | 1 | runtime/kern |
-| sleutelhanger met naam | generator | 1 | runtime, fonts, svg |
-| catalogus, clicker, OpenSCAD-spoor, moduleoverzicht (bekijken), beheer-slot (Access) | optioneel | 2 | – |
-| R2, D1, Turnstile, open-in-Bambu, bord met schakelaars, Nederlands, Not Made Yet | optioneel | 3 | zie bord |
-| inloggen, uploads (online delen), galerij met moderatie | optioneel | 4 | D1, R2 |
-| AI-modellen, winkel | optioneel, **kost geld** | 5 | inloggen |
-Een klikbare versie met afhankelijkheden staat in het artifact (tab Modulebord).
+De indeling in hoofdmodules en alle onderdelen staat op één plek: `docs/2-plan/modules.md` (klikbaar: `docs/pages/overzicht.html`).
 
 ## 8. Snelheid
 Budget (te bewaken met automatische tests):
@@ -180,7 +168,7 @@ Dezelfde regels aan twee kanten (afgeleid van NotMadeYet `controleer.py`):
   MakerWorld-modellen alleen met schriftelijke herlicentie van de echte maker.
 
 ## 11. Privacy, recht, toegankelijkheid
-- **Inloggen vanaf fase 1** (besluit 29-10): AVG volledig van toepassing; zie `blauwdruk.md` I1–I2. Downloaden blijft zonder account.
+- **Inloggen vanaf fase 1** (besluit 29-10): AVG volledig van toepassing; zie `docs/2-plan/blauwdruk.md` I1–I2. Downloaden blijft zonder account.
 - Eén strikt noodzakelijke sessiecookie + cookieloze statistiek: geen cookiebanner.
 - Accounts 16+, e-maillink of passkey, account verwijderen en exporteren kan.
 - Uploads/galerij (later): meld- en verwijderknop en contactpunt (DSA), uitleg bij verwijderen.
@@ -196,15 +184,7 @@ Dezelfde regels aan twee kanten (afgeleid van NotMadeYet `controleer.py`):
 Vast: domeinen (~€40/jaar voor .com/.app/.org).
 
 ## 13. Fasen
-0. **Proef (± 1 week)**: naam op een plaatje, 3 fonts, STL + kleuren-3MF, proeflink; getest op de telefoon van de eigenaar en in Bambu Studio.
-1a. **Alles erop en eraan**: sleutelhanger met alle instellingen van keychaingenerator.tech (afvinklijst in `markt.md`), eigen logo/SVG, bewaren, deel-link.
-1b. **Klaar voor bezoekers**: foutmeldingen, cijfers, vindbare pagina's per generator/preset, juridische pagina's, merkcheck Pinkpop, draaiboek terugdraaien. Live na akkoord.
-1c. **Stille lancering** (besluit: geen testgroep): 2 weken live zonder aankondiging, met meldingen aan; dan aankondigen.
-2. **Community open**: OpenSCAD-spoor, sjabloon en gids, clicker, catalogus, moduleoverzicht.
-3. **Groeien**: meer generators, Nederlands, Not Made Yet, Open in Bambu Studio, bord met schakelaars.
-4. **Accounts**: inloggen, online delen, galerij met moderatie.
-5. **AI en winkel**: alleen als donaties of omzet het dragen.
-Nu al starten (kost tijd, geen code): toestemming clicker-maker, testprints voor toleranties, merkcheck.
+De fasen staan op één plek: `docs/4-besluiten/roadmap.md` (sectie Fasen).
 
 ## 13b. Beheer voor de eigenaar
 - Proeflink per PR (`wrangler versions upload`) + render-plaatjes; bij PR's van buiten pas na een label van de eigenaar.
@@ -244,7 +224,7 @@ Elke module en generator moet aantoonbaar legaal zijn **voordat** hij aan kan. D
 
 **3. Het modulebord respecteert dit**: een module zonder groen juridisch blok kan niet aangezet worden. Modules die persoonsgegevens of openbare inhoud raken, tonen vóór het aanzetten welke plichten erbij komen.
 
-**4. Bij elke nieuwe module of generator**: Claude vult het juridische blok, koppelt de risico's uit `risicos.md`, en schrijft in de PR in gewone taal: herkomst, licentie, persoonsgegevens, wat er openbaar wordt, welke risico's. De eigenaar keurt goed.
+**4. Bij elke nieuwe module of generator**: Claude vult het juridische blok, koppelt de risico's uit `docs/3-juridisch/risicos.md`, en schrijft in de PR in gewone taal: herkomst, licentie, persoonsgegevens, wat er openbaar wordt, welke risico's. De eigenaar keurt goed.
 
 **5. Ontwerpregels**: nooit een bestaand model (bestand of foto) aan AI geven om om te bouwen; eigen ontwerpen vanuit algemene onderdelen en openbare maten, proces gedateerd in de repo; geen code uit AGPL-projecten.
 
@@ -260,4 +240,4 @@ Elke module en generator moet aantoonbaar legaal zijn **voordat** hij aan kan. D
 - Modules: VS Code-, Grafana-, Home Assistant-, Backstage-, Obsidian-, Figma-manifesten; Cloudflare-limieten; React Flow 12.12.
 - Code-analyse: capynq/open-keychain, doccaz/nameplate-generator, notmadeyet `schema/controleer.py`.
 - Veiligheid/recht: OpenSCAD Customizer-handleiding, onofficiële MakerWorld PMM-documentatie, OFL-FAQ, EDPB 2/2023, DSA, EAA.
-Klikbare versie: `docs/bible.html` (kopie van het artifact).
+Klikbare versie: `docs/pages/bible.html` (kopie van het artifact).

@@ -10,24 +10,14 @@ Eigenaar codeert niet en werkt via de chat: leg keuzes uit in gewone taal, in he
 Nog geen code. Fase: plan klaar (bible, blauwdruk goedgekeurd 29-10, juridisch, risico's, gevoel). Volgende stap: fase 1 bevriezen en fase 0 (proefweek) bouwen. Open vragen: zie `docs/roadmap.md`. Docs komen uit de eerdere werkrepo `Bouwhoek/mwbl` (werknaam, niet meer in gebruik).
 
 ## Waar staat wat
-- `docs/bible.md` — **het bouwplan** (architectuur, modules, contract, fasen); klikbaar: `docs/bible.html`
-- `docs/blauwdruk.md` — het beste van 50 sites + eigen ideeën + lanceervoorwaarden, ter goedkeuring; klikbaar: `docs/blauwdruk.html`
-- `docs/audit-breed-2026-10-29.md` — brede audit op 16 gebieden
-- `docs/audit-2026-10-29.md` — kritische audit van het plan + samenvatting van de onderzoeken
-- `docs/juridisch.md` — mag het? (generator, clicker, licenties, checklist); klikbaar: `docs/mag-het.html`
-- `docs/risicos.md` — risicoregister (41 risico's)
-- `docs/overzicht.html` — alles op één pagina: modulebord, bouwvolgorde, open source, reflecties Gemini/GPT/Claude
-- `docs/modules.md` — indeling in hoofdmodules en onderdelen, met vaste codes en naamregels
-- `docs/hergebruik.md` — welke open source we hergebruiken of ombouwen, met licenties
-- `docs/brief.md` — wat de eigenaar wil (antwoorden uit de vragenlijst, 28-10-2026)
-- `docs/markt.md` — bestaat dit al, concurrenten, positionering
-- `docs/besluiten.md` — genomen besluiten met reden
-- `docs/roadmap.md` — open vragen en volgende stappen
-- `docs/naam.md` — naamonderzoek dat tot Tinkpop leidde
-- `docs/gevoel.md` — onderscheiden, terugkomen, fijn gevoel, iedereen tevreden, rode lijnen; klikbaar met pop-speeltuin: `docs/gevoel.html`
-- `docs/brand/` — logo, merkregels en de pop-taal (`pop.md`, prototype `pop-prototype.js`)
+Begin bij **`docs/README.md`**: indeling in mappen (1-product, 2-plan, 3-juridisch, 4-besluiten, brand, pages, templates, archief) en de spelregels.
+- Besluiten: `docs/4-besluiten/besluiten.md` (B-nummers). Open vragen, taken en fasen: `docs/4-besluiten/roadmap.md` (V-nummers).
+- Bouwplan: `docs/2-plan/bible.md`; modules en codes: `docs/2-plan/modules.md`; open source: `docs/2-plan/hergebruik.md`.
+- Juridisch en risico's: `docs/3-juridisch/`. Merk en pop-taal: `docs/brand/`.
+- Alles op één pagina: overzicht-artifact (link in `docs/README.md`).
 
 ## Vaste afspraken
+- **Eén onderwerp = één plek** (zie `docs/README.md`). Nieuw onderdeel? Begin met `docs/templates/module.md`.
 - **Legaal by design** (bible §16): bij élke module, generator of functie eerst het juridische blok invullen, risico's koppelen uit `docs/risicos.md` en in de PR in gewone taal uitleggen wat er juridisch speelt. Twijfel = niet bouwen en eerst melden aan de eigenaar.
 - Site in het Engels; docs en overleg in het Nederlands.
 - Gebruik "Bambu" niet in de naam van de site (merknaam van Bambu Lab).

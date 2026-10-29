@@ -1,6 +1,6 @@
 # Blauwdruk: het beste van 50 sites (29-10-2026)
 
-Aanvulling op `bible.md`. Vijf onderzoeken, elk 10 sites:
+Aanvulling op `docs/2-plan/bible.md`. Vijf onderzoeken, elk 10 sites:
 1. **3D-modelplatforms**: MakerWorld (+MakerLab/PMM), Printables, Thingiverse, Thangs, Cults3D, MyMiniFactory, Sketchfab, Shapeways, Tinkercad, Creality Cloud/Nexprint.
 2. **Browsergenerators**: keychaingenerator.tech, Tagify3D, Open Keychain, 3D Tag Maker, PrintPal, Bekuto3D, OpenSCAD Playground, Gridfinity (Perplexing Labs), boxes.py/MakerCase, ItsLitho.
 3. **Personaliseren/templates**: Canva, Kittl, Figma Community, Cricut Design Space, Zazzle, Etsy, Printful/Printify, Placeit, CustomInk, Glowforge/xTool Atomm.
@@ -123,7 +123,7 @@ Status per punt: wacht op goedkeuring van de eigenaar in het artifact (tab "Goed
 | I14 | Fase 1 bevriezen op een korte lijst; de rest wacht | Focus; NotMadeYet start 25 november | 1 | ✔ |
 
 ## Bronnen
-Zie de onderzoeksrapporten (samengevat in `audit-2026-10-29.md` en `audit-breed-2026-10-29.md`). Belangrijkste: makerhacks.com/openscad-makerworld-customizer,
+Zie de onderzoeksrapporten (samengevat in `docs/archief/audit-2026-10-29.md` en `docs/archief/audit-breed-2026-10-29.md`). Belangrijkste: makerhacks.com/openscad-makerworld-customizer,
 help.prusa3d.com (Prusameters, Clubs), wiki.bambulab.com (print profiles, AI policy), developers.raycast.com, contributors.home-assistant.io/core/quality-scale,
 docs.brew.sh/Deprecating-Disabling-and-Removing, code.visualstudio.com/docs/configure/extensions/extension-runtime-security, backstage.io/docs/plugins/feature-flags,
 developers.cloudflare.com/kv/concepts/how-kv-works, producthunt.com/p/producthunt/vote-selling-on-product-hunt, hackaday.com (community voting 2015),

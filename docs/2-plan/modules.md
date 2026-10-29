@@ -1,6 +1,6 @@
 # Module-indeling (voorstel 29-10-2026)
 
-Tien hoofdmodules in vier lagen. Elk onderdeel hoort bij precies één hoofdmodule en heeft een vaste code `hoofdmodule/onderdeel` (= map in de repo, = id in het kaartje). Klikbaar: `docs/overzicht.html`, tab Indeling. Wacht op akkoord eigenaar (vraag `indeling`).
+Tien hoofdmodules in vier lagen. Elk onderdeel hoort bij precies één hoofdmodule en heeft een vaste code `hoofdmodule/onderdeel` (= map in de repo, = id in het kaartje). Klikbaar: `docs/pages/overzicht.html`, tab Indeling. Wacht op akkoord eigenaar (vraag `indeling`).
 
 Lagen: **voor bezoekers** (studio, print, library, account, community) · **achter de schermen** (growth, trust, admin) · **onder alles** (core) · **later** (lab).
 

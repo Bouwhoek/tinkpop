@@ -2,7 +2,7 @@
 
 Ongeveer 40–50% van fase 0–1 kan uit bestaande open source komen; voor de technische basis (rekenen, 3D, tekst, export, controles, inloggen) zelfs 60–70%. Alles wat in de site terechtkomt is MIT, ISC of Apache: dat past bij elke licentie die we kiezen. Zelf bouwen blijft: de generators, de clicker, de plaatlogica, de pop-taal, het modulebord-gedrag, de meldknop en de juridische poort.
 
-Klikbaar overzicht met alle modules: `docs/overzicht.html` / https://claude.ai/artifact/SvncP5H8edGJj65ZqECMdU
+Klikbaar overzicht met alle modules: `docs/pages/overzicht.html` / https://claude.ai/artifact/SvncP5H8edGJj65ZqECMdU
 
 | Wat we nodig hebben | Project | Licentie | Hoe | Bespaart |
 |---|---|---|---|---|

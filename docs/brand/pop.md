@@ -1,7 +1,7 @@
 # Pop-taal (motion-systeem), 29-10-2026
 
 Signature van Tinkpop: dingen poppen erin, ploppen weg, en bij model klaar en downloaden een klein feestje.
-Werkend prototype: `docs/brand/pop-prototype.js` (gebruikt in `docs/gevoel.html`, tab Pop-speeltuin).
+Werkend prototype: `docs/brand/pop-prototype.js` (gebruikt in `docs/pages/gevoel.html`, tab Pop-speeltuin).
 
 ## Tokens
 ```css

@@ -11,7 +11,7 @@ Bron: klikbare vragenlijst, ingevuld 28-10-2026
 ## Generators
 - Eerst: naambordje, sleutelhanger met naam, clicker, huisnummerbord, tas-/bagagelabel, hondenpenning, plantensteker, bladwijzer.
 - Later: kabellabel/-clip, koekjesvorm, stempel, lithofaan, Gridfinity-bakje met label.
-- Eerste versie: één generator, maar dan perfect. Voorbeeld van het niveau: keychaingenerator.tech, met alles erop en eraan (zie `markt.md`).
+- Eerste versie: één generator, maar dan perfect. Voorbeeld van het niveau: keychaingenerator.tech, met alles erop en eraan (zie `docs/1-product/markt.md`).
 - Eigenaar wil zelf ook generators en ontwerpen kunnen toevoegen.
 
 ## Clicker
@@ -27,7 +27,7 @@ Voorbeeld: modulaire clicker-blokjes (2 knoppen ≈ 34 min, 11 g). Bezoeker kies
 
 ## Open source, accounts, geld
 - Code openbaar op GitHub, iedereen mag kopiëren. Bezoekers mogen gemaakte prints verkopen.
-- Hoe ontwerpers een generator maken: eigenaar vraagt advies (zie `markt.md`).
+- Hoe ontwerpers een generator maken: eigenaar vraagt advies (zie `docs/1-product/markt.md`).
 - Licentie: eigenaar vraagt advies.
 - Login: iedereen kan inloggen om ontwerpen te bewaren.
 - Geld: gratis, met een doneerknop.
