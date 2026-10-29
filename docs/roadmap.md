@@ -1,14 +1,14 @@
 # Roadmap en open vragen
 
 ## Open vragen voor de eigenaar
-- [ ] **17 bouwvragen** in de bible: https://claude.ai/artifact/M8YLZ6cdYexqkqc1MfUx2s (tab "Vragen aan jou"). Antwoorden → `besluiten.md`, daarna fase 0.
+- [x] **17 bouwvragen** beantwoord (29-10-2026), zie `besluiten.md`. Bron: de bible: https://claude.ai/artifact/M8YLZ6cdYexqkqc1MfUx2s (tab "Vragen aan jou"). Antwoorden → `besluiten.md`, daarna fase 0.
 - [x] Naam: Tinkpop, tinkpop.com geregistreerd (28-10-2026). Zie `naam.md`.
 - [ ] Merkcheck: "Tinkpop" en "Pinkpop" nakijken in TMview (klassen 9, 28, 40, 42); handles vastleggen. @tinkpop is bezet op Instagram (28-10-2026); Instagram: **@tink.pop**. Tweede platform (vermoedelijk TikTok): @tink.pop geweigerd, **@tink_pop** gelukt. X: @tink_pop (geen punt toegestaan). Advies: overal @tink_pop, ook op Instagram als die vrij is. YouTube nog vastleggen. Instagram geeft een inactieve naam alleen vrij aan een geregistreerde merkhouder.
 - [ ] Ook tinkpop.app en tinkpop.org vastleggen (nu nog vrij).
 - [ ] Welke generator is de eerste "perfecte"? Advies: naambordje/sleutelhanger (meeste vraag) óf clicker (meest onderscheidend).
 - [ ] Clicker: schriftelijke toestemming van de maker, en mag het ontwerp open source in de repo?
 - [x] Doneerknop: Buy Me a Coffee (besloten 28-10-2026).
-- [ ] Inloggen: advies is eerst zonder login (geen kosten, geen privacywerk). Akkoord?
+- [x] Inloggen: vanaf het begin (besloten 29-10-2026).
 - [ ] Hoe werkt 3d-prints.bouwhoek.app nu, en wat mist er? (site vraagt om inlog, Claude kan hem niet zien)
 
 ## Advies, nog te bevestigen

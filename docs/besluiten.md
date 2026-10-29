@@ -19,3 +19,20 @@
 | 28-10-2026 | Naam: **Tinkpop**. Domein tinkpop.com geregistreerd bij Cloudflare; repo `Bouwhoek/tinkpop` | Uit naamonderzoek (`naam.md`): kort, radiotest, ledennaam "Tinkers", geen bestaand gebruik, .com vrij. Slogan: "Type it. Tink it. Print it." |
 | 28-10-2026 | Hosting bij voorkeur Cloudflare Pages | Domein staat al bij Cloudflare; gratis voor een statische site. |
 | 28-10-2026 | Social-medianaam: @tink_pop, op Instagram @tink.pop | @tinkpop bezet op Instagram; @tink.pop geweigerd op het tweede platform; @tink_pop werkt ook op X. |
+| 29-10-2026 | Community-generators alleen in OpenSCAD (.scad); eigen generators in TypeScript (manifold) | Veilig (geen netwerk/pagina) en MakerWorld-compatibel. Antwoord bible-vraag `taal`. |
+| 29-10-2026 | Eerste generator: sleutelhanger met naam | Antwoord `eerste`. |
+| 29-10-2026 | **Inloggen vanaf het begin** (fase 1) | Keuze eigenaar (`login`), tegen het advies in. Gevolg: auth + D1 + privacyverklaring/AVG-plichten in fase 1. Bewaren lokaal + deel-link blijven ook. |
+| 29-10-2026 | Hosting: Cloudflare Workers (static assets) | Vervangt "Pages" van 28-10. Zelfde als NotMadeYet (`hosting`). |
+| 29-10-2026 | Samenvoegen = akkoord om live te zetten, nadat de eigenaar de proeflink zelf heeft geprobeerd | `live`. |
+| 29-10-2026 | "Open in Bambu Studio" later; eerst gewone 3MF-download | `bambu`. |
+| 29-10-2026 | **Modulebord waarin de eigenaar klikt en het live gaat** | Keuze eigenaar (`bord`), tegen het advies in. Spanning met "eerst proeflink": uit te werken (zie blauwdruk-vragen). |
+| 29-10-2026 | Foutmeldingen via eigen kleine teller bij Cloudflare | `fouten`. |
+| 29-10-2026 | Merkcheck Tinkpop/Pinkpop in TMview vóór livegang | `merk`. |
+| 29-10-2026 | NotMadeYet blijft apart; ideeën worden later .scad-generators op Tinkpop | `nmy`. |
+| 29-10-2026 | **Geen testgroep: direct lanceren** | Keuze eigenaar (`beta`), tegen het advies in. Fase 1c vervalt. |
+| 29-10-2026 | Clicker-maker deze week om schriftelijke toestemming vragen | `clicker`. |
+| 29-10-2026 | Download alleen blokkeren bij kapot model; printpunten zijn waarschuwingen | `blokkeren`. |
+| 29-10-2026 | Standaardlicentie ontwerpen: CC BY 4.0 (prints verkopen mag, naamsvermelding) | `licentie`. |
+| 29-10-2026 | Fonts: vaste set én bezoekers mogen een eigen font uploaden | `fonts`. Eigen font blijft in de browser van de bezoeker; licentie is de verantwoordelijkheid van de bezoeker. |
+| 29-10-2026 | Testtelefoon: Android | `telefoon`. Snelheidsbudget mobiel op Android meten. |
+| 29-10-2026 | Generators ook op MakerWorld zetten waar het kan, met link naar Tinkpop | `makerworld`. |
