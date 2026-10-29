@@ -7,10 +7,12 @@ Open source, zodat andere ontwerpers generators kunnen toevoegen.
 Eigenaar codeert niet en werkt via de chat: leg keuzes uit in gewone taal, in het Nederlands.
 
 ## Status
-Nog geen code. Fase: bouwplan (bible v0.2) klaar, wacht op antwoorden van de eigenaar; daarna fase 0 (proef). Docs komen uit de eerdere werkrepo `Bouwhoek/mwbl` (werknaam, niet meer in gebruik).
+Nog geen code. Fase: bouwplan (bible v0.3) + blauwdruk klaar; wacht op goedkeuring blauwdruk (76 punten, 14 vragen); daarna fase 1 bevriezen en fase 0 (proef). Docs komen uit de eerdere werkrepo `Bouwhoek/mwbl` (werknaam, niet meer in gebruik).
 
 ## Waar staat wat
 - `docs/bible.md` — **het bouwplan** (architectuur, modules, contract, fasen); klikbaar: `docs/bible.html`
+- `docs/blauwdruk.md` — het beste van 50 sites + eigen ideeën + lanceervoorwaarden, ter goedkeuring; klikbaar: `docs/blauwdruk.html`
+- `docs/audit-breed-2026-10-29.md` — brede audit op 16 gebieden
 - `docs/audit-2026-10-29.md` — kritische audit van het plan + samenvatting van de onderzoeken
 - `docs/brief.md` — wat de eigenaar wil (antwoorden uit de vragenlijst, 28-10-2026)
 - `docs/markt.md` — bestaat dit al, concurrenten, positionering

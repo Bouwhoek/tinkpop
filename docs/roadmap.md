@@ -11,16 +11,19 @@
 - [x] Inloggen: vanaf het begin (besloten 29-10-2026).
 - [ ] Hoe werkt 3d-prints.bouwhoek.app nu, en wat mist er? (site vraagt om inlog, Claude kan hem niet zien)
 
+## Open: blauwdruk (29-10-2026)
+- [ ] 76 punten uit 50 sites + 14 vragen keuren: zie `blauwdruk.md` en het artifact. Daarna fase 1 bevriezen.
+
 ## Advies, nog te bevestigen
-- Hosting: Cloudflare Pages (domein staat al bij Cloudflare, gratis). Vaste kosten alleen het domein, ca. €10–20 per jaar.
+- Hosting: Cloudflare Workers (besloten 29-10). Vaste kosten alleen het domein, ca. €10–20 per jaar.
 - In README vermelden dat de MIT-licentie geldt voor de code, niet voor naam en logo.
-- Generators schrijven in OpenSCAD, compatibel met MakerWorld's Parametric Model Maker.
+- Generators: eigen in TypeScript (manifold), community in OpenSCAD, MakerWorld-compatibel (besloten 29-10).
 - Rekenen in de browser met OpenSCAD-WebAssembly.
 - Licentie: code MIT; elke generator draagt zijn eigen licentie (standaard CC BY 4.0, dan mogen prints verkocht worden).
 
 ## Stappen
 1. Eén generator als proef in de browser: typen → live 3D → STL/3MF.
-2. Testen met 5–10 mensen uit de Bambu-community.
+2. Stille lancering van 2 weken (geen testgroep, besloten 29-10).
 3. Bijdragen mogelijk maken: handleiding voor meebouwers (CONTRIBUTING), sjabloon voor een nieuwe generator, controle door de eigenaar voordat iets live gaat.
 4. Daarna: meer generators; later een uploadknop op de site.
 

@@ -1,6 +1,6 @@
 # Tinkpop Bible — hoe we het platform bouwen
 
-Versie 0.2 (29-10-2026): na vier onderzoeken en een kritische audit (`docs/audit-2026-10-29.md`). Concept: nog geen code.
+Versie 0.3 (29-10-2026): bijgewerkt met de besluiten van 29-10 en `blauwdruk.md`. Daarvoor: versie 0.2: na vier onderzoeken en een kritische audit (`docs/audit-2026-10-29.md`). Concept: nog geen code.
 Klikbare versie met modulebord en 17 vragen: https://claude.ai/artifact/M8YLZ6cdYexqkqc1MfUx2s (antwoorden komen in de database van die pagina, document `bible/answers`).
 Wat hieronder staat is **advies tot de eigenaar de vragen heeft beantwoord**.
 Bronnen en metingen: zie de onderzoeken onderaan.
@@ -102,7 +102,7 @@ Elke module en elke generator heeft een `manifest.json`. Regels:
   "outputs": ["stl", "3mf"], "colors": {"max": 4},
   "print": {"maxSizeMm": [80, 40, 10], "needsSupports": false, "maxRenderMs": 3000},
   "requires": {"modules": ["fonts"]}, "permissions": {"network": false},
-  "status": "beta", "defaultEnabled": true
+  "status": "beta", "defaultEnabled": false
 }
 ```
 Voor `.scad`-generators is `engine: "openscad"` en komen de parameters uit de Customizer-opmerkingen in het bestand
@@ -171,7 +171,7 @@ Dezelfde regels aan twee kanten (afgeleid van NotMadeYet `controleer.py`):
 - CSP voor de rekenwerker via `_headers` op het werkerbestand (niet geërfd van de pagina) en getest.
 - Bijdragen via GitHub-PR. Een generator-PR mag alleen zijn eigen map `generators/<id>/` aanraken; kern via CODEOWNERS = eigenaar.
 - Controles draaien op `pull_request` zonder geheimen; nooit `pull_request_target` met community-code.
-- pnpm 10: geen installatiescripts van pakketten; generators mogen geen eigen npm-pakketten meenemen.
+- npm met `ignore-scripts=true`: geen installatiescripts van pakketten; generators mogen geen eigen npm-pakketten meenemen.
 - Eerste bijdrage van iemand nieuw: altijd handmatig goedkeuren.
 - In de browser: elke generator in een werker zonder netwerk (CSP `connect-src 'none'`), harde tijdslimiet, invoer begrensd tot min/max.
 - Startpakket voor makers: sjabloon "eerste generator", gids "MakerWorld-model overzetten in 5 minuten", PR-checklist,
@@ -180,8 +180,9 @@ Dezelfde regels aan twee kanten (afgeleid van NotMadeYet `controleer.py`):
   MakerWorld-modellen alleen met schriftelijke herlicentie van de echte maker.
 
 ## 11. Privacy, recht, toegankelijkheid
-- Fase 1 zonder login: bijna geen persoonsgegevens; privacyverklaring + Cloudflare-verwerkersovereenkomst; geen cookiebanner.
-- Login (later): alleen e-mail of GitHub, account verwijderen kan, minimumleeftijd 16 (NL).
+- **Inloggen vanaf fase 1** (besluit 29-10): AVG volledig van toepassing; zie `blauwdruk.md` I1–I2. Downloaden blijft zonder account.
+- Eén strikt noodzakelijke sessiecookie + cookieloze statistiek: geen cookiebanner.
+- Accounts 16+, e-maillink of passkey, account verwijderen en exporteren kan.
 - Uploads/galerij (later): meld- en verwijderknop en contactpunt (DSA), uitleg bij verwijderen.
 - Toegankelijkheid: vrijwillig WCAG 2.2 AA; tekstalternatief bij het 3D-beeld; automatische test (axe) in CI.
 - Geen juridisch advies: laat vóór login/uploads iemand meekijken.
@@ -198,7 +199,7 @@ Vast: domeinen (~€40/jaar voor .com/.app/.org).
 0. **Proef (± 1 week)**: naam op een plaatje, 3 fonts, STL + kleuren-3MF, proeflink; getest op de telefoon van de eigenaar en in Bambu Studio.
 1a. **Alles erop en eraan**: sleutelhanger met alle instellingen van keychaingenerator.tech (afvinklijst in `markt.md`), eigen logo/SVG, bewaren, deel-link.
 1b. **Klaar voor bezoekers**: foutmeldingen, cijfers, vindbare pagina's per generator/preset, juridische pagina's, merkcheck Pinkpop, draaiboek terugdraaien. Live na akkoord.
-1c. **Testgroep**: 5–10 Bambu-gebruikers, dan officiële lancering.
+1c. **Stille lancering** (besluit: geen testgroep): 2 weken live zonder aankondiging, met meldingen aan; dan aankondigen.
 2. **Community open**: OpenSCAD-spoor, sjabloon en gids, clicker, catalogus, moduleoverzicht.
 3. **Groeien**: meer generators, Nederlands, Not Made Yet, Open in Bambu Studio, bord met schakelaars.
 4. **Accounts**: inloggen, online delen, galerij met moderatie.
