@@ -213,6 +213,43 @@ Nu al starten (kost tijd, geen code): toestemming clicker-maker, testprints voor
 - Kapotte generator → automatisch verborgen, blokkeert de rest niet.
 - Cijfers: downloads per week, bezoek → download, p75 tijd tot eerste voorbeeld op mobiel, foutpercentage, donaties tegen kosten.
 
+## 16. Legaal by design (besluit 29-10-2026)
+Elke module en generator moet aantoonbaar legaal zijn **voordat** hij aan kan. Dat zit in het systeem zelf, niet in losse afspraken.
+
+**1. Juridisch blok in elk kaartje (manifest)** — verplicht, gecontroleerd in CI:
+```json
+"legal": {
+  "origin": "own | permission | open-license",
+  "originProof": "docs/toestemming/<id>.png of link + datum",
+  "designLicense": "CC-BY-4.0", "outputLicense": "free",
+  "assets": [{"file": "fonts/Inter.ttf", "license": "OFL-1.1", "source": "https://..."}],
+  "personalData": "none | account-email | ...",
+  "storesUserContent": false,
+  "public": false,
+  "commercial": false,
+  "risks": ["J3", "V5"],
+  "reviewedBy": "Claude 2026-10-29", "approvedBy": "Mark 2026-10-30"
+}
+```
+
+**2. Automatische poorten** (bouw faalt als iets ontbreekt):
+- licentie op de toegestane lijst (code MIT; ontwerp CC0/CC BY/CC BY-SA; fonts OFL/Apache/UFL; geen NC, ND, AGPL);
+- elk meegeleverd bestand (font, SVG, emoji) heeft een licentie en bron;
+- `origin: permission` → bewijsbestand aanwezig;
+- `storesUserContent: true` → meldknop-module en voorwaarden moeten aan staan (DSA);
+- `personalData` ≠ none → privacyverklaring en verwerkersovereenkomst moeten bijgewerkt zijn (AVG);
+- `commercial: true` → bouw faalt (Tinkpop verkoopt niets; productaansprakelijkheid en belasting);
+- geen merklogo's van derden; merknamen alleen beschrijvend;
+- `THIRD_PARTY_NOTICES` automatisch gegenereerd uit alle `assets`.
+
+**3. Het modulebord respecteert dit**: een module zonder groen juridisch blok kan niet aangezet worden. Modules die persoonsgegevens of openbare inhoud raken, tonen vóór het aanzetten welke plichten erbij komen.
+
+**4. Bij elke nieuwe module of generator**: Claude vult het juridische blok, koppelt de risico's uit `risicos.md`, en schrijft in de PR in gewone taal: herkomst, licentie, persoonsgegevens, wat er openbaar wordt, welke risico's. De eigenaar keurt goed.
+
+**5. Ontwerpregels**: nooit een bestaand model (bestand of foto) aan AI geven om om te bouwen; eigen ontwerpen vanuit algemene onderdelen en openbare maten, proces gedateerd in de repo; geen code uit AGPL-projecten.
+
+**6. Periodiek**: elk kwartaal het risicoregister en de wetgeving nalopen (AVG, DSA, productaansprakelijkheid vanaf 9-12-2026, modelrecht). Twijfel of een brief → jurist.
+
 ## 14. Wat we overnemen en vermijden (van concurrenten)
 - Overnemen (Open Keychain, MIT): worker + cache-opzet, 3MF-truc die in Bambu én Prusa werkt, ontwerp-in-de-link,
   printfouten die export blokkeren, prestatiebudget, slicer-test in CI. Met bronvermelding in `THIRD_PARTY_LICENSES`.

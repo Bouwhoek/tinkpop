@@ -24,6 +24,7 @@ Nog geen code. Fase: bouwplan (bible v0.3) + blauwdruk klaar; wacht op goedkeuri
 - `docs/brand/` — logo en merkregels
 
 ## Vaste afspraken
+- **Legaal by design** (bible §16): bij élke module, generator of functie eerst het juridische blok invullen, risico's koppelen uit `docs/risicos.md` en in de PR in gewone taal uitleggen wat er juridisch speelt. Twijfel = niet bouwen en eerst melden aan de eigenaar.
 - Site in het Engels; docs en overleg in het Nederlands.
 - Gebruik "Bambu" niet in de naam van de site (merknaam van Bambu Lab).
 - Ontwerpen van anderen alleen opnemen met schriftelijke toestemming en duidelijke licentie per generator.

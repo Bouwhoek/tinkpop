@@ -49,3 +49,4 @@
 | 29-10-2026 | Bijdragen van anderen pas na 3 maanden live, alleen .scad | `bijdragen`. |
 | 29-10-2026 | Eén project tegelijk in de bouw | `focus`. |
 | 29-10-2026 | Merkbescherming: eigenaar zoekt het zelf uit | `merkjurist`, toelichting eigenaar. Open in roadmap. |
+| 29-10-2026 | **Legaal by design**: elke module en generator heeft een verplicht juridisch blok in zijn kaartje (herkomst, licenties, persoonsgegevens, openbaar, commercieel, risico's); de bouw faalt en het bord weigert aanzetten als dat niet klopt | Wens eigenaar: "alles legaal doen" en reële risico's bewaken. Uitwerking: `bible.md` §16. |
