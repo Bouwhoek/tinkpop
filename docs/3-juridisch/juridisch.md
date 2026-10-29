@@ -27,7 +27,7 @@ Onderzoek, geen juridisch advies. Klikbaar: `docs/pages/mag-het.html` / https://
 
 ### Ben ik aansprakelijk als iemand een merk of scheldwoord op een sleutelhanger zet?
 **Nee, zolang alles lokaal blijft** (risico laag → middel met opslag). Wie alleen gereedschap levert, gebruikt het merk zelf niet. Zolang de tekst je browser niet verlaat, is er niets om te modereren. Zodra ontwerpen in accounts worden bewaard, word je een 'hostingdienst' (Europese DSA): dan heb je een meldknop, een contactpunt en een reden bij verwijderen nodig.
-*Wat te doen:* Bewaren standaard privé. Meldknop en contactpunt al in fase 1 (want je koos inloggen vanaf het begin).
+*Wat te doen:* Bewaren standaard privé. Meldknop en contactpunt al in fase 1 (B-076); inloggen komt pas in fase 2 (B-149).
 
 ### Ben ik aansprakelijk als een geprinte sleutelhanger breekt of iemand verwondt?
 **Waarschijnlijk niet, mits niet commercieel** (risico laag). Nieuw vanaf 9-12-2026: ook printbestanden vallen onder de productaansprakelijkheid. Maar alleen als je ze 'in de handel brengt'. Gratis, zonder advertenties, zonder verkoop en zonder data verzamelen valt daar waarschijnlijk buiten. Of donaties meetellen is nog onzeker.

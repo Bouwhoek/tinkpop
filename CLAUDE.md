@@ -7,7 +7,7 @@ Open source, zodat andere ontwerpers generators kunnen toevoegen.
 Eigenaar codeert niet en werkt via de chat: leg keuzes uit in gewone taal, in het Nederlands.
 
 ## Status
-Nog geen code. Fase: plan klaar, 33 beslisbord-vragen beantwoord en ronde 3 met GPT en Gemini verwerkt (29-10). Fase 0 = MVP-contract `docs/2-plan/mvp.md`. Code wordt AGPL-3.0 (B-075). Volgende stap: PR #1 samenvoegen, fase 1 bevriezen, fase 0 (proefweek) bouwen. Open vragen: zie `docs/4-besluiten/roadmap.md`. Docs komen uit de eerdere werkrepo `Bouwhoek/mwbl` (werknaam, niet meer in gebruik).
+Nog geen code. Fase: plan klaar, alle beslisbord-vragen beantwoord, ronde 3 met GPT en Gemini verwerkt (29-10). Richting: eerst de beste generator, inloggen pas in fase 2 (B-149). Fase 0 = MVP-contract `docs/2-plan/mvp.md`. Code wordt AGPL-3.0 (B-075). Volgende stap: PR #1 samenvoegen, fase 1 bevriezen, fase 0 (proefweek) bouwen. Open vragen: zie `docs/4-besluiten/roadmap.md`. Docs komen uit de eerdere werkrepo `Bouwhoek/mwbl` (werknaam, niet meer in gebruik).
 
 ## Waar staat wat
 Begin bij **`docs/README.md`**: indeling in mappen (1-product, 2-plan, 3-juridisch, 4-besluiten, brand, pages, templates, archief) en de spelregels.

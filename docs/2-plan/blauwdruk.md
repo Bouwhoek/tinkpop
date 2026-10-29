@@ -29,7 +29,7 @@ Status per punt: wacht op goedkeuring van de eigenaar in het artifact (tab "Goed
 | A12 | Lege staat voor logo/SVG: slepen, plakken of "probeer voorbeeld" | Bekuto3D | 1 | ✔ |
 | A13 | Live afmeting bovenaan, mm standaard, mm/inch-knop | keychaingenerator | 1 | ✔ |
 | A14 | Punt op i/j vervangen door icoon (hartje, ster, pootje) | Tagify3D | 2 | ◷ (vraagt werk per font) |
-| A15 | Downloaden zonder account; inloggen (vanaf dag één) voor bewaren in de cloud | Canva, Tinkercad, Printables | 1 | ✔ (inloggen blijft vanaf het begin, maar nooit verplicht om te downloaden) |
+| A15 | Downloaden zonder account; inloggen (vanaf dag één) voor bewaren in de cloud | Canva, Tinkercad, Printables | 2 | ✔ (inloggen pas in fase 2, B-149; nooit verplicht om te downloaden) |
 | A16 | Eén vraag bij eerste bezoek: "Wat wil je maken?" | Canva | 2 | ◷ |
 
 ## B. Ontdekken
@@ -107,8 +107,8 @@ Status per punt: wacht op goedkeuring van de eigenaar in het artifact (tab "Goed
 ## I. Voorwaarden voor lancering (uit de brede audit)
 | # | Punt | Waarom | Fase | Advies |
 |---|---|---|---|---|
-| I1 | AVG-pakket vóór livegang: privacyverklaring, verwerkingsregister, verwerkersovereenkomsten (Cloudflare, e-maildienst), bewaartermijn, zelf exporteren/verwijderen, datalek-procedure | Inloggen vanaf dag één = AVG volledig van toepassing | 1 | ✔ |
-| I2 | Inloggen met een onderhouden bibliotheek: e-maillink + passkey, veilige cookies, limieten; beheer alleen via Cloudflare Access | Zelfgebouwde login is het grootste beveiligingsrisico | 1 | ✔ |
+| I1 | AVG-pakket vóór livegang: privacyverklaring, verwerkingsregister, verwerkersovereenkomsten (Cloudflare, e-maildienst), bewaartermijn, zelf exporteren/verwijderen, datalek-procedure | Inloggen = AVG volledig van toepassing | 2 (met inloggen, B-149) | ✔ |
+| I2 | Inloggen met een onderhouden bibliotheek: e-maillink + passkey, veilige cookies, limieten; beheer alleen via Cloudflare Access | Zelfgebouwde login is het grootste beveiligingsrisico | 2 (B-149) | ✔ |
 | I3 | SVG veilig: alleen vormen eruit halen, nooit als SVG in de pagina | SVG kan code bevatten (XSS) | 1 | ✔ |
 | I4 | Eigen font: alleen in je browser, max. 8 MB, nooit bewaard of gedeeld | Licentie- en veiligheidsrisico | 1 | ✔ |
 | I5 | Licentie gesplitst (B-143): code AGPL-3.0, beelden en docs CC BY 4.0, gemaakte bestanden vrij zonder naamsvermelding; alleen CC0/CC BY/CC BY-SA; Twemoji | Kopers van een sleutelhanger hoeven geen credit te lezen | 1 | ✔ |

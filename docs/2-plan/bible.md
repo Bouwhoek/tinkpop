@@ -168,7 +168,7 @@ Dezelfde regels aan twee kanten (afgeleid van NotMadeYet `controleer.py`):
   MakerWorld-modellen alleen met schriftelijke herlicentie van de echte maker.
 
 ## 11. Privacy, recht, toegankelijkheid
-- **Inloggen vanaf fase 1** (besluit 29-10): AVG volledig van toepassing; zie `docs/2-plan/blauwdruk.md` I1–I2. Downloaden blijft zonder account.
+- **Inloggen vanaf fase 2** (B-149, was fase 1): zodra het er is, is de AVG volledig van toepassing; zie `docs/2-plan/blauwdruk.md` I1–I2. Downloaden blijft zonder account.
 - Eén strikt noodzakelijke sessiecookie + cookieloze statistiek: geen cookiebanner.
 - Accounts 16+, e-maillink of passkey, account verwijderen en exporteren kan.
 - Uploads/galerij (later): meld- en verwijderknop en contactpunt (DSA), uitleg bij verwijderen.

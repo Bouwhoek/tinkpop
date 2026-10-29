@@ -26,12 +26,12 @@ Waar het antwoord al in de docs staat: verwijzing. Waar een nieuwe actie nodig i
 
 ### 1. Doel en succes
 1. **Welk probleem lossen we op?** → Groepen die veel namen willen printen, snel en goed, gratis, op hun telefoon. *Bron: `1-product/markt.md`, positionering.*
-2. **Hoe weten we dat het werkt?** → B-010 (500 downloads, 20% batch/plaat, 10% terugkomers). *Herzien na ronde 3: **V-036**.*
+2. **Hoe weten we dat het werkt?** → B-150: ≥ 500 downloads, ≥ 30% van de bezoekers downloadt, mediaan < 2 min, < 2% slicer-meldingen; terugkomen rond gelegenheden. *Beantwoord.*
 3. **Wat is de held van de homepage?** → Hele plaat met namen. *Hangt af van 2; V-004 (open).*
 
 ### 2. Fase 0 (hangt af van 1.3)
 4. **Wat moet fase 0 bewijzen?** → De vier riskantste aannames (C): snelheid op Android/iPhone, 3MF klopt in Bambu Studio, plaat vullen werkt, mensen willen het. *Nieuw: **actie** (roadmap).*
-5. **Hoort plaat vullen + batch al in fase 0?** → Ja, minimaal: het is de held en de grootste aanname. *Wijziging van fase 0: **V-024**.*
+5. **Hoort plaat vullen + batch al in fase 0?** → Ja, minimaal: het is de held en de grootste aanname. *Besloten: B-012.*
 6. **Hoe testen we "willen mensen het" zonder lancering?** → Proeflink delen met 5–10 mensen uit je eigen kring (geen testgroep-lancering, wel een proef). *Past bij B-043; **V-025**.*
 
 ### 3. Architectuur (hangt af van 2)

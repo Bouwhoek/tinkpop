@@ -57,8 +57,8 @@ Inloggen om ontwerpen te bewaren, en de inlogmails.
 
 | Onderdeel | Code | Fase | Status |
 |---|---|---|---|
-| Inloggen | `account/sign-in` | 1 | besloten |
-| Inlogmails | `account/mail` | 1 | besloten |
+| Inloggen | `account/sign-in` | 2 | besloten (B-149) |
+| Inlogmails | `account/mail` | 2 | besloten (B-149) |
 
 ## Community — `community`
 Makers, remixen, picks, foto's van prints, meebouwen.
