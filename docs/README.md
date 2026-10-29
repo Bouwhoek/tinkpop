@@ -1,14 +1,14 @@
 # Tinkpop docs: begin hier
 
 **Status (29-10-2026):** nog geen code. Plan klaar; volgende stap: PR #1 samenvoegen, daarna fase 0 (proefweek).
-**Open vragen:** `docs/4-besluiten/roadmap.md` (V-nummers) en het overzicht-artifact (tab Beslisbord).
+**Open vragen:** `docs/4-besluiten/roadmap.md` (V-nummers) en het Beslisbord (eerste tab van het overzicht-artifact). Antwoorden staan in de database van dat artifact (`antwoorden/V-xxx`).
 **Alles op één pagina:** https://claude.ai/artifact/SvncP5H8edGJj65ZqECMdU (kopie: `docs/pages/overzicht.html`).
 
 ## Indeling
 | Map | Wat | Belangrijkste bestanden |
 |---|---|---|
 | `1-product/` | wat we maken en voor wie | `brief.md`, `markt.md`, `naam.md`, `gevoel.md` |
-| `2-plan/` | hoe we het bouwen | `bible.md` (architectuur), `modules.md` (indeling en codes), `blauwdruk.md` (best practices), `hergebruik.md` (open source) |
+| `2-plan/` | hoe we het bouwen | `bible.md` (architectuur), `modules.md` (indeling en codes), `blauwdruk.md` (50 sites), `platforms-100.md` (100 platforms), `hergebruik.md` (open source), `grill.md` (zelfvragen, aannames) |
 | `3-juridisch/` | mag het, en wat kan misgaan | `juridisch.md`, `risicos.md`, `voorwaarden/` (schermafdrukken) |
 | `4-besluiten/` | wat besloten is en wat nog open staat | `besluiten.md` (B-nummers), `roadmap.md` (V-nummers, taken, fasen) |
 | `brand/` | logo, merk, pop-taal | `pop.md`, `pop-prototype.js` |

@@ -1,7 +1,7 @@
 # Roadmap
 
 Eén lijst met wat er nog moet. Besluiten staan in `docs/4-besluiten/besluiten.md`. Open vragen voor de eigenaar staan óók op het
-**Beslisbord** (https://claude.ai/artifact/… zie `docs/README.md`), met hetzelfde nummer (V-xxx).
+**Beslisbord** (tab in het overzicht-artifact, zie `docs/README.md`), met hetzelfde nummer (V-xxx).
 Spelregel: alles wat hier af is, gaat eruit (het besluit staat dan in `docs/4-besluiten/besluiten.md`).
 
 ## Nu
@@ -37,9 +37,19 @@ Fase 0 test vier aannames (A-01 t/m A-04, zie `2-plan/grill.md` §C). Slaagt een
 | V-023 | Logo laten natekenen als SVG (of Claude maakt een voorstel)? | Claude maakt eerst een voorstel | site |
 | V-024 | Plaat vullen + batch al minimaal in fase 0? | ja | fase 0 |
 | V-025 | Proeflink van fase 0 delen met 5–10 mensen uit eigen kring? | ja | aanname A-04 |
+| V-026 | AGENTS.md als hoofdbron voor alle AI's, CLAUDE.md verwijst ernaar? | ja | – |
+| V-027 | Harde regels automatisch afdwingen (CI + projectinstellingen voor AI)? | ja | – |
+| V-028 | Designsysteem Tinkpop Kit als `core/ui-kit`? | ja | fase 0 |
+| V-029 | AI-bots bij Cloudflare: zoekbots toestaan, trainingsbots blokkeren? | ja | lancering |
+| V-030 | Live zetten via een release-PR met wijzigingslijst? | ja | – |
+| V-031 | Tweede review door een andere AI bij elke PR? | ja | – |
+| V-032 | Statuspagina buiten de eigen site? | ja | lancering |
+| V-033 | Offline werken (PWA)? | later (fase 2) | – |
 | V-020 | Inlogmails via Resend (gratis, 100/dag) of Cloudflare ($5/mnd)? | Resend achter eigen `sendMail()` | fase 1 |
 
 ## Taken eigenaar
+(Ook op het Beslisbord als T-01 t/m T-08.)
+- [ ] PR #1 samenvoegen (alleen documenten).
 - [ ] Merk Tinkpop/Pinkpop uitzoeken (B-073), vóór de aankondiging.
 - [ ] Clicker-maker om schriftelijke toestemming vragen (B-074); brief staat in `docs/pages/mag-het.html`.
 - [ ] Voorwaarden van MakerWorld openen en schermafdruk in `docs/3-juridisch/voorwaarden/` (automatisch openen gaf 403).
@@ -49,6 +59,7 @@ Fase 0 test vier aannames (A-01 t/m A-04, zie `2-plan/grill.md` §C). Slaagt een
 - [ ] GitHub-repo `Bouwhoek/mwbl` archiveren (instellingen → Archive), werknaam, niet meer in gebruik.
 
 ## Taken Claude
+- [ ] Na V-029: Cloudflare-instelling AI-bots nalopen samen met de eigenaar (niets wijzigen zonder akkoord).
 - [ ] Plaatmaten van Bambu-printers nalopen (A1 mini, A1, P1, X1, H2D) voor plaat vullen.
 - [ ] Risicoregister: elke regel een hoofdmodule geven.
 - [ ] Logo-voorstel als SVG (na V-023).

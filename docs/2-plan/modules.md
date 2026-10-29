@@ -2,6 +2,8 @@
 
 Tien hoofdmodules in vier lagen. Elk onderdeel hoort bij precies één hoofdmodule en heeft een vaste code `hoofdmodule/onderdeel` (= map in de repo, = id in het kaartje). Klikbaar: `docs/pages/overzicht.html`, tab Indeling. Wacht op akkoord eigenaar (vraag `indeling`).
 
+Nieuw voorgesteld (29-10, na 100 platforms): `core/ui-kit` (Tinkpop Kit, designsysteem, V-028), `trust/security` (beveiligingsbasis), `trust/status` (statuspagina, V-032).
+
 Lagen: **voor bezoekers** (studio, print, library, account, community) · **achter de schermen** (growth, trust, admin) · **onder alles** (core) · **later** (lab).
 
 ## Fundament — `core`
