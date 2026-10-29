@@ -1,6 +1,9 @@
 # Roadmap en open vragen
 
 ## Open vragen voor de eigenaar
+- [ ] Overzicht + reflecties (29-10): 6 vragen in artifact "Tinkpop Overzicht" (waar staat het plan, inlog, hoe schrijven Gemini/GPT erin, volgorde, go/no-go, hoeveel open source). Daarna sparren: Gemini → GPT → Claude.
+- [ ] Inlogmails: Resend (gratis, 100/dag) of Cloudflare Email ($5/mnd). Advies: Resend achter eigen `sendMail()`.
+- [ ] three-3mf-exporter nalopen op overlap met AGPL-code van Bambu Studio vóór hergebruik.
 - [ ] **Voorstel go/no-go (29-10-2026)**: na de proefweek bouwen, stil lanceren en aankondigen, en 4 weken na de aankondiging meten. Doorgaan als: ≥ 500 downloads, ≥ 20% van de downloads via batch of plaat vullen, ≥ 10% van de bezoekers komt binnen 30 dagen terug. Lukt dat niet: Tinkpop houden als gratis tool bij Bouwhoek en niet verder uitbreiden. Wacht op akkoord eigenaar.
 - [x] **17 bouwvragen** beantwoord (29-10-2026), zie `besluiten.md`. Bron: de bible: https://claude.ai/artifact/M8YLZ6cdYexqkqc1MfUx2s (tab "Vragen aan jou"). Antwoorden → `besluiten.md`, daarna fase 0.
 - [x] Naam: Tinkpop, tinkpop.com geregistreerd (28-10-2026). Zie `naam.md`.

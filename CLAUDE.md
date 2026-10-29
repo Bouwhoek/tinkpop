@@ -16,6 +16,8 @@ Nog geen code. Fase: plan klaar (bible, blauwdruk goedgekeurd 29-10, juridisch, 
 - `docs/audit-2026-10-29.md` — kritische audit van het plan + samenvatting van de onderzoeken
 - `docs/juridisch.md` — mag het? (generator, clicker, licenties, checklist); klikbaar: `docs/mag-het.html`
 - `docs/risicos.md` — risicoregister (41 risico's)
+- `docs/overzicht.html` — alles op één pagina: modulebord, bouwvolgorde, open source, reflecties Gemini/GPT/Claude
+- `docs/hergebruik.md` — welke open source we hergebruiken of ombouwen, met licenties
 - `docs/brief.md` — wat de eigenaar wil (antwoorden uit de vragenlijst, 28-10-2026)
 - `docs/markt.md` — bestaat dit al, concurrenten, positionering
 - `docs/besluiten.md` — genomen besluiten met reden
@@ -31,5 +33,6 @@ Nog geen code. Fase: plan klaar (bible, blauwdruk goedgekeurd 29-10, juridisch, 
 - Ontwerpen van anderen alleen opnemen met schriftelijke toestemming en duidelijke licentie per generator.
 - Nooit een bestaand model (bestand of foto) aan AI geven om het om te bouwen. Eigen ontwerpen vanuit algemene onderdelen en openbare maten, met het proces gedateerd in de repo (zie `docs/juridisch.md`).
 - Geen code uit Bambu Studio of OrcaSlicer overnemen (AGPL).
+- Eerst hergebruiken, dan pas bouwen: kijk in `docs/hergebruik.md`. Alleen licenties MIT/ISC/BSD/Apache/Unlicense in de site; GPL alleen als los programma (openscad-wasm); nooit NC of onduidelijke licenties.
 - Rode lijnen en dark patterns die we nooit doen staan in `docs/gevoel.md`. Alle animaties via de pop-taal (`docs/brand/pop.md`).
 - Domein tinkpop.com staat bij Cloudflare, op naam van de eigenaar. Niets live zetten of DNS wijzigen zonder akkoord van de eigenaar.
