@@ -32,3 +32,7 @@ Eigenaar koos variant 2 (Layer T) met het printkop-poppetje als mascotte, en lie
 - **Niet bruikbaar**: de SVG's in het pakket zijn automatisch overgetrokken (verkeerde kleuren, rafelige randen). Niet in de repo gezet.
 - **Nog nodig**: echte vectorversie (B-085): T-vorm en lagen als nette paden, woordmerk uit een OFL-lettertype omgezet naar paden. Favicon 16 px is nauwelijks leesbaar: voor klein formaat alleen de T zonder ring, met 2 lagen.
 - Slogan staat goed: "Type it. Tink it. Print it." (B-080).
+
+## Siteconcept (30-10-2026)
+Visueel concept van de complete site: https://claude.ai/artifact/2vdQeEW4hbjzPodJegAoe6 (home = werkbank, telefoon maken en downloaden, catalogus, makerprofiel, mijn ontwerpen, melden, modulebord, open boek). Elk scherm noemt zijn modules en fase.
+Voorstel huisstijl (nog niet besloten): koppen in Fredoka, tekst in Figtree, maten en codes in JetBrains Mono (alle drie OFL); inkt #141625, roze #E23D8E als enige hoofdknop, cyaan #0AA5C9 en geel #FFC93C als steunkleur; printplaat donker #1D2030 als held van elke pagina.
