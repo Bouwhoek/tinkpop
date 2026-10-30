@@ -1,0 +1,27 @@
+{
+  "uitleg": "Vaste testset (docs/2-plan/mvp.md). Elke wijziging aan de rekenmotor draait hiertegen. verwacht: ok | waarschuwing:<reden>.",
+  "font": "Titan One",
+  "grootte_mm": 9,
+  "namen": [
+    {"naam": "Zoë", "verwacht": "ok", "waarom": "trema"},
+    {"naam": "Åsa", "verwacht": "ok", "waarom": "ring boven hoofdletter"},
+    {"naam": "Ömer", "verwacht": "ok", "waarom": "trema op hoofdletter"},
+    {"naam": "Çağla", "verwacht": "ok", "waarom": "staart raakt de C; breve"},
+    {"naam": "ÇAĞLA", "verwacht": "ok", "waarom": "Turks in hoofdletters"},
+    {"naam": "İlayda", "verwacht": "waarschuwing:teken-ontbreekt", "waarom": "Titan One heeft geen İ; nooit stil weglaten"},
+    {"naam": "Łukasz", "verwacht": "ok", "waarom": "Pools"},
+    {"naam": "Søren", "verwacht": "ok", "waarom": "Deens"},
+    {"naam": "José", "verwacht": "ok", "waarom": "accent"},
+    {"naam": "O'Brien", "verwacht": "ok", "waarom": "apostrof"},
+    {"naam": "Iiiiii", "verwacht": "ok", "waarom": "dun, veel smalle letters"},
+    {"naam": "WWWWWW", "verwacht": "ok", "waarom": "breed"},
+    {"naam": "Li", "verwacht": "ok", "waarom": "heel kort"},
+    {"naam": "A", "verwacht": "ok", "waarom": "één letter"},
+    {"naam": "2026", "verwacht": "ok", "waarom": "cijfers"},
+    {"naam": "Maximiliaan-Alexander", "verwacht": "waarschuwing:lang", "waarom": "langer dan 100 mm: voorstellen kleiner te maken"},
+    {"naam": "Jan  Piet", "verwacht": "ok", "waarom": "dubbele spatie wordt één", "wordt": "Jan Piet"},
+    {"naam": "  emma ", "verwacht": "ok", "waarom": "spaties aan de rand weg", "wordt": "emma"},
+    {"naam": "EMMA", "verwacht": "ok", "waarom": "alleen hoofdletters"},
+    {"naam": "Bobbi", "verwacht": "ok", "waarom": "ronde letters"}
+  ]
+}

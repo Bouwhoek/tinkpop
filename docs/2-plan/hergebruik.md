@@ -1,0 +1,86 @@
+# Hergebruik van open source (29-10-2026)
+
+Ongeveer 40–50% van fase 0–1 kan uit bestaande open source komen; voor de technische basis (rekenen, 3D, tekst, export, controles, inloggen) zelfs 60–70%. Alles wat in de site terechtkomt is MIT, ISC of Apache: dat past bij elke licentie die we kiezen. Zelf bouwen blijft: de generators, de clicker, de plaatlogica, de pop-taal, het modulebord-gedrag, de meldknop en de juridische poort.
+
+Klikbaar overzicht met alle modules: `docs/pages/overzicht.html` / https://claude.ai/artifact/SvncP5H8edGJj65ZqECMdU
+
+| Wat we nodig hebben | Project | Licentie | Hoe | Bespaart |
+|---|---|---|---|---|
+| Rekenkern (vormen, tekst-contour, gram) | manifold-3d | Apache-2.0 | zoals het is | maanden |
+| Rekenwerker + cache | open-keychain (worker, cache) | MIT | ombouwen | 1–2 weken |
+| OpenSCAD in de browser | openscad-wasm (los, geïsoleerd) | GPL-2.0+ | zoals het is | maanden |
+| Customizer-paneel | openscad-playground | GPL-3.0 | alleen inspiratie | 1 week |
+| 3D-voorbeeld | three + react-three-fiber + drei | MIT | zoals het is | 2–3 weken |
+| Wanddikte-check | three-mesh-bvh | MIT | zoals het is | 1 week |
+| Tekst naar vorm | harfbuzzjs + outline.ts (open-keychain) | MIT | ombouwen | 2–3 weken |
+| Fonts | google/fonts | OFL / Apache | zoals het is | — |
+| SVG naar vorm | three SVGLoader | MIT | zoals het is | 1 week |
+| Foto naar vector (later) | imagetracerjs | Unlicense | zoals het is | 1 week |
+| Emoji | Twemoji (jdecked) | MIT + CC BY 4.0 | zoals het is | 1 week |
+| 3MF voor Bambu (AMS) | three-3mf-exporter (bekuto3d) | MIT | ombouwen | 1–2 weken |
+| Plaat vullen | maxrects-packer | MIT | zoals het is | 1 week |
+| Slicer-test in CI | Bambu Studio CLI, OrcaSlicer CLI, PrusaSlicer CLI + open-keychain-scripts (zie `mvp.md`, 3MF-matrix) | AGPL (alleen tool) / MIT | ombouwen | 1 week |
+| OpenSCAD-bibliotheek | BOSL2 | BSD-2-Clause | zoals het is | — |
+| Inloggen (e-maillink + passkey) | Better Auth + passkey-plugin | MIT | zoals het is | weken |
+| Beheer-slot | Cloudflare Access | dienst | zoals het is | groot |
+| Inlogmails | Resend (gratis 100/dag) of Cloudflare Email ($5/mnd) | MIT (SDK) | zoals het is | middel |
+| Database | Drizzle ORM op D1 | Apache-2.0 | zoals het is | middel |
+| Live schakelaars | eigen flags.json in OpenFeature-vorm | Apache-2.0 (vorm) | zelf bouwen | — |
+| Modulebord | React Flow + dagre | MIT | zoals het is | groot |
+| Formulieren uit schema | rjsf + @cfworker/json-schema | Apache-2.0 / MIT | zoals het is | groot |
+| Meertalig | Astro i18n + Paraglide | MIT | zoals het is | middel |
+| Statistiek | Cloudflare Web Analytics + Analytics Engine | dienst | zoals het is | groot |
+| Foutmeldingen | @sentry/cloudflare → GlitchTip | MIT | zoals het is | groot |
+| Scheldwoordfilter (openbare delen) | obscenity | MIT | zoals het is | klein |
+| Robotcheck | Turnstile + react-turnstile | MIT | zoals het is | klein |
+| Docs, logboek, transparantie | Astro Starlight + Changesets | MIT | zoals het is | groot |
+| CI-controles | ajv, dependency-review, license-checker, REUSE, Playwright + axe, Renovate | diverse (alleen tools) | zoals het is | groot |
+| Feestje bij download | canvas-confetti (of eigen canvas) | ISC | zoals het is | klein |
+| Meldknop + takedown (DSA) | niets geschikt | — | zelf bouwen | — |
+| Pop-taal | eigen (CSS + WAAPI) | — | zelf bouwen | — |
+
+## Licentieregels
+**Sinds B-075 is de code AGPL-3.0.** MIT/BSD/ISC/Apache mogen erin (licentietekst meeleveren). GPL-3.0 en GPL-2.0-or-later mogen nu ook in de bundel; GPL-2.0-only niet. NC en onduidelijke licenties nooit.
+
+- MIT, BSD, ISC, Apache, Unlicense: altijd mee, licentietekst meeleveren (pagina 'third-party licenses').
+- GPL (openscad-wasm, GPL-2.0-or-later): mag mee onder AGPL; toch als los programma met bronverwijzing laden (kleiner en sneller).
+- GPL-3-code mag mee; dat maakt KeyV2 en andere GPL-bibliotheken bruikbaar.
+- Tools in CI (Bambu Studio, OrcaSlicer, PrusaSlicer, Renovate, REUSE) verspreiden we niet: geen gevolgen voor onze licentie. Code eruit overnemen blijft verboden (CLAUDE.md).
+- Creative Commons is niet bedoeld voor software (B-143): code altijd AGPL, CC BY alleen voor beelden en docs.
+- OFL-fonts: meeleveren met licentie; wat je print is vrij.
+- CC BY (Twemoji): vermelding op de site én in het gedownloade bestand.
+- Nooit CC BY-NC of 'TBD'-licenties (bijv. void_switch-clicker).
+
+## Pas op
+- Lucia (deprecated) en OpenAuth (staat stil): niet gebruiken voor inloggen.
+- Better Auth is sinds juli 2026 van Vercel: licentie blijft MIT, versie vastzetten.
+- Ajv werkt niet op Cloudflare Workers: op de server @cfworker/json-schema gebruiken.
+- elkjs, deepnest, potrace-wasm, KeyV2: GPL-varianten; onder AGPL mogelijk, per stuk de exacte versie nalopen (GPL-2.0-only niet).
+- Open Keychain: één maker, twee maanden oud; hun naam en logo nooit gebruiken (TRADEMARKS.md).
+- three-3mf-exporter (nagelopen 29-10, versie 45.2.1): MIT, één maker (bekuto3d). Schrijft een volledig Bambu-project: onderdelen met filamentnummer (`model_settings.config`) plus printer- en filamentinstellingen (`project_settings.config`, standaard A1). De spoelhoeveelheden zijn volgens de maker zelf berekend uit een beschrijving en getoetst aan opgeslagen bestanden, "not copied from the AGPL-licensed slicer sources". Geen tekens van overgenomen code gevonden. Omdat wij AGPL zijn, is het juridisch hoe dan ook verenigbaar. Bruikbaar; versie vastzetten. Werkt methode B uit de 3MF-proef niet zonder dialoog, dan is hun extra `project_settings.config` de eerste oplossing.
+- Inlogmails via Cloudflare kosten $5/mnd; Resend is gratis tot 100 per dag.
+
+## Bekeken in ronde 3 (29-10)
+| Tip | Van | Besluit |
+|---|---|---|
+| Clipper2 (2D-contouren, offset) | Gemini | Zit al in manifold-3d (`CrossSection` gebruikt Clipper2). Niets extra's nodig |
+| BitByBit (`@bitbybit-dev/core`) | Gemini | Niet nu: groot pakket, vooral voor OCCT-CAD. Voor sleutelhangers is manifold genoeg |
+| CadQuery | GPT | Niet: Python, niet in de browser. Onze vaste testset is de referentie |
+| 3MF Consortium (specificatie, voorbeeldbestanden) | GPT | Ja: als bron voor de 3MF-export en tests |
+| Bambu Studio / OrcaSlicer | GPT, Gemini | Alleen als testgereedschap (open, slice, controleer); geen code overnemen |
+| Slicer-check in CI (headless) | Gemini | Ja, zie `mvp.md` |
+
+## Zelf bouwen
+- Kaartjes, tinkpop.config.json, flags.json (met veilige stand en terugdraaien)
+- Gedrag van het modulebord: 2× bevestigen, logboek, ongedaan maken
+- Meldknop en takedown-flow (DSA)
+- De generators zelf en de clicker (eigen ontwerp)
+- Plaat vullen met Bambu-plaatmaten
+- Pop-taal en de formulier-onderdelen in Tinkpop-stijl
+- Juridische poort in CI
+- Kleine eigen laag voor mail, flags en opslag (niet vastzitten aan één leverancier)
+
+## Startpakket (advies)
+Astro + @astrojs/cloudflare + React · manifold-3d · three + react-three-fiber + drei · harfbuzzjs · three-3mf-exporter (ombouwen) · maxrects-packer · Twemoji · Better Auth + passkey · Drizzle op D1 · Resend (of Cloudflare Email) achter eigen `sendMail()` · eigen flags.json in OpenFeature-vorm · React Flow + dagre · rjsf + @cfworker/json-schema · Paraglide · Starlight · obscenity · react-turnstile · @sentry/cloudflare → GlitchTip · Cloudflare Web Analytics · CI: ajv, dependency-review, license-checker-rseidelsohn, REUSE, Playwright + axe, Renovate.
+
+Belangrijkste bronnen: github.com/elalish/manifold, github.com/capynq/open-keychain, github.com/LittleSound/bekuto3d, github.com/harfbuzz/harfbuzzjs, github.com/openscad/openscad-wasm, github.com/better-auth/better-auth, github.com/xyflow/xyflow, github.com/rjsf-team/react-jsonschema-form, github.com/cfworker/cfworker, npm-register (versies en licenties, stand 29-10-2026).

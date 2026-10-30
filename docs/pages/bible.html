@@ -1,0 +1,612 @@
+<title>Tinkpop Bible</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: sticky tabbalk; elk tabblad één werkvlak. Bord = kolommen per fase met SVG-lijnen. Donker-eerst, zoals het logo. */
+:root{
+  --bg:#0f1014; --surface:#181a21; --raised:#20232c; --fg:#f2f3f7; --muted:#9a9fb0; --line:#2d313d;
+  --cyan:#22c3ff; --pink:#ff3fb4; --orange:#ff9a1f; --accent:#22c3ff; --accent-ink:#06121a;
+  --good:#3ddc84; --warn:#ffb224; --bad:#ff5c6c;
+  --grad:linear-gradient(90deg,var(--cyan),var(--pink) 55%,var(--orange));
+  --display:"Fredoka","Nunito","Avenir Next",system-ui,sans-serif;
+  --body:"Figtree","Segoe UI",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){
+  --bg:#f6f6f9; --surface:#ffffff; --raised:#f0f1f5; --fg:#15161b; --muted:#5d6273; --line:#dcdee6;
+  --cyan:#0096d6; --pink:#d4178b; --orange:#d9700a; --accent:#0076c2; --accent-ink:#ffffff;
+  --good:#18864b; --warn:#a86a00; --bad:#c62f40; color-scheme:light}}
+:root[data-theme="light"]{
+  --bg:#f6f6f9; --surface:#ffffff; --raised:#f0f1f5; --fg:#15161b; --muted:#5d6273; --line:#dcdee6;
+  --cyan:#0096d6; --pink:#d4178b; --orange:#d9700a; --accent:#0076c2; --accent-ink:#ffffff;
+  --good:#18864b; --warn:#a86a00; --bad:#c62f40; color-scheme:light}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:16px/1.55 var(--body)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+.gut{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1080px;margin:0 auto}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--surface) 94%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;gap:14px;padding-block:10px;flex-wrap:wrap}
+.logo{font:700 22px var(--display);letter-spacing:-.01em}
+.logo span{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+nav.tabs{display:flex;gap:4px;overflow-x:auto;flex:1;min-width:0;scrollbar-width:none}
+nav.tabs button{font:600 14px var(--body);color:var(--muted);background:none;border:0;padding:8px 12px;border-radius:9px;cursor:pointer;white-space:nowrap}
+nav.tabs button[aria-selected="true"]{color:var(--fg);background:var(--raised)}
+nav.tabs .q{color:var(--pink)}
+.pill{font:600 12px var(--mono);padding:3px 9px;border-radius:99px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.pill.ok{color:var(--good);border-color:currentColor}
+main{padding-block:28px 72px}
+section.tab{display:grid;gap:22px}
+h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance;letter-spacing:-.01em}
+h1{font-size:clamp(2.2rem,6vw,3.6rem);line-height:1.02;font-weight:700}
+h1 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+h2{font-size:1.55rem;font-weight:600}
+h3{font-size:1.1rem;font-weight:600}
+p{margin:0;max-width:68ch}
+.muted{color:var(--muted)}
+.eyebrow{font:600 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--cyan)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;display:grid;gap:12px;min-width:0}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.kpi{display:grid;gap:2px}
+.kpi b{font:700 28px var(--display);font-variant-numeric:tabular-nums}
+.kpi span{font-size:13px;color:var(--muted)}
+ul,ol{margin:0;padding-left:1.2em;display:grid;gap:6px}
+li{max-width:70ch}
+code,.mono{font-family:var(--mono);font-size:13px}
+pre{margin:0;background:var(--raised);border:1px solid var(--line);border-radius:12px;padding:14px;overflow-x:auto;font:12.5px/1.55 var(--mono)}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:640px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:600 11.5px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+details{border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:600;list-style:none;display:flex;gap:10px;align-items:center}
+details>summary::-webkit-details-marker{display:none}
+details>summary::before{content:"+";font:600 16px var(--mono);color:var(--cyan);width:1em}
+details[open]>summary::before{content:"–"}
+details>div{padding:0 16px 16px;display:grid;gap:10px}
+.tag{display:inline-block;font:600 11px var(--mono);padding:2px 7px;border-radius:6px;background:var(--raised);color:var(--muted);border:1px solid var(--line)}
+.sev{font:700 11px var(--mono);padding:2px 8px;border-radius:99px;border:1.5px solid currentColor;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}
+.sev.blocker{color:var(--bad)} .sev.high{color:var(--orange)} .sev.medium{color:var(--warn)} .sev.low{color:var(--muted)}
+/* bord */
+.board-tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.btn{font:600 14px var(--body);padding:9px 14px;border-radius:10px;border:1px solid var(--line);background:var(--raised);color:var(--fg);cursor:pointer}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.board-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:16px;background:var(--surface);background-image:radial-gradient(var(--line) 1px,transparent 1.3px);background-size:20px 20px}
+.board{position:relative;display:grid;grid-template-columns:repeat(5,minmax(178px,1fr));gap:28px;padding:22px;min-width:1000px}
+.board svg.wires{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.col{display:grid;align-content:start;gap:12px}
+.col h3{font:600 12px var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.node{position:relative;background:var(--raised);border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;display:grid;gap:6px;cursor:pointer;text-align:left;font:inherit;color:inherit;transition:border-color .15s,opacity .15s}
+.node .t{font-weight:700;font-size:14px;display:flex;justify-content:space-between;gap:8px;align-items:center}
+.node .d{font-size:12.5px;color:var(--muted);line-height:1.35}
+.node .meta{display:flex;flex-wrap:wrap;gap:4px}
+.node[data-on="1"]{border-color:var(--cyan);box-shadow:0 0 0 1px color-mix(in srgb,var(--cyan) 40%,transparent)}
+.node[data-on="0"]{opacity:.55}
+.node[data-core="1"]{border-style:solid;border-color:color-mix(in srgb,var(--pink) 70%,var(--line))}
+.node.hl{outline:2px solid var(--orange);outline-offset:2px}
+.sw{width:34px;height:20px;border-radius:99px;background:var(--line);position:relative;flex:none;transition:background .15s}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:14px;height:14px;border-radius:50%;background:var(--fg);transition:transform .15s}
+.node[data-on="1"] .sw{background:var(--cyan)}
+.node[data-on="1"] .sw::after{transform:translateX(14px);background:var(--accent-ink)}
+.node[data-core="1"] .sw{background:var(--pink)}
+.node[data-core="1"] .sw::after{transform:translateX(14px)}
+.meters{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.toast{min-height:22px;font-size:14px;color:var(--orange)}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:13px;color:var(--muted)}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px;border:1.5px solid}
+/* grafiek */
+.bars{display:grid;gap:10px}
+.bar{display:grid;grid-template-columns:150px 1fr 90px;gap:10px;align-items:center;font-size:13.5px}
+.bar .track{position:relative;height:14px;background:var(--raised);border-radius:7px;overflow:hidden}
+.bar .fill{position:absolute;top:0;bottom:0;border-radius:7px}
+.bar .v{font:600 12.5px var(--mono);text-align:right;font-variant-numeric:tabular-nums}
+@media (max-width:560px){.bar{grid-template-columns:96px 1fr 70px}}
+/* stappen */
+.flow{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.step{background:var(--raised);border:1px solid var(--line);border-radius:12px;padding:12px;display:grid;gap:4px}
+.step b{font:600 12px var(--mono);color:var(--pink)}
+/* vragen */
+.qs{display:grid;gap:14px}
+.qq{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px;display:grid;gap:12px}
+.qq .why{font-size:14px;color:var(--muted)}
+.opts{display:grid;gap:8px}
+.opt{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;text-align:left;padding:11px 13px;border-radius:11px;border:1.5px solid var(--line);background:var(--raised);color:var(--fg);cursor:pointer;font:inherit}
+.opt .dot{width:16px;height:16px;border-radius:50%;border:2px solid var(--muted);margin-top:3px}
+.opt[aria-pressed="true"]{border-color:var(--cyan);background:color-mix(in srgb,var(--cyan) 12%,var(--raised))}
+.opt[aria-pressed="true"] .dot{border-color:var(--cyan);background:var(--cyan)}
+.opt small{display:block;color:var(--muted);font-size:13px;margin-top:2px}
+.rec{font:600 11px var(--mono);color:var(--good);margin-left:6px}
+textarea{width:100%;min-height:70px;font:15px/1.5 var(--body);color:var(--fg);background:var(--raised);border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;resize:vertical}
+.btn:focus-visible,.opt:focus-visible,.node:focus-visible,nav.tabs button:focus-visible,textarea:focus-visible{outline:3px solid color-mix(in srgb,var(--cyan) 55%,transparent);outline-offset:2px}
+.progress{height:6px;background:var(--raised);border-radius:3px;overflow:hidden}
+.progress i{display:block;height:100%;width:0;background:var(--grad);transition:width .3s}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<header class="top gut"><div class="wrap">
+  <div class="logo">Tink<span>pop</span> <span class="muted" style="font:500 13px var(--mono);-webkit-text-fill-color:currentColor;background:none">bible v0.2</span></div>
+  <nav class="tabs" role="tablist" id="tabs"></nav>
+  <span class="pill" id="save">Nog niets opgeslagen</span>
+</div></header>
+
+<main class="gut"><div class="wrap" id="views"></div></main>
+
+<script>
+/* ========== DATA ========== */
+const MODULES=[
+ // fase 0-1 kern
+ {id:"core",n:"Kern",d:"Layout, register, schakelbord, afhankelijkheden-check",ph:1,core:1,js:18},
+ {id:"runtime",n:"Generator-runtime",d:"Formulier met groepen, 3D-voorbeeld, rekenwerker, export",ph:1,core:1,js:260,req:["core"]},
+ {id:"credit",n:"Maker-credit",d:"Naam, licentie en doneerlink bij elke generator",ph:1,core:1,js:1,req:["runtime"]},
+ {id:"legal",n:"Juridisch",d:"Licenties, privacy, voorwaarden",ph:1,core:1,js:0,req:["core"]},
+ {id:"errors",n:"Foutmeldingen",d:"Fouten van bezoekers zien (zonder hun tekst) + knop 'Meld een probleem'",ph:1,core:1,js:2,req:["core"]},
+ // fase 1 optioneel
+ {id:"fonts",n:"Fonts",d:"OFL-fonts, tekstvorming via harfbuzz, pas laden als nodig",ph:1,js:180,req:["runtime"]},
+ {id:"kc-name",n:"Sleutelhanger met naam",d:"Eerste generator, met alles erop en eraan",ph:1,gen:1,js:12,req:["runtime","fonts","svg"]},
+ {id:"svg",n:"Eigen logo/SVG",d:"Eigen plaatje of emoji, alleen in je browser",ph:1,js:25,req:["runtime"]},
+ {id:"ams",n:"AMS-kleuren 3MF",d:"3MF met filament per kleur; getest in Bambu én Orca",ph:1,js:20,req:["runtime"]},
+ {id:"estimate",n:"Printschatting",d:"Gram, printtijd, past op plaat (schatting)",ph:1,js:4,req:["runtime"]},
+ {id:"share",n:"Deel-link",d:"Ontwerp zit in de link, zonder account",ph:1,js:2,req:["runtime"]},
+ {id:"saved",n:"Bewaren",d:"Ontwerpen bewaren op je eigen apparaat",ph:1,js:2,req:["runtime"]},
+ {id:"seo",n:"Vindbaar",d:"Eigen pagina per generator en voorbeeld, deelplaatjes",ph:1,js:0,req:["core"]},
+ {id:"bmc",n:"Buy Me a Coffee",d:"Doneerknop van Tinkpop",ph:1,js:1,req:["core"]},
+ {id:"analytics",n:"Statistiek",d:"Cloudflare, zonder cookies; telt ook downloads",ph:1,js:5,req:["core"]},
+ // fase 2
+ {id:"catalog",n:"Catalogus",d:"Overzicht van alle generators, zoeken, categorieën",ph:2,js:6,req:["runtime"]},
+ {id:"clicker",n:"Clicker",d:"Aantal knoppen, rijen, kleuren, magneten",ph:2,gen:1,js:10,req:["runtime","ams"]},
+ {id:"scad",n:"OpenSCAD-spoor",d:"Community-generators in .scad, ook van MakerWorld",ph:2,js:2900,req:["runtime"]},
+ {id:"board",n:"Moduleoverzicht",d:"Dit bord, uit de echte kaartjes: bekijken; aanzetten via chat",ph:2,js:0,req:["core","access"],admin:1},
+ {id:"access",n:"Beheer-slot",d:"Cloudflare Access voor /admin (gratis tot 50 mensen)",ph:2,js:0,req:["core"],server:1},
+ // fase 3
+ {id:"r2",n:"Opslag R2",d:"Bestanden; uitgaand verkeer gratis",ph:3,js:0,req:["core"],server:1},
+ {id:"d1",n:"Database D1",d:"Stemmen, accounts, galerij",ph:3,js:0,req:["core"],server:1},
+ {id:"turnstile",n:"Turnstile",d:"Robotcheck zonder puzzels",ph:3,js:8,req:["core"],server:1},
+ {id:"bambu",n:"Open in Bambu Studio",d:"Bestand even op onze server; Bambu toont een waarschuwing",ph:3,js:2,req:["ams","r2","turnstile"],server:1},
+ {id:"editboard",n:"Bord met schakelaars",d:"Zelf klikken; het bord stelt de wijziging voor",ph:3,js:0,req:["board"],admin:1},
+ {id:"nl",n:"Nederlands",d:"Tweede taal naast Engels",ph:3,js:0,req:["core"]},
+ {id:"nmy",n:"Not Made Yet",d:"Stemmen op ideeën; winnaar wordt een generator",ph:3,js:6,req:["d1","turnstile"],server:1},
+ // fase 4-5
+ {id:"auth",n:"Inloggen",d:"E-mail of GitHub; account verwijderen kan",ph:4,js:15,req:["d1"],server:1},
+ {id:"uploads",n:"Uploads",d:"Ontwerpen online delen",ph:4,js:4,req:["r2","auth"],server:1},
+ {id:"gallery",n:"Galerij",d:"Community-ontwerpen, melden en modereren",ph:4,js:10,req:["uploads","auth"],server:1},
+ {id:"ai",n:"AI-modellen",d:"Tekst of foto naar 3D, met daglimiet",ph:5,js:10,req:["auth","r2"],server:1,cost:1},
+ {id:"shop",n:"Winkel",d:"Kant-en-klaar kopen voor wie geen printer heeft",ph:5,js:5,req:["auth"],server:1,cost:1}
+];
+const PHASES=["Fase 0–1 · fundament","Fase 2 · community","Fase 3 · groeien","Fase 4 · accounts","Fase 5 · AI & winkel"];
+
+const TECH=[
+ ["Hosting","Cloudflare Workers (static assets)","Domein staat al bij Cloudflare; nieuwe functies komen in Workers; NotMadeYet draait ook zo.","Pages (verandert het besluit van 28-10)"],
+ ["Framework","Astro + React-eilanden","Gewone pagina's zonder JavaScript; generator-pagina laadt alleen wat nodig is; ingebouwd moduleregister.","SvelteKit, Next.js"],
+ ["Rekenmotor","manifold-3d in een Web Worker, voor onze eigen generators","Gemeten 29 ms per toets bij 'Mark', 117 ms bij 18 tekens op een laptop; uitvoer altijd waterdicht; 204 KB. De SDK ruimt zelf geheugen op.","OpenSCAD-wasm, JSCAD, replicad"],
+ ["Tweede spoor (fase 2)","OpenSCAD-wasm (vaste versie) voor community-generators","Bestanden van MakerWorld werken zonder aanpassen; veilig omdat OpenSCAD geen netwerk of pagina kan raken. Rekent als je even stopt met typen.","TypeScript van vreemden (niet te controleren)"],
+ ["Tekst","harfbuzzjs + eigen OFL-fonts","Echte tekstvorming; opentype.js crashte op 2 gewone fonts en leest geen WOFF2.","opentype.js"],
+ ["Emoji","Twemoji/OpenMoji als SVG","Kleurfonts kun je niet printen; per kleur een eigen onderdeel.","—"],
+ ["3D-beeld","three.js","Standaard en snel; werkt ook in Open Keychain.","—"],
+ ["Export","STL + minimale 3MF met filament per onderdeel","Bambu Studio en OrcaSlicer openen het met de juiste kleuren; geen printerprofiel, dus geen meldingen. Automatisch getest in beide slicers.","volledig Bambu-projectbestand (breekt bij updates)"],
+ ["Schakelbord","tinkpop.config.json + KV-noodschakelaar","Simpel, terug te draaien, elke wijziging zichtbaar in de repo.","GrowthBook, OpenFeature"],
+ ["Visueel bord","Eerst automatisch uit de kaartjes (fase 2), later React Flow om zelf te klikken","Modules als blokken, lijnen als afhankelijkheden. Bekijken eerst, schakelen later.","Rete.js, LiteGraph, Drawflow"],
+ ["Repo","Eén Astro-app op npm","Mappen voor kern, modules en generators; installatiescripts van pakketten staan uit. Pas opsplitsen als het echt nodig is.","pnpm-monorepo met 4 pakketten (te veel breekpunten)"],
+ ["Statistiek","Cloudflare Web Analytics","Geen cookies, dus geen cookiebanner.","Google Analytics"]
+];
+
+const BENCH=[
+ {n:"manifold-3d",lo:29,hi:117,size:204,c:"var(--cyan)"},
+ {n:"OpenSCAD-wasm",lo:94,hi:309,size:2900,c:"var(--pink)",note:"+ 0,2–0,5 s opstart per run"},
+ {n:"replicad (OCCT)",lo:183,hi:268,size:7200,c:"var(--orange)"},
+ {n:"JSCAD",lo:null,hi:null,size:null,c:"var(--muted)",note:"crasht op fonts"}
+];
+
+/* AUDIT en VRAGEN worden ingevuld na de audit */
+const AUDIT=[
+ {sev:"blocker",t:"Jij kunt geen TypeScript-code van vreemden controleren",why:"Code van een bijdrager draait op tinkpop.com zelf en, als hij wordt meegebouwd, zelfs in de stap die de sleutels voor Cloudflare heeft. 'Zonder netwerk' is dan niet genoeg.",fix:"Community-generators alleen in OpenSCAD (.scad): dat kan geen netwerk en geen pagina raken. Eigen generators (door mij gebouwd) mogen TypeScript. Bouwen gebeurt in een stap zonder geheimen; alleen het eindresultaat gaat naar de uitrol. Plus automatische codecheck en tweestapsverificatie op je GitHub."},
+ {sev:"high",t:"Het plan schoof eerdere afspraken stilletjes opzij",why:"Eerder: OpenSCAD eerst, Cloudflare Pages, en in je vragenlijst koos je 'iedereen kan inloggen'.",fix:"Alle drie staan nu als vraag aan jou (vraag 1, 3, 4). Niets is besloten tot jij kiest."},
+ {sev:"high",t:"Te veel platform voor één generator",why:"Een monorepo met vier pakketten en een uitgebreid modulecontract geeft extra breekpunten, ook voor AI-bouwers.",fix:"Eén Astro-app met mappen voor kern, modules en generators (npm, installatiescripts uit). Alleen het generator-contract leggen we vast; platformmodules blijven intern tot er drie echte zijn."},
+ {sev:"high",t:"Geen proeflink per wijziging",why:"Jij kunt alleen goedkeuren wat je zelf kunt aanklikken.",fix:"Elke wijziging krijgt een eigen proefadres plus plaatjes van de renders. Pas als jij het geprobeerd hebt, gaat het live."},
+ {sev:"high",t:"Geen zicht op fouten",why:"Als het bij een bezoeker misgaat, merk jij het niet.",fix:"Module 'Foutmeldingen' in de kern: fouten anoniem tellen (zonder de getypte tekst) en een knop 'Meld een probleem' die een GitHub-melding opent."},
+ {sev:"high",t:"Bambu-projectbestand is kwetsbaar",why:"Het volledige Bambu-formaat geeft meldingen en breekt bij nieuwe Bambu Studio-versies.",fix:"Minimale 3MF (onderdelen + filament per onderdeel + kleur), geen printerprofiel. Automatische test in Bambu Studio en OrcaSlicer, wekelijks ook tegen de nieuwste versie."},
+ {sev:"high",t:"Twee rekenmotoren verdubbelen het werk",why:"Elke OpenSCAD-kleur is een aparte render van 0,2–1,3 s; tests en export moeten dubbel.",fix:"Fase 1: alleen manifold. OpenSCAD komt in fase 2, met 'rekent als je even stopt' in plaats van bij elke letter."},
+ {sev:"high",t:"Geheugenlekken door vergeten opruimen",why:"Makers vergeten objecten op te ruimen; na een tijdje loopt de telefoon vol.",fix:"De SDK ruimt zelf op na elke berekening. Een berekening kan worden afgebroken en heeft een 'snel' en 'netjes' stand."},
+ {sev:"high",t:"Snelheid alleen op een laptop gemeten",why:"Een goedkope Android is 4–8× trager: dan ±0,5–1 s bij 18 letters.",fix:"Apart budget voor telefoons, getest op een vaste testtelefoon. Eerst een snelle ruwe vorm, het nette werk na een korte pauze."},
+ {sev:"high",t:"Vindbaarheid ontbrak",why:"Zonder reclamebudget komen bezoekers via Google en Instagram.",fix:"Module 'Vindbaar': eigen pagina per generator en per sterk voorbeeld ('dog tag generator'), deelplaatjes, nette links."},
+ {sev:"medium",t:"Eigen logo zat achter 'uploads' (fase 4)",why:"Een SVG in je eigen browser inladen heeft geen server nodig en hoort bij 'alles erop en eraan'.",fix:"Nieuwe module 'Eigen logo/SVG' in fase 1."},
+ {sev:"medium",t:"Bewaren zat achter inloggen",why:"Je wilde ontwerpen kunnen bewaren.",fix:"'Bewaren' (op je apparaat) en 'Deel-link' in fase 1. Inloggen blijft een keuze (vraag 3)."},
+ {sev:"medium",t:"'Alles direct zichtbaar' wordt een muur van knoppen",why:"Een formulier dat automatisch uit 30 instellingen wordt gemaakt, is onbruikbaar.",fix:"Het kaartje krijgt groepen, volgorde, soorten knoppen (schuif, kleur, font) en 'toon alleen als...'."},
+ {sev:"medium",t:"Open in Bambu Studio botst met 'privé'",why:"Het bestand moet even op onze server; dat trekt misbruik aan, Bambu waarschuwt, en op een telefoon werkt het niet.",fix:"Verplaatst naar fase 3, met robotcheck, limieten en automatisch verwijderen. Tot dan: 3MF downloaden en dubbelklikken."},
+ {sev:"medium",t:"Downloaden blokkeren is te streng",why:"Een clicker heeft bewust overhang; blokkeren zou goede modellen tegenhouden.",fix:"Alleen een kapot model blokkeert. Overhang en andere printpunten worden een duidelijke waarschuwing."},
+ {sev:"medium",t:"Kaartje miste velden",why:"Vertalingen, extra controles, versie-overstap, kleurrollen, vindbaarheid, licentie per font of plaatje.",fix:"Toegevoegd. Deel-links bevatten de generatorversie, zodat ze nooit breken. Een uitgezette generator krijgt een nette 'met pensioen'-pagina in plaats van een foutpagina."},
+ {sev:"medium",t:"Samenvoegen is meteen live zetten",why:"Jouw regel: eerst vragen voordat iets naar productie gaat.",fix:"Vastleggen dat samenvoegen jouw akkoord is, ná het proberen van de proeflink (vraag 5)."},
+ {sev:"medium",t:"Visueel bord in fase 2 is veel werk",why:"Met minder dan 15 modules zegt een overzicht hetzelfde.",fix:"Fase 2: het bord wordt automatisch gemaakt uit de kaartjes, om te bekijken. Zelf klikken en wijzigen komt in fase 3 (vraag 7)."},
+ {sev:"medium",t:"Testen en cijfers",why:"Zonder vaste testmodellen merk je niet dat een update iets sloopt; zonder downloadtelling weet je niet of het werkt.",fix:"Per generator vaste testmodellen (volume, maat, aantal delen), een test van typen tot downloaden, en cijfers: downloads per week, aandeel bezoekers dat downloadt, laadtijd op telefoon, fouten, donaties tegen kosten."},
+ {sev:"medium",t:"Merkcheck Pinkpop vóór livegang",why:"Pinkpop is in Nederland bekend en dan ook buiten de eigen klassen beschermd. Later van naam wisselen is duur.",fix:"Staat in fase 1b als voorwaarde (vraag 9)."},
+ {sev:"low",t:"NotMadeYet niet in deze repo",why:"Het is een eigen werkend systeem met een eigen Worker.",fix:"Apart laten. Ideeën komen als .scad-generator naar Tinkpop; later krijgt het een eigen plek op de site (vraag 10)."},
+ {sev:"low",t:"Fonts en emoji",why:"Fonts met een beschermde naam mogen niet worden ingekort; dunne emoji-lijntjes printen niet.",fix:"Alleen fonts zonder beschermde naam, pas laden als je ze kiest, en een minimale lijndikte voor emoji."}
+];
+const QUESTIONS=[
+ {id:"taal",topic:"community",q:"Waarin maken anderen hun generator?",why:"Bepaalt veiligheid en hoe makkelijk MakerWorld-makers instappen.",o:[{v:"Alleen OpenSCAD (.scad), zoals op MakerWorld",d:"Veilig: kan geen netwerk of pagina raken. Mijn eigen generators blijven TypeScript.",rec:1},{v:"Ook TypeScript",d:"Meer mogelijk, maar elke bijdrage is echte code die jij niet kunt beoordelen."},{v:"Nog niet open voor anderen",d:"Eerst zelf bouwen, community later."}]},
+ {id:"eerste",topic:"product",q:"Welke generator eerst?",o:[{v:"Sleutelhanger met naam",d:"Meeste vraag; de lat is keychaingenerator.tech.",rec:1},{v:"Clicker",d:"Meest onderscheidend, maar wacht op toestemming van de maker."},{v:"Beide tegelijk",d:"Duurt langer voordat er iets live staat."}]},
+ {id:"login",topic:"product",q:"Ontwerpen bewaren: zonder account?",why:"In je vragenlijst koos je 'iedereen kan inloggen'.",o:[{v:"Ja: bewaren op je apparaat + deel-link, inloggen later",d:"Geen kosten, geen privacywerk, sneller live.",rec:1},{v:"Nee: inloggen vanaf het begin",d:"Bewaren op elk apparaat, maar meer werk en AVG-plichten."}]},
+ {id:"hosting",topic:"techniek",q:"Cloudflare Workers in plaats van Pages?",why:"Op 28-10 noteerden we Pages. Workers is waar Cloudflare nu op inzet, en NotMadeYet draait er ook op.",o:[{v:"Ja, Workers",d:"Zelfde als NotMadeYet, toekomstvast.",rec:1},{v:"Nee, Pages"}]},
+ {id:"live",topic:"beheer",q:"Is 'samenvoegen' ook je akkoord om live te zetten?",o:[{v:"Ja, nadat ik de proeflink zelf heb geprobeerd",rec:1},{v:"Nee, ik wil per keer apart akkoord geven"}]},
+ {id:"bambu",topic:"product",q:"'Open in Bambu Studio' met één klik?",why:"Het bestand staat dan even op onze server en Bambu toont een waarschuwing. Op telefoons werkt het niet.",o:[{v:"Later; eerst gewoon 3MF downloaden",rec:1},{v:"Meteen in fase 1"}]},
+ {id:"bord",topic:"modulair",q:"Hoe wil je het modulebord?",why:"Je wilt modules visueel aan elkaar zien. De vraag is wanneer je er zelf in klikt.",o:[{v:"Fase 2 bekijken (blokken + lijnen, zoals hier), fase 3 zelf klikken",d:"Snel zicht, weinig risico; aanzetten gaat eerst via de chat.",rec:1},{v:"Simpele lijst met schakelaars is genoeg"},{v:"Meteen een bord waarin ik klik en het live gaat",d:"Meer werk vooraf, en een klik kan meteen iets breken."}]},
+ {id:"fouten",topic:"beheer",q:"Foutmeldingen van bezoekers verzamelen (zonder hun tekst)?",o:[{v:"Eigen kleine teller bij Cloudflare, gratis",rec:1},{v:"Sentry (gratis laag)",d:"Meer details, extra dienst."},{v:"Niet"}]},
+ {id:"merk",topic:"merk",q:"Merkcheck Tinkpop/Pinkpop vóór de livegang?",o:[{v:"Ja, eerst nakijken in TMview",rec:1},{v:"Na de livegang"}]},
+ {id:"nmy",topic:"strategie",q:"NotMadeYet koppelen?",o:[{v:"Apart laten; ideeën worden later .scad-generators op Tinkpop",rec:1},{v:"Nu al samenvoegen in één site"}]},
+ {id:"beta",topic:"strategie",q:"Eerst testen met 5–10 Bambu-gebruikers?",o:[{v:"Ja, eerst een kleine testgroep",rec:1},{v:"Nee, direct lanceren"}]},
+ {id:"clicker",topic:"juridisch",q:"De clicker-maker nu al om schriftelijke toestemming vragen?",why:"Toestemming kost tijd, geen code. Vraag ook of het ontwerp open source mag.",o:[{v:"Ja, deze week",rec:1},{v:"Pas als de sleutelhanger live is"}]},
+ {id:"blokkeren",topic:"product",q:"Wanneer blokkeert de site het downloaden?",o:[{v:"Alleen bij een kapot model; printpunten als waarschuwing",rec:1},{v:"Ook bij printproblemen zoals te veel overhang"}]},
+ {id:"licentie",topic:"juridisch",q:"Standaardlicentie voor ontwerpen op Tinkpop?",o:[{v:"CC BY 4.0: vrij gebruiken en prints verkopen, met naamsvermelding",rec:1},{v:"CC BY-SA 4.0: idem, en aanpassingen moeten ook open"},{v:"Maker kiest zelf, ook 'niet commercieel'"}]},
+ {id:"fonts",topic:"product",q:"Hoeveel fonts bij de start?",o:[{v:"± 12 goed geteste fonts",d:"Snel en betrouwbaar.",rec:1},{v:"30 of meer"},{v:"Ook eigen font uploaden"}]},
+ {id:"telefoon",topic:"snelheid",q:"Welke telefoon gebruik jij zelf?",why:"Daarop testen we het snelheidsbudget met de hand.",o:[{v:"iPhone"},{v:"Android (Samsung of andere)"},{v:"Beide"}]},
+ {id:"makerworld",topic:"groei",q:"Tinkpop-generators ook op MakerWorld zetten?",why:"Zelfde .scad-bestand, als reclame met link naar Tinkpop.",o:[{v:"Ja, waar het kan, met link naar Tinkpop",rec:1},{v:"Nee, alleen op Tinkpop"}]}
+];
+
+/* ========== STATE ========== */
+let state={on:{},a:{},notes:{}};
+MODULES.forEach(m=>state.on[m.id]=m.core?1:(m.ph===1?1:0));
+try{const s=JSON.parse(localStorage.getItem("tp-bible")||"null");if(s&&s.on)state=s}catch(e){}
+
+const el=(t,p={},...c)=>{const n=document.createElement(t);for(const k in p){if(k==="on")for(const e in p.on)n.addEventListener(e,p.on[e]);else if(k==="html")n.innerHTML=p[k];else if(k in n&&!["for","role"].includes(k))n[k]=p[k];else n.setAttribute(k,p[k])}c.flat().forEach(x=>x!=null&&n.append(x));return n};
+const byId=Object.fromEntries(MODULES.map(m=>[m.id,m]));
+
+/* ========== TABS ========== */
+const TABS=[["overzicht","Overzicht"],["bord","Modulebord"],["techniek","Techniek"],["contract","Modulecontract"],["snelheid","Snelheid"],["community","Community & veiligheid"],["fasen","Fasen & kosten"],["audit","Audit"],["vragen","Vragen aan jou"]];
+const views={};
+function showTab(id){
+  document.querySelectorAll("nav.tabs button").forEach(b=>b.setAttribute("aria-selected",b.dataset.id===id));
+  Object.entries(views).forEach(([k,v])=>v.hidden=k!==id);
+  if(id==="bord")requestAnimationFrame(drawWires);
+  try{if(location.hash!=="#"+id)history.replaceState(null,"","#"+id)}catch(e){}
+  window.scrollTo({top:0});
+}
+function buildTabs(){
+  const nav=document.getElementById("tabs"),v=document.getElementById("views");
+  TABS.forEach(([id,label])=>{
+    nav.append(el("button",{role:"tab",className:id==="vragen"?"q":"","data-id":id,on:{click:()=>showTab(id)}},label));
+    const s=el("section",{className:"tab",id:"v-"+id});views[id]=s;v.append(s);
+  });
+}
+
+/* ========== VIEWS ========== */
+function vOverzicht(s){
+  s.append(
+   el("div",{style:"display:grid;gap:14px"},
+    el("span",{className:"eyebrow"},"Plan vóór de eerste regel code"),
+    el("h1",{html:"Zo bouwen we <em>Tinkpop</em>"}),
+    el("p",{className:"muted"},"Een snelle, gratis site waar je 3D-printbare dingen maakt door in te vullen, te kijken en te downloaden. Alles rekent in de browser van de bezoeker. Het platform bestaat uit losse modules die je aan en uit zet; generators zijn ook modules, en de community kan ze toevoegen. Jij keurt alles goed."),el("p",{},"Versie 0.2: na vier onderzoeken en een kritische audit. Er staan nog 17 keuzes voor jou open."),el("button",{className:"btn primary",style:"justify-self:start",on:{click:()=>showTab("vragen")}},"Beantwoord de 17 vragen →")),
+   el("div",{className:"grid"},
+    kpi("€0","hosting tot 100.000 bezoekers per maand"),
+    kpi("29 ms","per toets bij een korte naam (gemeten)"),
+    kpi(String(MODULES.length),"modules in het plan, "+MODULES.filter(m=>m.core).length+" altijd aan"),
+    kpi("17","vragen aan jou, met mijn advies")),
+   el("div",{className:"card"},el("h2",{},"Zeven principes"),
+    el("ol",{},
+     el("li",{},el("b",{},"Rekenen bij de bezoeker."),"  Geen server voor modellen: snel, gratis, privé."),
+     el("li",{},el("b",{},"Alles is een module."),"  Elke functie heeft een manifest, kan uit, en zegt wat hij nodig heeft."),
+     el("li",{},el("b",{},"De repo is het schakelbord."),"  Eén bestand bepaalt wat aan staat; elke wijziging is terug te draaien."),
+     el("li",{},el("b",{},"Uit is weg."),"  Wat uit staat, wordt niet meegebouwd en kost de bezoeker niets."),
+     el("li",{},el("b",{},"Eerst één generator perfect."),"  Dan pas verbreden."),
+     el("li",{},el("b",{},"Veilig standaard."),"  Community-code zonder netwerk, met tijdslimiet, na controles en jouw akkoord."),
+     el("li",{},el("b",{},"Gratis te draaien."),"  Betaalde onderdelen (AI, winkel) alleen als de inkomsten het dragen."))),
+   el("div",{className:"card"},el("h2",{},"Hoe het in elkaar zit"),
+    el("div",{className:"flow"},
+     step("Bezoeker","Opent een generator op tinkpop.com"),
+     step("Pagina","Astro levert de pagina razendsnel, zonder JavaScript"),
+     step("Eiland","Alleen het formulier en 3D-beeld laden"),
+     step("Rekenwerker","manifold-3d rekent het model naast de pagina"),
+     step("Download","STL of 3MF met AMS-kleuren, of open in Bambu Studio")),
+    el("p",{className:"muted"},"Daarachter: GitHub (code, schakelbord, controles) en Cloudflare (site, en later opslag en database).")),
+   el("div",{className:"card"},el("h2",{},"Hoe deze pagina werkt"),
+    el("ul",{},
+     el("li",{},el("b",{},"Modulebord: "),"zet blokken aan en uit en zie wat er gebeurt met snelheid en kosten. Jouw keuze wordt bewaard."),
+     el("li",{},el("b",{},"Audit: "),"een onafhankelijke controleur heeft dit plan kritisch doorgelopen. De verbeteringen staan erin."),
+     el("li",{},el("b",{},"Vragen aan jou: "),"klik per vraag een antwoord. Ik lees ze uit en pas het plan aan."))),
+   el("button",{className:"btn primary",style:"justify-self:start",on:{click:()=>showTab("vragen")}},"Naar de vragen →")
+  );
+}
+const kpi=(b,t)=>el("div",{className:"card kpi"},el("b",{},b),el("span",{},t));
+const step=(b,t)=>el("div",{className:"step"},el("b",{},b),el("span",{},t));
+
+function vBord(s){
+  const meters=el("div",{className:"meters",id:"meters"});
+  const toast=el("div",{className:"toast",id:"toast","aria-live":"polite"});
+  const board=el("div",{className:"board",id:"board"});
+  const wires=document.createElementNS("http://www.w3.org/2000/svg","svg");wires.setAttribute("class","wires");wires.id="wires";
+  board.append(wires);
+  PHASES.forEach((p,i)=>{
+    const col=el("div",{className:"col"},el("h3",{},p));
+    MODULES.filter(m=>m.ph===i+1||(i===4&&m.ph===5)).filter(m=>m.ph===i+1).forEach(m=>{
+      const meta=el("div",{className:"meta"});
+      if(m.core)meta.append(el("span",{className:"tag"},"kern"));
+      if(m.gen)meta.append(el("span",{className:"tag"},"generator"));
+      if(m.server)meta.append(el("span",{className:"tag"},"server"));
+      if(m.cost)meta.append(el("span",{className:"tag",style:"color:var(--orange)"},"kost geld"));
+      if(m.js)meta.append(el("span",{className:"tag"},m.js>=1000?(m.js/1000).toFixed(1).replace(".",",")+" MB":m.js+" KB"));
+      const b=el("button",{type:"button",className:"node",id:"n-"+m.id,"data-core":m.core?1:0,"aria-label":m.n,
+        on:{click:()=>toggle(m.id),mouseenter:()=>hl(m.id,true),mouseleave:()=>hl(m.id,false),focus:()=>hl(m.id,true),blur:()=>hl(m.id,false)}},
+        el("div",{className:"t"},el("span",{},m.n),el("span",{className:"sw"})),
+        el("div",{className:"d"},m.d),meta,
+        m.req&&m.req.length?el("div",{className:"d",style:"font-size:11.5px"},"Nodig: "+m.req.map(r=>byId[r].n).join(", ")):null);
+      col.append(b);
+    });
+    board.append(col);
+  });
+  s.append(
+   el("div",{style:"display:grid;gap:10px"},el("span",{className:"eyebrow"},"Klik blokken aan en uit"),el("h2",{},"Het modulebord"),
+    el("p",{className:"muted"},"Zo ziet het echte bord op /admin er straks ongeveer uit. Lijnen laten zien wat een blok nodig heeft. Zet je iets aan, dan gaat wat het nodig heeft ook aan. Zet je iets uit, dan gaat alles wat ervan afhangt ook uit. Roze blokken zijn de kern en staan altijd aan.")),
+   meters,toast,
+   el("div",{className:"board-tools"},
+    el("button",{className:"btn",on:{click:()=>preset(1)}},"Alleen fase 1"),
+    el("button",{className:"btn",on:{click:()=>preset(2)}},"Tot fase 2"),
+    el("button",{className:"btn",on:{click:()=>preset(3)}},"Tot fase 3"),
+    el("button",{className:"btn",on:{click:()=>preset(5)}},"Alles aan"),
+    el("span",{className:"legend"},el("span",{},el("i",{style:"border-color:var(--pink)"}),"kern"),el("span",{},el("i",{style:"border-color:var(--cyan)"}),"aan"),el("span",{},el("i",{style:"border-color:var(--line)"}),"uit"))),
+   el("div",{className:"board-scroll"},board),
+   el("div",{className:"card"},el("h3",{},"Jouw schakelbord als bestand"),el("p",{className:"muted"},"Dit is wat het bord straks in de repo zet (tinkpop.config.json)."),el("pre",{id:"cfg"}))
+  );
+}
+function deps(id,acc=new Set()){(byId[id].req||[]).forEach(r=>{if(!acc.has(r)){acc.add(r);deps(r,acc)}});return acc}
+function dependents(id,acc=new Set()){MODULES.forEach(m=>{if((m.req||[]).includes(id)&&!acc.has(m.id)){acc.add(m.id);dependents(m.id,acc)}});return acc}
+function toggle(id){
+  const m=byId[id];if(m.core){say(m.n+" is kern en staat altijd aan.");return}
+  if(state.on[id]){
+    const off=[...dependents(id)].filter(x=>state.on[x]&&!byId[x].core);
+    state.on[id]=0;off.forEach(x=>state.on[x]=0);
+    say(off.length?`${m.n} uit. Ook uit, want het hing ervan af: ${off.map(x=>byId[x].n).join(", ")}.`:`${m.n} uit.`);
+  }else{
+    const need=[...deps(id)].filter(x=>!state.on[x]);
+    state.on[id]=1;need.forEach(x=>state.on[x]=1);
+    say(need.length?`${m.n} aan. Ook aangezet, want het is nodig: ${need.map(x=>byId[x].n).join(", ")}.`:`${m.n} aan.`);
+  }
+  paintBoard();changed();
+}
+function preset(n){MODULES.forEach(m=>state.on[m.id]=m.core||m.ph<=n?1:0);say(n===5?"Alles aan.":`Alles tot en met fase ${n} aan.`);paintBoard();changed()}
+function say(t){const e=document.getElementById("toast");if(e)e.textContent=t}
+function hl(id,on){const set=new Set([id,...deps(id),...dependents(id)]);set.forEach(x=>document.getElementById("n-"+x)?.classList.toggle("hl",on&&x!==id))}
+function paintBoard(){
+  MODULES.forEach(m=>{const n=document.getElementById("n-"+m.id);if(n)n.dataset.on=state.on[m.id]?1:0});
+  const on=MODULES.filter(m=>state.on[m.id]);
+  const jsGen=on.filter(m=>m.id!=="scad").reduce((a,m)=>a+m.js,0);
+  const server=on.filter(m=>m.server).length, cost=on.filter(m=>m.cost).length;
+  const met=document.getElementById("meters");
+  if(met){met.innerHTML="";met.append(
+    kpi(on.length+" / "+MODULES.length,"modules aan"),
+    kpi(Math.round(jsGen)+" KB","op de generator-pagina (ongeveer, zonder OpenSCAD)"),
+    kpi(state.on.scad?"+2,9 MB":"0","OpenSCAD, alleen op .scad-pagina's"),
+    kpi(cost?"≥ $5/mnd":"€0","hosting per maand"+(cost?" + kosten per gebruik":"")),
+    kpi(server?server+" onderdelen":"geen","die een server nodig hebben"))}
+  const cfg={modules:{},generators:{}};MODULES.filter(m=>!m.core).forEach(m=>(m.gen?cfg.generators:cfg.modules)[m.id]={enabled:!!state.on[m.id]});
+  const c=document.getElementById("cfg");if(c)c.textContent=JSON.stringify(cfg,null,2);
+  requestAnimationFrame(drawWires);
+}
+function drawWires(){
+  const svg=document.getElementById("wires"),board=document.getElementById("board");if(!svg||!board||board.offsetParent===null)return;
+  const br=board.getBoundingClientRect();let h="";
+  MODULES.forEach(m=>(m.req||[]).forEach(r=>{
+    const a=document.getElementById("n-"+r),b=document.getElementById("n-"+m.id);if(!a||!b)return;
+    const ra=a.getBoundingClientRect(),rb=b.getBoundingClientRect();
+    let x1,y1,x2,y2;
+    if(Math.abs(ra.left-rb.left)<10)return;
+    {const lr=ra.left<rb.left;x1=(lr?ra.right:ra.left)-br.left;y1=ra.top-br.top+ra.height/2;x2=(lr?rb.left:rb.right)-br.left;y2=rb.top-br.top+rb.height/2;const mx=(x1+x2)/2;
+      h+=`<path d="M${x1} ${y1} C ${mx} ${y1}, ${mx} ${y2}, ${x2} ${y2}" fill="none" stroke="${state.on[m.id]&&state.on[r]?'var(--cyan)':'var(--line)'}" stroke-width="1.6" opacity=".8"/>`;}
+  }));
+  svg.innerHTML=h;
+}
+
+function vTechniek(s){
+  s.append(el("div",{style:"display:grid;gap:10px"},el("span",{className:"eyebrow"},"Wat we gebruiken, en waarom"),el("h2",{},"Techniekkeuzes"),
+    el("p",{className:"muted"},"Elke keuze is na onderzoek gemaakt. Klik een regel open voor de reden.")));
+  TECH.forEach(([w,k,y,alt])=>s.append(el("details",{},el("summary",{},el("span",{},w+": "),el("span",{style:"color:var(--cyan)"},k)),
+    el("div",{},el("p",{},y),el("p",{className:"muted"},"Viel af: "+alt)))));
+  s.append(el("div",{className:"card"},el("h3",{},"Wat we van de concurrenten leren"),
+    el("ul",{},
+     el("li",{},el("b",{},"Overnemen van Open Keychain (MIT): "),"rekenwerker met cache, 3MF die in Bambu én Prusa werkt, ontwerp in de link, printfouten die de download blokkeren, prestatiebudget, slicer-test in CI."),
+     el("li",{},el("b",{},"Vermijden: "),"één reusachtig bouwbestand waarin alle sjablonen door elkaar staan (Open Keychain), en één HTML-bestand zonder echte 3D-bewerkingen en zonder 3MF (Tagify3D).")),
+    el("p",{className:"muted"},"Bronnen: eigen code-analyse van capynq/open-keychain en doccaz/nameplate-generator.")));
+}
+
+function vContract(s){
+  s.append(el("div",{style:"display:grid;gap:10px"},el("span",{className:"eyebrow"},"De vaste vorm van elk blok"),el("h2",{},"Het modulecontract"),
+   el("p",{className:"muted"},"Elk blok heeft een kaartje (manifest) met wie het is, wat het nodig heeft en wat je kunt instellen. Daardoor kan het platform blokken zelf aan elkaar klikken, controleren en uitzetten. Afgekeken van VS Code, Grafana, Home Assistant, Backstage, Obsidian en Figma.")),
+  el("div",{className:"grid"},
+   card("Vaste naam","id verandert nooit, zodat links en instellingen blijven werken."),
+   card("Versie","Elke generator heeft een versie; oude deel-links laden de oude versie of worden netjes omgezet."),
+   card("Nodig en optioneel","requires = moet aan staan; optional = mag. De bouw stopt als iets ontbreekt."),
+   card("Instellingen als schema","Uit één schema komen het formulier, de controle en de grenzen (min/max)."),
+   card("Geen netwerk","Generators mogen nooit iets versturen. Dat wordt afgedwongen."),
+   card("Standaard uit","Nieuwe blokken staan uit tot jij ze aanzet."),
+   card("Formulier met groepen","Volgorde, groepen, schuifjes, kleur- en fontkiezer, en 'toon alleen als'. Geen muur van knoppen."),
+   card("Extra controles","Bijvoorbeeld: tekst te lang voor de plaat? Dan een duidelijke melding."),
+   card("Kleurrollen","Plaat, tekst, rand: elk met een standaardfilament."),
+   card("Met pensioen","Een uitgezette generator krijgt een nette pagina met een link naar de opvolger.")),
+  el("details",{open:true},el("summary",{},"Voorbeeld: generator-kaartje"),el("div",{},el("pre",{},`{
+  "id": "keychain-name", "kind": "generator", "version": "1.0.0", "contract": "^1.0",
+  "name": {"en": "Name keychain"}, "category": "keychain",
+  "author": {"name": "Mark", "donateUrl": "https://buymeacoffee.com/..."},
+  "license": {"code": "MIT", "model": "CC-BY-4.0", "printsMaySell": true},
+  "engine": "manifold", "entry": "./generator.ts",
+  "params": { "text": {"type": "string", "default": "Tink", "maxLength": 20},
+              "height": {"type": "number", "min": 1, "max": 10, "default": 3, "unit": "mm"} },
+  "presets": [{"id": "classic", "params": {"height": 3}}],
+  "outputs": ["stl", "3mf"], "colors": {"max": 4},
+  "print": {"maxSizeMm": [80, 40, 10], "maxRenderMs": 3000},
+  "requires": ["fonts"], "permissions": {"network": false}, "defaultEnabled": true
+}`))),
+  el("details",{},el("summary",{},"Voorbeeld: platformmodule-kaartje (Not Made Yet)"),el("div",{},el("pre",{},`{
+  "id": "not-made-yet", "kind": "feature", "version": "0.1.0", "contract": "^1.0",
+  "requires": ["storage-d1", "turnstile"], "optional": ["auth"],
+  "contributes": { "routes": ["/not-made-yet"], "nav": [{"label": "Not Made Yet"}],
+                   "slots": {"home.sections": "./HomeTeaser.astro"}, "api": ["/api/votes"] },
+  "settings": { "votesPerDay": {"type": "integer", "default": 5} },
+  "bindings": {"d1": ["DB"]}, "secrets": ["TURNSTILE_SECRET"],
+  "runtimeToggle": true, "defaultEnabled": false
+}`))),
+  el("details",{},el("summary",{},"Hoe een generator rekent"),el("div",{},
+   el("p",{},"Een generator is een zuivere functie: instellingen erin, onderdelen eruit. Elk onderdeel heeft een naam, een kleur en een 3D-vorm. Zelfde invoer geeft altijd zelfde uitvoer."),
+   el("pre",{},`build(params, sdk) → [ { name: "plate", color: "#111", mesh }, { name: "text", color: "#fff", mesh } ]
+sdk: text() · svg() · outline() · ring() · plate() · part(color)`),
+   el("p",{className:"muted"},"Voor .scad-generators leest Tinkpop de instellingen uit de Customizer-opmerkingen in het bestand, ook de MakerWorld-extra's (// color, // font, mw_plate_N)."))),
+  el("details",{},el("summary",{},"Mappen in de repo"),el("div",{},el("pre",{},`apps/web/            de site + /admin (modulebord)
+packages/core/       contract, register, afhankelijkheden-check
+packages/geometry/   rekenwerker, tekst, SVG, export STL/3MF
+packages/scad/       OpenSCAD-spoor
+packages/ui/         knoppen, formulieren uit schema
+modules/<id>/        platformmodules
+generators/<id>/     manifest, generator, preview, licentie
+tinkpop.config.json  het schakelbord`))));
+}
+const card=(t,d)=>el("div",{className:"card"},el("h3",{},t),el("p",{className:"muted"},d));
+
+function vSnelheid(s){
+  const max=320;
+  const bars=el("div",{className:"bars"});
+  BENCH.forEach(b=>{
+    const tr=el("div",{className:"track"});
+    if(b.lo!=null)tr.append(el("div",{className:"fill",style:`left:${b.lo/max*100}%;width:${(b.hi-b.lo)/max*100}%;background:${b.c}`}));
+    bars.append(el("div",{className:"bar"},el("span",{},b.n),tr,el("span",{className:"v"},b.lo!=null?`${b.lo}–${b.hi} ms`:"—")));
+  });
+  const sizes=el("div",{className:"bars"});
+  BENCH.filter(b=>b.size).forEach(b=>sizes.append(el("div",{className:"bar"},el("span",{},b.n),
+    el("div",{className:"track"},el("div",{className:"fill",style:`left:0;width:${Math.max(2,b.size/7200*100)}%;background:${b.c}`})),
+    el("span",{className:"v"},b.size>=1000?(b.size/1000).toFixed(1).replace(".",",")+" MB":b.size+" KB"))));
+  s.append(el("div",{style:"display:grid;gap:10px"},el("span",{className:"eyebrow"},"Eigen metingen, 29-10-2026"),el("h2",{},"Snelheid"),
+   el("p",{className:"muted"},"Getest in een echte browser (Chromium) op een laptop-processor, met een sleutelhanger: tekst, contour van 3 mm, ring met gat, en tekst als apart kleuronderdeel. Een goedkope Android-telefoon is 4–8× trager; daarom een apart telefoonbudget.")),
+  el("div",{className:"card"},el("h3",{},"Rekentijd per toetsaanslag: korte naam → 18 tekens"),bars,el("p",{className:"muted"},"OpenSCAD heeft daarbovenop 0,2–0,5 s opstarttijd per keer. JSCAD crashte op fonts.")),
+  el("div",{className:"card"},el("h3",{},"Downloadgrootte van de rekenmotor (gzip)"),sizes),
+  el("div",{className:"card"},el("h3",{},"Ons snelheidsbudget"),el("ul",{},
+   el("li",{},"Gewone pagina: minder dan 50 KB JavaScript, Lighthouse-score boven 95."),
+   el("li",{},"Eerste 3D-voorbeeld: binnen 3 s op een laptop, binnen 5 s op een telefoon."),
+   el("li",{},"Per toets: binnen 100 ms op een laptop, binnen 300 ms op een gewone telefoon (vaste testtelefoon). Eerst een snelle ruwe vorm, het nette werk na een korte pauze."),
+   el("li",{},"Rekenen naast de pagina (Web Worker), zodat de pagina nooit hapert. Nieuwste opdracht wint."),
+   el("li",{},"Cache per onderdeel: kleur wisselen hoeft niets opnieuw te rekenen."),
+   el("li",{},"Geheugen bewaken op iPhone (±300 MB grens), anders herstarten we de rekenwerker."),
+   el("li",{},"Een automatische test faalt als een budget wordt overschreden."))));
+}
+
+function vCommunity(s){
+  s.append(el("div",{style:"display:grid;gap:10px"},el("span",{className:"eyebrow"},"Van idee tot live"),el("h2",{},"Community en veiligheid")),
+  el("div",{className:"card"},el("h3",{},"Een nieuwe generator, stap voor stap"),el("div",{className:"flow"},
+   step("1 · Maker","Kopieert het sjabloon of zet een MakerWorld-.scad over"),
+   step("2 · Voorstel","Opent een pull request op GitHub"),
+   step("3 · Controles","Automatisch: kaartje, licentie, render, printbaar, snelheid"),
+   step("4 · Plaatje","Een voorbeeldplaatje verschijnt bij het voorstel"),
+   step("5 · Jij","Keurt goed of af; zonder jou gaat niets live"),
+   step("6 · Live","Binnen 2 minuten op tinkpop.com"))),
+  el("div",{className:"grid"},
+   card("Alleen eigen map","Een maker mag alleen zijn eigen map aanpassen. De kern is van jou."),
+   card("Geen geheimen in controles","Controles op voorstellen van anderen draaien zonder sleutels of wachtwoorden."),
+   card("Geen vreemde pakketten","Generators mogen geen eigen softwarepakketten meenemen. Dat sluit de bekendste aanvalsroute uit."),
+   card("Zonder netwerk, met tijdslimiet","In de browser draait elke generator afgeschermd en wordt na een paar seconden gestopt als hij vastloopt."),
+   card("Eerste keer: altijd jij","Een nieuwe bijdrager moet altijd handmatig worden goedgekeurd."),
+   card("Licentie per generator","Code MIT. Ontwerp standaard CC BY 4.0. Fonts alleen OFL. MakerWorld-modellen alleen met schriftelijke toestemming.")),
+  el("div",{className:"card"},el("h3",{},"Printbaar, op twee plekken"),el("ul",{},
+   el("li",{},el("b",{},"Live in de browser: "),"dicht, onderkant plat, overhang hooguit 45°, geen zwevende delen, past op je plaat. Fout? Dan legt de site uit wat er mis is in plaats van te downloaden."),
+   el("li",{},el("b",{},"Bij elk voorstel: "),"echte slicer-test voor gram, uren en support, zoals NotMadeYet al doet."))),
+  el("div",{className:"card"},el("h3",{},"Privacy en recht"),el("ul",{},
+   el("li",{},"Zonder login: bijna geen persoonsgegevens, geen cookiebanner nodig met Cloudflare-statistiek."),
+   el("li",{},"Met login (later): alleen e-mail of GitHub, account verwijderen kan, minimumleeftijd 16."),
+   el("li",{},"Uploads en galerij (later): meldknop, contactpunt en uitleg bij verwijderen (Europese DSA-regels)."),
+   el("li",{},"Toegankelijk: vrijwillig de WCAG 2.2 AA-norm; tekstuitleg bij het 3D-beeld."),
+   el("li",{className:"muted"},"Dit is geen juridisch advies. Laat iemand meekijken voordat login of uploads live gaan."))));
+}
+
+function vFasen(s){
+  const F=[
+   ["Fase 0 · Proef (± 1 week)","Naam op een plaatje, 3 fonts, STL + kleuren-3MF, proeflink. Getest op jouw telefoon en in Bambu Studio."],
+   ["Fase 1a · Alles erop en eraan","Sleutelhanger met alle instellingen van keychaingenerator.tech, als afvinklijst. Eigen logo/SVG, bewaren, deel-link."],
+   ["Fase 1b · Klaar voor bezoekers","Foutmeldingen, cijfers, vindbare pagina's, juridische pagina's, merkcheck. Live na jouw akkoord."],
+   ["Fase 1c · Testgroep","5–10 Bambu-gebruikers proberen het; daarna de officiële lancering."],
+   ["Fase 2 · Community open","OpenSCAD-spoor, sjabloon en gids voor makers, clicker, catalogus, moduleoverzicht om te bekijken."],
+   ["Fase 3 · Groeien","Meer generators, Nederlands, Not Made Yet-stemmen, Open in Bambu Studio, bord met schakelaars."],
+   ["Fase 4 · Accounts","Inloggen, ontwerpen online delen, galerij met moderatie."],
+   ["Fase 5 · AI en winkel","Alleen als donaties of omzet het dragen."]];
+  s.append(el("div",{style:"display:grid;gap:10px"},el("span",{className:"eyebrow"},"Stap voor stap"),el("h2",{},"Fasen en kosten")),
+   el("div",{className:"flow"},F.map(([t,d])=>step(t,d))),
+   el("div",{className:"card"},el("h3",{},"Wat het kost per maand"),el("div",{className:"tbl"},el("table",{},
+    el("thead",{},el("tr",{},el("th",{},"Bezoekers"),el("th",{},"Hosting"),el("th",{},"Waarom"))),
+    el("tbody",{},
+     el("tr",{},el("td",{},"10.000"),el("td",{},"€0"),el("td",{},"Alles statisch; rekenen bij de bezoeker")),
+     el("tr",{},el("td",{},"100.000"),el("td",{},"€0"),el("td",{},"Ook stemmen en opslag blijven ruim binnen de gratis laag")),
+     el("tr",{},el("td",{},"AI aan"),el("td",{},"vanaf $5 + per model"),el("td",{},"Cloudflare heeft geen tekst-naar-3D; dat kost een externe dienst geld")),
+     el("tr",{},el("td",{},"Vast"),el("td",{},"± €40 per jaar"),el("td",{},"Domeinen .com, .app, .org")))))),
+   el("div",{className:"card"},el("h3",{},"Beheer, zonder dat je hoeft te coderen"),el("ul",{},
+    el("li",{},el("b",{},"Proeflink per wijziging: "),"je klikt het zelf aan voordat je goedkeurt, met plaatjes van de renders erbij."),
+    el("li",{},el("b",{},"Live zetten = samenvoegen: "),"pas nadat jij de proeflink hebt geprobeerd."),
+    el("li",{},el("b",{},"Terugdraaien: "),"één knop in Cloudflare of één terugdraai-wijziging; staat in een draaiboek van één pagina."),
+    el("li",{},el("b",{},"Fouten zien: "),"anonieme foutteller en een knop 'Meld een probleem' voor bezoekers."),
+    el("li",{},el("b",{},"Een generator kapot? "),"Die wordt automatisch verborgen; de rest van de site blijft werken."),
+    el("li",{},el("b",{},"Cijfers: "),"downloads per week, hoeveel bezoekers downloaden, laadtijd op telefoons, fouten, donaties tegen kosten."),
+    el("li",{},el("b",{},"Beveiliging: "),"tweestapsverificatie op je GitHub, Cloudflare-sleutel alleen voor deze site."))));
+}
+
+function vAudit(s){
+  s.append(el("div",{style:"display:grid;gap:10px"},el("span",{className:"eyebrow"},"Een tweede paar ogen"),el("h2",{},"Audit van dit plan"),
+   el("p",{className:"muted"},"Een aparte, kritische controleur heeft het eerste plan doorgelopen op jouw wensen, te veel werk, techniek, veiligheid, snelheid, beheer en volgorde. Hieronder wat hij vond en wat ik daarom heb veranderd.")));
+  if(!AUDIT.length){s.append(el("p",{className:"muted"},"De audit loopt nog."));return}
+  const counts={};AUDIT.forEach(a=>counts[a.sev]=(counts[a.sev]||0)+1);
+  s.append(el("div",{className:"grid"},["blocker","high","medium","low"].map(k=>kpi(String(counts[k]||0),{blocker:"blokkerend",high:"hoog",medium:"middel",low:"laag"}[k]))));
+  AUDIT.forEach(a=>s.append(el("details",{},el("summary",{},el("span",{className:"sev "+a.sev},{blocker:"blokkerend",high:"hoog",medium:"middel",low:"laag"}[a.sev]),el("span",{},a.t)),
+    el("div",{},el("p",{},a.why),el("p",{},el("b",{},"Aangepast: "),a.fix)))));
+}
+
+function vVragen(s){
+  const prog=el("div",{className:"progress"},el("i",{id:"qprog"}));
+  s.append(el("div",{style:"display:grid;gap:10px"},el("span",{className:"eyebrow"},"Grill-sessie"),el("h2",{},"Vragen aan jou"),
+   el("p",{className:"muted"},"Elke vraag bepaalt hoe we bouwen. Klik het antwoord dat het beste past. Mijn advies staat erbij. Alles wordt meteen bewaard; zeg in de chat \"klaar\" als je klaar bent."),prog,
+   el("span",{className:"muted",id:"qcount"})));
+  const list=el("div",{className:"qs"});
+  QUESTIONS.forEach((q,i)=>{
+    const opts=el("div",{className:"opts"});
+    q.o.forEach((o,k)=>opts.append(el("button",{type:"button",className:"opt",id:`q${i}-${k}`,"data-q":q.id,"data-v":o.v,on:{click:()=>{state.a[q.id]=state.a[q.id]===o.v?"":o.v;paintQ();changed()}}},
+      el("span",{className:"dot"}),el("span",{},el("span",{},o.v),o.rec?el("span",{className:"rec"},"advies"):null,o.d?el("small",{},o.d):null))));
+    const ta=el("textarea",{id:"note-"+q.id,placeholder:"Toelichting (mag leeg blijven)",on:{input:e=>{state.notes[q.id]=e.target.value;changed(true)}}});
+    ta.value=state.notes[q.id]||"";
+    list.append(el("div",{className:"qq"},el("span",{className:"eyebrow"},`Vraag ${i+1} van ${QUESTIONS.length} · ${q.topic}`),el("h3",{},q.q),q.why?el("p",{className:"why"},q.why):null,opts,ta));
+  });
+  s.append(list,el("div",{className:"card"},el("h3",{},"Nog iets?"),(()=>{const t=el("textarea",{id:"note-vrij",placeholder:"Wensen, zorgen, voorbeelden",on:{input:e=>{state.notes.vrij=e.target.value;changed(true)}}});t.value=state.notes.vrij||"";return t})(),
+   el("div",{className:"board-tools"},el("button",{className:"btn primary",on:{click:async()=>{const ok=await push();document.getElementById("qmsg").textContent=ok?"Opgeslagen. Zeg in de chat dat je klaar bent.":"Online opslaan lukt hier niet. Je antwoorden staan wel op dit apparaat."}}},"Opslaan voor Claude"),el("span",{className:"muted",id:"qmsg"}))));
+}
+function paintQ(){
+  document.querySelectorAll(".opt").forEach(b=>b.setAttribute("aria-pressed",state.a[b.dataset.q]===b.dataset.v));
+  const n=QUESTIONS.filter(q=>state.a[q.id]).length;
+  const p=document.getElementById("qprog");if(p)p.style.width=(QUESTIONS.length?n/QUESTIONS.length*100:0)+"%";
+  const c=document.getElementById("qcount");if(c)c.textContent=`${n} van ${QUESTIONS.length} beantwoord`;
+}
+
+/* ========== OPSLAAN ========== */
+let db=null,timer=null;const saveEl=document.getElementById("save");
+function changed(typing){try{localStorage.setItem("tp-bible",JSON.stringify(state))}catch(e){}clearTimeout(timer);timer=setTimeout(push,typing?1500:700)}
+function summary(){
+  const lines=["## Antwoorden"];QUESTIONS.forEach(q=>lines.push(`${q.id}: ${state.a[q.id]||"–"}${state.notes[q.id]?" | "+state.notes[q.id]:""}`));
+  if(state.notes.vrij)lines.push("vrij: "+state.notes.vrij);
+  lines.push("## Modules aan: "+MODULES.filter(m=>state.on[m.id]).map(m=>m.id).join(", "));
+  return lines.join("\n");
+}
+async function push(){
+  if(!db){saveEl.textContent="Alleen op dit apparaat";saveEl.className="pill";return false}
+  saveEl.textContent="Opslaan…";
+  try{await db.doc("bible/answers").set({a:state.a,notes:state.notes,on:state.on,samenvatting:summary(),bijgewerkt:new Date().toISOString()});
+    saveEl.textContent="Opgeslagen "+new Date().toLocaleTimeString("nl-NL",{hour:"2-digit",minute:"2-digit"});saveEl.className="pill ok";return true}
+  catch(e){saveEl.textContent="Opslaan mislukt";saveEl.className="pill";return false}
+}
+
+/* ========== START ========== */
+buildTabs();
+vOverzicht(views.overzicht);vBord(views.bord);vTechniek(views.techniek);vContract(views.contract);vSnelheid(views.snelheid);
+vCommunity(views.community);vFasen(views.fasen);vAudit(views.audit);vVragen(views.vragen);
+paintBoard();paintQ();
+const start=(location.hash||"").slice(1);showTab(TABS.some(t=>t[0]===start)?start:"overzicht");
+addEventListener("hashchange",()=>{const h=location.hash.slice(1);if(TABS.some(t=>t[0]===h))showTab(h)});
+addEventListener("resize",()=>requestAnimationFrame(drawWires));
+(async()=>{
+  try{db=await window.claude?.use?.("db")}catch(e){db=null}
+  if(!db){saveEl.textContent="Alleen op dit apparaat";return}
+  try{const snap=await db.doc("bible/answers").get();
+    if(snap.exists){const d=snap.data();if(d){state={on:{...state.on,...(d.on||{})},a:{...(d.a||{})},notes:{...(d.notes||{})}};
+      document.querySelectorAll("textarea[id^=note-]").forEach(t=>t.value=state.notes[t.id.slice(5)]||"");
+      paintBoard();paintQ();saveEl.textContent="Eerdere antwoorden geladen";saveEl.className="pill ok"}}
+    else saveEl.textContent="Klaar om op te slaan";
+  }catch(e){saveEl.textContent="Klaar om op te slaan"}
+})();
+</script>

@@ -1,0 +1,27 @@
+{
+  "id": "print/color-3mf",
+  "main": "print",
+  "version": "0.1.0",
+  "phase": 0,
+  "enabled": true,
+  "what": "3MF with colors for the AMS, STL per color as fallback.",
+  "legal": {
+    "origin": "own",
+    "originProof": "docs/2-plan/mvp.md (29-10-2026)",
+    "codeLicense": "AGPL-3.0",
+    "assetLicense": "CC-BY-4.0",
+    "outputLicense": "free",
+    "assets": [],
+    "personalData": "none",
+    "storesUserContent": false,
+    "public": false,
+    "commercial": false,
+    "risks": [
+      "P1",
+      "T4"
+    ],
+    "reviewedBy": "Claude 2026-10-29",
+    "approvedBy": null,
+    "notes": "Own writer for the open 3MF format. Idea for the color-group method from Open Keychain (MIT, capynq); no code copied. No code from Bambu Studio or OrcaSlicer."
+  }
+}

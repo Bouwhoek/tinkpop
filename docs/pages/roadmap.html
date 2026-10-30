@@ -1,0 +1,268 @@
+<title>Tinkpop roadmap</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: één verticale filamentlijn (cyaan → roze → oranje) met fasen als lagen; tussen de fasen een poort met de voorwaarde om door te gaan. */
+:root{
+  --bg:#f5f6fa; --surface:#ffffff; --ink:#1b1d2e; --muted:#5d6178; --line:#dfe1ea;
+  --cyan:#0aa5c9; --pink:#e23d8e; --orange:#f08a24; --ok:#1f9d6a; --soft:#eef0f6;
+  --f-display:"Fredoka","Trebuchet MS",system-ui,sans-serif;
+  --f-body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --r:14px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#12131c; --surface:#1b1d2a; --ink:#eceef6; --muted:#a2a6bd; --line:#2c2f40;
+  --cyan:#2cc3e6; --pink:#f0609f; --orange:#f7a04a; --ok:#3cc48c; --soft:#232637; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12131c; --surface:#1b1d2a; --ink:#eceef6; --muted:#a2a6bd; --line:#2c2f40;
+  --cyan:#2cc3e6; --pink:#f0609f; --orange:#f7a04a; --ok:#3cc48c; --soft:#232637; color-scheme:dark}
+
+body{background:var(--bg);color:var(--ink);font:16px/1.55 var(--f-body);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 56px}
+.wrap{max-width:880px;margin:0 auto;display:grid;gap:36px}
+h1,h2,h3{font-family:var(--f-display);font-weight:600;text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:clamp(2rem,5vw,2.8rem)}
+h2{font-size:1.45rem}
+h3{font-size:1.15rem}
+p{margin:0}
+a{color:var(--pink);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:3px solid var(--cyan);outline-offset:2px;border-radius:6px}
+.mono{font-family:var(--f-mono);font-size:.78rem;letter-spacing:.02em}
+.muted{color:var(--muted)}
+.eyebrow{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+/* kop */
+header{display:grid;gap:12px}
+.wordmark span{background:linear-gradient(90deg,var(--cyan),var(--pink),var(--orange));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{max-width:62ch;color:var(--muted);font-size:1.05rem}
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:.88rem;color:var(--muted)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+
+/* nu */
+.now{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px;display:grid;gap:16px}
+.now-head{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{font:600 .85rem var(--f-body);border:1px solid var(--line);background:var(--soft);color:var(--ink);border-radius:999px;padding:6px 14px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.next{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.step{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;align-items:start;padding:12px;border-radius:10px;background:var(--soft)}
+.step b{font-family:var(--f-display);font-weight:600;font-size:1.4rem;line-height:1;color:var(--pink);grid-row:span 2}
+.step small{color:var(--muted);font-size:.85rem}
+.tasks{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.tasks ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.tasks li{display:grid;grid-template-columns:18px 1fr;gap:8px;font-size:.95rem}
+.tasks li::before{content:"";width:12px;height:12px;margin-top:6px;border:2px solid var(--muted);border-radius:4px}
+.tasks li.first::before{border-color:var(--pink);background:var(--pink)}
+.tasks h3{display:flex;gap:8px;align-items:baseline;margin-bottom:10px}
+
+/* tijdlijn */
+.timeline{position:relative;display:grid;gap:0;padding-left:44px}
+.timeline::before{content:"";position:absolute;left:15px;top:14px;bottom:14px;width:6px;border-radius:3px;
+  background:linear-gradient(180deg,var(--cyan),var(--pink) 50%,var(--orange))}
+.phase{position:relative;display:grid;gap:12px;padding:18px 20px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+.phase::before{content:"";position:absolute;left:-38px;top:20px;width:20px;height:20px;border-radius:50%;
+  background:var(--surface);border:5px solid var(--node,var(--cyan));box-sizing:border-box}
+.phase.current{border-color:var(--pink);box-shadow:0 0 0 3px color-mix(in srgb,var(--pink) 18%,transparent)}
+.phase.current::before{background:var(--pink);border-color:var(--pink);animation:pop 2.4s cubic-bezier(0.34,1.56,0.64,1) infinite}
+@keyframes pop{0%,70%,100%{transform:scale(1)}80%{transform:scale(1.35)}90%{transform:scale(.92)}}
+@media (prefers-reduced-motion:reduce){.phase.current::before{animation:none}}
+.ph-head{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline;justify-content:space-between}
+.status{font:600 .78rem var(--f-body);border-radius:999px;padding:3px 10px;background:var(--soft);color:var(--muted);white-space:nowrap}
+.current .status{background:var(--pink);color:#fff}
+.goal{font-size:1.02rem;max-width:64ch}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px 24px}
+.cols > div{min-width:0}
+.cols ul,.order{margin:6px 0 0;padding-left:18px;display:grid;gap:4px;font-size:.95rem}
+.order{padding-left:22px}
+.no li{color:var(--muted)}
+.note{font-size:.9rem;color:var(--muted);border-left:3px solid var(--line);padding-left:10px}
+.codes{display:flex;flex-wrap:wrap;gap:6px}
+.codes span{font-family:var(--f-mono);font-size:.74rem;padding:2px 8px;border-radius:6px;background:var(--soft);color:var(--muted)}
+
+/* poort tussen fasen */
+.gate{position:relative;margin:0 0 0 8px;padding:16px 0 16px 18px;border-left:2px dashed var(--line);display:grid;gap:8px}
+.gate::before{content:"";position:absolute;left:-41px;top:50%;width:12px;height:12px;margin-top:-6px;transform:rotate(45deg);background:var(--bg);border:2px solid var(--ink)}
+.gate p{font-size:.92rem}
+.gate .eyebrow{color:var(--ink)}
+.checks{display:flex;flex-wrap:wrap;gap:6px}
+.checks span{font-size:.8rem;padding:3px 9px;border-radius:999px;border:1px solid var(--line);background:var(--surface)}
+.checks span em{font-style:normal;font-family:var(--f-mono);font-size:.72rem;color:var(--muted);margin-right:4px}
+
+/* onderaan */
+.duo{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.box{border:1px solid var(--line);border-radius:var(--r);padding:18px;display:grid;gap:8px;align-content:start}
+.box ul{margin:0;padding-left:18px;display:grid;gap:4px;font-size:.95rem}
+footer{font-size:.85rem;color:var(--muted);display:grid;gap:4px}
+</style>
+
+<div class="wrap">
+<header>
+  <p class="eyebrow">Stand 29-10-2026 · bron: docs/4-besluiten/roadmap.md</p>
+  <h1 class="wordmark">Tink<span>pop</span> roadmap</h1>
+  <p class="lead">Van één printklare plaat met namen naar een open platform. Elke fase heeft een poort: pas door als de vorige laag goed ligt. Zonder datums: we gaan rustig aan (B-013).</p>
+  <div class="legend">
+    <span><i style="background:var(--pink)"></i>nu bezig</span>
+    <span><i style="border:3px solid var(--cyan);box-sizing:border-box"></i>gepland</span>
+    <span><i style="border:2px solid var(--ink);border-radius:2px;transform:rotate(45deg)"></i>poort: voorwaarde om door te gaan</span>
+  </div>
+</header>
+
+<section class="now" aria-labelledby="nu">
+  <div class="now-head">
+    <h2 id="nu">Nu</h2>
+    <div class="chips" role="group" aria-label="Taken tonen voor">
+      <button type="button" class="chip" id="f-all" aria-pressed="true" data-f="all">Alles</button>
+      <button type="button" class="chip" id="f-jij" aria-pressed="false" data-f="jij">Jij</button>
+      <button type="button" class="chip" id="f-claude" aria-pressed="false" data-f="claude">Claude</button>
+    </div>
+  </div>
+  <div class="next">
+    <div class="step"><b>1</b><span>PR #1 samenvoegen</span><small>Jij · <a href="https://github.com/Bouwhoek/tinkpop/pull/1">open de PR</a> en klik Merge</small></div>
+    <div class="step"><b>2</b><span>Proefversie fase 0 werkt</span><small>Claude · <a href="https://claude.ai/artifact/Y7xcdUzVk4Brat51ZSwfaw">open de proefversie</a></small></div>
+    <div class="step"><b>3</b><span>Openen in Bambu Studio en Handy, 1 printen</span><small>Jij · kleuren op de juiste AMS-sloten?</small></div>
+  </div>
+  <div class="tasks">
+    <div data-who="jij">
+      <h3>Jij <span class="mono muted">eigenaar</span></h3>
+      <ul>
+        <li class="first">PR #1 samenvoegen (alleen documenten)</li>
+        <li>De 5 test-3MF's openen in Bambu Studio en er één printen</li>
+        <li>Beslisbord V-045: korte lijst voor fase 1 goedkeuren</li>
+        <li>T-09 Nulmeting: 25 namen bij KeychainGEN, keychaingenerator.tech en MakerWorld op je telefoon; tijd en tikken noteren</li>
+        <li>T-10 Een iPhone kunnen lenen voor de test</li>
+        <li>Merk Tinkpop/Pinkpop uitzoeken, vóór de aankondiging (B-073)</li>
+        <li>tinkpop.app en tinkpop.org vastleggen</li>
+        <li>Beschrijven hoe 3d-prints.bouwhoek.app nu werkt</li>
+        <li>Voorwaarden MakerWorld: schermafdruk in de repo</li>
+        <li>Repo Bouwhoek/mwbl archiveren</li>
+        <li>Ontwerper zoeken die het logo als SVG natekent (B-085)</li>
+      </ul>
+    </div>
+    <div data-who="claude">
+      <h3>Claude <span class="mono muted">bouwt en zoekt uit</span></h3>
+      <ul>
+        <li class="first">3MF-matrix invullen met jouw uitslag (bestanden staan klaar)</li>
+                <li>Uitgesloten hoek op de plaat (X1/P1) nalopen</li>
+                <li>Harde regels als controles in CI; slicer-check als tool</li>
+                                        <li>Pop-taal verder uitwerken tot jij tevreden bent</li>
+        <li>Cloudflare AI-bots samen met jou nalopen (niets wijzigen zonder akkoord)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="fasen" style="display:grid;gap:16px">
+  <h2 id="fasen">Fasen</h2>
+  <div class="timeline">
+
+    <article class="phase current" style="--node:var(--pink)">
+      <div class="ph-head"><p class="eyebrow">Fase 0 · proefweek · de eerste laag</p><span class="status">bezig</span></div>
+      <h3>Eén printklare plaat met 25 namen</h3>
+      <p class="goal">25 verschillende namen worden op je telefoon één plaat voor een A1 mini, met de goede kleuren. Gaat de eerste laag mis, dan mislukt de hele print: daarom eerst dit bewijzen.</p>
+      <div class="cols">
+        <div><p class="eyebrow">Bouwvolgorde</p>
+          <ol class="order"><li>3MF-bewijs, nog zonder scherm</li><li>Rekenen: tekst → vorm → plaat, getest op 20 namen</li><li>Scherm: invoer, voorbeeld, downloadbalk</li><li>Proeflink en bewijsronde</li></ol></div>
+        <div><p class="eyebrow">Wel</p>
+          <ul><li>3 lettertypen, 2 kleuren</li><li>Plaat vullen A1 mini en A1</li><li>3D-voorbeeld</li><li>Download 3MF + STL</li></ul></div>
+        <div><p class="eyebrow">Niet</p>
+          <ul class="no"><li>Inloggen, database</li><li>Modulebord, community</li><li>Clicker, emoji, donaties</li></ul></div>
+      </div>
+      <div class="codes"><span>studio/batch</span><span>studio/fonts</span><span>print/plate-fill</span><span>print/color-3mf</span><span>print/print-check</span></div>
+    </article>
+
+    <div class="gate">
+      <p class="eyebrow">Door naar fase 1 als alles groen is (mvp.md)</p>
+      <div class="checks">
+        <span><em>M-1</em>25 namen</span><span><em>M-2</em>alles op de plaat</span><span><em>M-3</em>kleur op AMS-slot</span><span><em>M-4</em>model heel</span>
+        <span><em>M-5</em>Android + iPhone</span><span><em>M-6</em>10 exports foutloos</span><span><em>M-7</em>3 platen geprint</span><span><em>M-8</em>&lt; 30 s tot download</span>
+      </div>
+      <p class="muted">En de vergelijkingstest: Tinkpop is duidelijk sneller of makkelijker dan KeychainGEN en de rest.</p>
+    </div>
+
+    <article class="phase" style="--node:var(--cyan)">
+      <div class="ph-head"><p class="eyebrow">Fase 1 · lancering</p><span class="status">gepland</span></div>
+      <h3>De beste naam-sleutelhanger, gratis</h3>
+      <p class="goal">Eerst de beste generator, nog geen platform (B-149). Downloaden zonder account.</p>
+      <div class="cols">
+        <div><p class="eyebrow">Erin</p>
+          <ul><li>Sleutelhanger met alles erop en eraan</li><li>Plaat vullen en batch</li><li>Meldknop en hello@tinkpop.com</li><li>Veiligheidsregel bij de downloadknop</li><li>Emoji (met vermelding in de 3MF)</li><li>Pop-taal, geluid standaard uit</li></ul></div>
+        <div><p class="eyebrow">Live zetten</p>
+          <ul><li>Merkcheck klaar</li><li>Jij probeert de proeflink</li><li>Release-PR samenvoegen = akkoord</li><li>2 weken stil live, dan aankondigen met je voornaam</li></ul></div>
+      </div>
+      <p class="note">Eerste gelegenheid: Sinterklaas en Kerst (B-014).</p>
+    </article>
+
+    <div class="gate">
+      <p class="eyebrow">Doorgaan als, 4 weken na aankondiging (B-150)</p>
+      <div class="checks"><span>≥ 500 downloads</span><span>≥ 30% van de bezoekers downloadt</span><span>mediaan &lt; 2 min tot download</span><span>&lt; 2% slicer-meldingen</span></div>
+      <p class="muted">Lukt het niet: Tinkpop blijft een gratis tool bij Bouwhoek en groeit niet verder.</p>
+    </div>
+
+    <article class="phase" style="--node:color-mix(in srgb,var(--cyan) 50%,var(--pink))">
+      <div class="ph-head"><p class="eyebrow">Fase 2 · beheer en groei</p><span class="status">gepland</span></div>
+      <h3>Bewaren, beheren, meer maken</h3>
+      <div class="cols">
+        <div><ul><li>Inloggen met e-maillink + passkey, 16+, met AVG-pakket</li><li>Modulebord en live schakelaars</li><li>Eigen clicker (eigen ontwerp, B-147)</li></ul></div>
+        <div><ul><li>Catalogus en gelegenheden</li><li>Offline werken (PWA)</li></ul></div>
+      </div>
+    </article>
+
+    <div class="gate">
+      <p class="eyebrow">Door als</p>
+      <div class="checks"><span>3 maanden live</span><span>makers willen echt meedoen</span></div>
+    </div>
+
+    <article class="phase" style="--node:var(--pink)">
+      <div class="ph-head"><p class="eyebrow">Fase 3 · community</p><span class="status">gepland</span></div>
+      <h3>Anderen bouwen mee</h3>
+      <div class="cols">
+        <div><ul><li>Generators van anderen, alleen .scad</li><li>Profielen met doneerlink van de maker</li></ul></div>
+        <div><ul><li>Remix en picks</li><li>Licentie voor community-generators eerst besluiten</li></ul></div>
+      </div>
+    </article>
+
+    <article class="phase" style="--node:color-mix(in srgb,var(--pink) 50%,var(--orange));margin-top:16px">
+      <div class="ph-head"><p class="eyebrow">Fase 4 · uitbreiden</p><span class="status">gepland</span></div>
+      <h3>Laten zien wat er geprint is</h3>
+      <div class="cols"><div><ul><li>Foto's van prints (makes)</li><li>Nederlandse versie</li><li>Open in Bambu Studio</li></ul></div></div>
+    </article>
+
+    <div class="gate">
+      <p class="eyebrow">Alleen als</p>
+      <div class="checks"><span>donaties dragen de kosten</span></div>
+    </div>
+
+    <article class="phase" style="--node:var(--orange)">
+      <div class="ph-head"><p class="eyebrow">Fase 5 · lab</p><span class="status">misschien</span></div>
+      <h3>AI en experimenten</h3>
+      <div class="cols"><div><ul><li>AI: tekst of foto naar 3D, met daglimiet, gratis</li><li>Klasmodus</li><li>Brug naar NotMadeYet</li></ul></div></div>
+    </article>
+
+  </div>
+</section>
+
+<section class="duo">
+  <div class="box">
+    <h2>Bewust niet</h2>
+    <ul><li>Geen eigen login, database-server of analytics bouwen</li><li>Geen verkoop, advertenties of trackers</li><li>Geen community vóór 3 maanden live</li><li>Geen AI tot donaties het dragen</li><li>Geen app, alleen web</li></ul>
+  </div>
+  <div class="box">
+    <h2>Later, nog niet gepland</h2>
+    <ul><li>Sleutelhangers: scharnierende naam, spinner, flesopener, AirTag- en NFC-houder, QR, lithofaan, braille, glow-in-the-dark</li><li>NotMadeYet blijft apart; later misschien een eigen plek</li></ul>
+  </div>
+</section>
+
+<footer>
+  <p>Besluiten met nummer staan in docs/4-besluiten/besluiten.md. Deze pagina is een weergave; de bron is roadmap.md.</p>
+</footer>
+</div>
+
+<script>
+const chips=[...document.querySelectorAll(".chip")],groups=[...document.querySelectorAll("[data-who]")];
+function show(f){chips.forEach(c=>c.setAttribute("aria-pressed",String(c.dataset.f===f)));groups.forEach(g=>g.hidden=!(f==="all"||g.dataset.who===f))}
+chips.forEach(c=>c.addEventListener("click",()=>{show(c.dataset.f);try{localStorage.setItem("rm-filter",c.dataset.f)}catch(e){}}));
+try{const s=localStorage.getItem("rm-filter");if(s)show(s)}catch(e){}
+</script>
